@@ -1,0 +1,14 @@
+--------------- Build Started: 03/02/2021 16:47:45 Project: lesson2, Configuration: ARM GCC 5.4-2016-q2-update Release ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Release/main.lst -g -D NDEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Os -c main.c -o .\CortexM3\ARM_GCC_541\Release\main.o
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Release\lesson2.a .\CortexM3\ARM_GCC_541\Release\CyDmac.o .\CortexM3\ARM_GCC_541\Release\CyFlash.o .\CortexM3\ARM_GCC_541\Release\CyLib.o .\CortexM3\ARM_GCC_541\Release\cyPm.o .\CortexM3\ARM_GCC_541\Release\CySpc.o .\CortexM3\ARM_GCC_541\Release\cyutils.o .\CortexM3\ARM_GCC_541\Release\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Release\LED.o .\CortexM3\ARM_GCC_541\Release\Clock_1.o .\CortexM3\ARM_GCC_541\Release\PWM_1.o .\CortexM3\ARM_GCC_541\Release\PWM_1_PM.o .\CortexM3\ARM_GCC_541\Release\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Release\lesson2.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\elon1\Desktop\psoc\Workspace01\lesson2.cydsn\CortexM3\ARM_GCC_541\Release\lesson2.elf .\CortexM3\ARM_GCC_541\Release\main.o .\CortexM3\ARM_GCC_541\Release\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Release\cymetadata.o .\CortexM3\ARM_GCC_541\Release\Cm3Start.o .\CortexM3\ARM_GCC_541\Release\lesson2.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Release\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Release/lesson2.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Os -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C C:\Users\elon1\Desktop\psoc\Workspace01\lesson2.cydsn\CortexM3\ARM_GCC_541\Release\lesson2.elf --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+No ELF section .cychecksum found, creating one
+Application checksum calculated and stored in ELF section .cychecksum
+Checksum calculated and stored in ELF section .cymeta
+cyelftool.exe -S C:\Users\elon1\Desktop\psoc\Workspace01\lesson2.cydsn\CortexM3\ARM_GCC_541\Release\lesson2.elf
+Flash used: 1408 of 262144 bytes (0.5%).
+SRAM used: 2521 of 65536 bytes (3.8%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Build Succeeded: 03/02/2021 16:47:47 ---------------

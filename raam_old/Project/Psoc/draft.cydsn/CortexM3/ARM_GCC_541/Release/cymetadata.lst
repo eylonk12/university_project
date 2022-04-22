@@ -1,0 +1,494 @@
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.type	cy_meta_configecc, %object
+  26              		.size	cy_meta_configecc, 20
+  27              	cy_meta_configecc:
+  28 0000 00       		.byte	0
+  29 0001 0B       		.byte	11
+  30 0002 0B       		.byte	11
+  31 0003 00       		.byte	0
+  32 0004 00       		.byte	0
+  33 0005 00       		.byte	0
+  34 0006 00       		.byte	0
+  35 0007 00       		.byte	0
+  36 0008 05       		.byte	5
+  37 0009 00       		.byte	0
+  38 000a 08       		.byte	8
+  39 000b 35       		.byte	53
+  40 000c 30       		.byte	48
+  41 000d 00       		.byte	0
+  42 000e 00       		.byte	0
+  43 000f 00       		.byte	0
+  44 0010 00       		.byte	0
+  45 0011 00       		.byte	0
+  46 0012 00       		.byte	0
+  47 0013 00       		.byte	0
+  48              		.section	.cywolatch,"a",%progbits
+  49              		.type	cy_meta_wonvl, %object
+  50              		.size	cy_meta_wonvl, 4
+  51              	cy_meta_wonvl:
+  52 0000 BC       		.byte	-68
+  53 0001 90       		.byte	-112
+  54 0002 AC       		.byte	-84
+  55 0003 AF       		.byte	-81
+  56              		.section	.cycustnvl,"a",%progbits
+  57              		.type	cy_meta_custnvl, %object
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 2
+
+
+  58              		.size	cy_meta_custnvl, 4
+  59              	cy_meta_custnvl:
+  60 0000 00       		.byte	0
+  61 0001 00       		.byte	0
+  62 0002 40       		.byte	64
+  63 0003 05       		.byte	5
+  64              		.section	.cymeta,"a",%progbits
+  65              		.type	cy_metadata, %object
+  66              		.size	cy_metadata, 12
+  67              	cy_metadata:
+  68 0000 00       		.byte	0
+  69 0001 01       		.byte	1
+  70 0002 2E       		.byte	46
+  71 0003 16       		.byte	22
+  72 0004 10       		.byte	16
+  73 0005 69       		.byte	105
+  74 0006 00       		.byte	0
+  75 0007 01       		.byte	1
+  76 0008 00       		.byte	0
+  77 0009 00       		.byte	0
+  78 000a 00       		.byte	0
+  79 000b 00       		.byte	0
+  80              		.section	.cyflashprotect,"a",%progbits
+  81              		.type	cy_meta_flashprotect, %object
+  82              		.size	cy_meta_flashprotect, 256
+  83              	cy_meta_flashprotect:
+  84 0000 00000000 		.space	256
+  84      00000000 
+  84      00000000 
+  84      00000000 
+  84      00000000 
+  85              		.text
+  86              	.Letext0:
+  87              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+  88              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+  89              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+  90              		.section	.debug_info,"",%progbits
+  91              	.Ldebug_info0:
+  92 0000 30010000 		.4byte	0x130
+  93 0004 0400     		.2byte	0x4
+  94 0006 00000000 		.4byte	.Ldebug_abbrev0
+  95 000a 04       		.byte	0x4
+  96 000b 01       		.uleb128 0x1
+  97 000c CC000000 		.4byte	.LASF17
+  98 0010 0C       		.byte	0xc
+  99 0011 BB010000 		.4byte	.LASF18
+ 100 0015 0A000000 		.4byte	.LASF19
+ 101 0019 00000000 		.4byte	.Ldebug_line0
+ 102 001d 02       		.uleb128 0x2
+ 103 001e 01       		.byte	0x1
+ 104 001f 06       		.byte	0x6
+ 105 0020 AF010000 		.4byte	.LASF0
+ 106 0024 03       		.uleb128 0x3
+ 107 0025 00000000 		.4byte	.LASF9
+ 108 0029 01       		.byte	0x1
+ 109 002a 1D       		.byte	0x1d
+ 110 002b 2F000000 		.4byte	0x2f
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 3
+
+
+ 111 002f 02       		.uleb128 0x2
+ 112 0030 01       		.byte	0x1
+ 113 0031 08       		.byte	0x8
+ 114 0032 6A000000 		.4byte	.LASF1
+ 115 0036 02       		.uleb128 0x2
+ 116 0037 02       		.byte	0x2
+ 117 0038 05       		.byte	0x5
+ 118 0039 9C010000 		.4byte	.LASF2
+ 119 003d 02       		.uleb128 0x2
+ 120 003e 02       		.byte	0x2
+ 121 003f 07       		.byte	0x7
+ 122 0040 8A000000 		.4byte	.LASF3
+ 123 0044 02       		.uleb128 0x2
+ 124 0045 04       		.byte	0x4
+ 125 0046 05       		.byte	0x5
+ 126 0047 A6010000 		.4byte	.LASF4
+ 127 004b 02       		.uleb128 0x2
+ 128 004c 04       		.byte	0x4
+ 129 004d 07       		.byte	0x7
+ 130 004e 78000000 		.4byte	.LASF5
+ 131 0052 02       		.uleb128 0x2
+ 132 0053 08       		.byte	0x8
+ 133 0054 05       		.byte	0x5
+ 134 0055 8E010000 		.4byte	.LASF6
+ 135 0059 02       		.uleb128 0x2
+ 136 005a 08       		.byte	0x8
+ 137 005b 07       		.byte	0x7
+ 138 005c 53000000 		.4byte	.LASF7
+ 139 0060 04       		.uleb128 0x4
+ 140 0061 04       		.byte	0x4
+ 141 0062 05       		.byte	0x5
+ 142 0063 696E7400 		.ascii	"int\000"
+ 143 0067 02       		.uleb128 0x2
+ 144 0068 04       		.byte	0x4
+ 145 0069 07       		.byte	0x7
+ 146 006a BF000000 		.4byte	.LASF8
+ 147 006e 03       		.uleb128 0x3
+ 148 006f 5A010000 		.4byte	.LASF10
+ 149 0073 02       		.byte	0x2
+ 150 0074 18       		.byte	0x18
+ 151 0075 24000000 		.4byte	0x24
+ 152 0079 05       		.uleb128 0x5
+ 153 007a 90000000 		.4byte	0x90
+ 154 007e 89000000 		.4byte	0x89
+ 155 0082 06       		.uleb128 0x6
+ 156 0083 89000000 		.4byte	0x89
+ 157 0087 13       		.byte	0x13
+ 158 0088 00       		.byte	0
+ 159 0089 02       		.uleb128 0x2
+ 160 008a 04       		.byte	0x4
+ 161 008b 07       		.byte	0x7
+ 162 008c 85010000 		.4byte	.LASF11
+ 163 0090 07       		.uleb128 0x7
+ 164 0091 6E000000 		.4byte	0x6e
+ 165 0095 08       		.uleb128 0x8
+ 166 0096 AD000000 		.4byte	.LASF12
+ 167 009a 03       		.byte	0x3
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 4
+
+
+ 168 009b 1F       		.byte	0x1f
+ 169 009c A6000000 		.4byte	0xa6
+ 170 00a0 05       		.uleb128 0x5
+ 171 00a1 03       		.byte	0x3
+ 172 00a2 00000000 		.4byte	cy_meta_configecc
+ 173 00a6 07       		.uleb128 0x7
+ 174 00a7 79000000 		.4byte	0x79
+ 175 00ab 05       		.uleb128 0x5
+ 176 00ac 90000000 		.4byte	0x90
+ 177 00b0 BB000000 		.4byte	0xbb
+ 178 00b4 06       		.uleb128 0x6
+ 179 00b5 89000000 		.4byte	0x89
+ 180 00b9 03       		.byte	0x3
+ 181 00ba 00       		.byte	0
+ 182 00bb 08       		.uleb128 0x8
+ 183 00bc 9D000000 		.4byte	.LASF13
+ 184 00c0 03       		.byte	0x3
+ 185 00c1 2F       		.byte	0x2f
+ 186 00c2 CC000000 		.4byte	0xcc
+ 187 00c6 05       		.uleb128 0x5
+ 188 00c7 03       		.byte	0x3
+ 189 00c8 00000000 		.4byte	cy_meta_custnvl
+ 190 00cc 07       		.uleb128 0x7
+ 191 00cd AB000000 		.4byte	0xab
+ 192 00d1 08       		.uleb128 0x8
+ 193 00d2 77010000 		.4byte	.LASF14
+ 194 00d6 03       		.byte	0x3
+ 195 00d7 3D       		.byte	0x3d
+ 196 00d8 E2000000 		.4byte	0xe2
+ 197 00dc 05       		.uleb128 0x5
+ 198 00dd 03       		.byte	0x3
+ 199 00de 00000000 		.4byte	cy_meta_wonvl
+ 200 00e2 07       		.uleb128 0x7
+ 201 00e3 AB000000 		.4byte	0xab
+ 202 00e7 05       		.uleb128 0x5
+ 203 00e8 90000000 		.4byte	0x90
+ 204 00ec F7000000 		.4byte	0xf7
+ 205 00f0 06       		.uleb128 0x6
+ 206 00f1 89000000 		.4byte	0x89
+ 207 00f5 FF       		.byte	0xff
+ 208 00f6 00       		.byte	0
+ 209 00f7 08       		.uleb128 0x8
+ 210 00f8 62010000 		.4byte	.LASF15
+ 211 00fc 03       		.byte	0x3
+ 212 00fd 4B       		.byte	0x4b
+ 213 00fe 08010000 		.4byte	0x108
+ 214 0102 05       		.uleb128 0x5
+ 215 0103 03       		.byte	0x3
+ 216 0104 00000000 		.4byte	cy_meta_flashprotect
+ 217 0108 07       		.uleb128 0x7
+ 218 0109 E7000000 		.4byte	0xe7
+ 219 010d 05       		.uleb128 0x5
+ 220 010e 90000000 		.4byte	0x90
+ 221 0112 1D010000 		.4byte	0x11d
+ 222 0116 06       		.uleb128 0x6
+ 223 0117 89000000 		.4byte	0x89
+ 224 011b 0B       		.byte	0xb
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 5
+
+
+ 225 011c 00       		.byte	0
+ 226 011d 08       		.uleb128 0x8
+ 227 011e 47000000 		.4byte	.LASF16
+ 228 0122 03       		.byte	0x3
+ 229 0123 78       		.byte	0x78
+ 230 0124 2E010000 		.4byte	0x12e
+ 231 0128 05       		.uleb128 0x5
+ 232 0129 03       		.byte	0x3
+ 233 012a 00000000 		.4byte	cy_metadata
+ 234 012e 07       		.uleb128 0x7
+ 235 012f 0D010000 		.4byte	0x10d
+ 236 0133 00       		.byte	0
+ 237              		.section	.debug_abbrev,"",%progbits
+ 238              	.Ldebug_abbrev0:
+ 239 0000 01       		.uleb128 0x1
+ 240 0001 11       		.uleb128 0x11
+ 241 0002 01       		.byte	0x1
+ 242 0003 25       		.uleb128 0x25
+ 243 0004 0E       		.uleb128 0xe
+ 244 0005 13       		.uleb128 0x13
+ 245 0006 0B       		.uleb128 0xb
+ 246 0007 03       		.uleb128 0x3
+ 247 0008 0E       		.uleb128 0xe
+ 248 0009 1B       		.uleb128 0x1b
+ 249 000a 0E       		.uleb128 0xe
+ 250 000b 10       		.uleb128 0x10
+ 251 000c 17       		.uleb128 0x17
+ 252 000d 00       		.byte	0
+ 253 000e 00       		.byte	0
+ 254 000f 02       		.uleb128 0x2
+ 255 0010 24       		.uleb128 0x24
+ 256 0011 00       		.byte	0
+ 257 0012 0B       		.uleb128 0xb
+ 258 0013 0B       		.uleb128 0xb
+ 259 0014 3E       		.uleb128 0x3e
+ 260 0015 0B       		.uleb128 0xb
+ 261 0016 03       		.uleb128 0x3
+ 262 0017 0E       		.uleb128 0xe
+ 263 0018 00       		.byte	0
+ 264 0019 00       		.byte	0
+ 265 001a 03       		.uleb128 0x3
+ 266 001b 16       		.uleb128 0x16
+ 267 001c 00       		.byte	0
+ 268 001d 03       		.uleb128 0x3
+ 269 001e 0E       		.uleb128 0xe
+ 270 001f 3A       		.uleb128 0x3a
+ 271 0020 0B       		.uleb128 0xb
+ 272 0021 3B       		.uleb128 0x3b
+ 273 0022 0B       		.uleb128 0xb
+ 274 0023 49       		.uleb128 0x49
+ 275 0024 13       		.uleb128 0x13
+ 276 0025 00       		.byte	0
+ 277 0026 00       		.byte	0
+ 278 0027 04       		.uleb128 0x4
+ 279 0028 24       		.uleb128 0x24
+ 280 0029 00       		.byte	0
+ 281 002a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 6
+
+
+ 282 002b 0B       		.uleb128 0xb
+ 283 002c 3E       		.uleb128 0x3e
+ 284 002d 0B       		.uleb128 0xb
+ 285 002e 03       		.uleb128 0x3
+ 286 002f 08       		.uleb128 0x8
+ 287 0030 00       		.byte	0
+ 288 0031 00       		.byte	0
+ 289 0032 05       		.uleb128 0x5
+ 290 0033 01       		.uleb128 0x1
+ 291 0034 01       		.byte	0x1
+ 292 0035 49       		.uleb128 0x49
+ 293 0036 13       		.uleb128 0x13
+ 294 0037 01       		.uleb128 0x1
+ 295 0038 13       		.uleb128 0x13
+ 296 0039 00       		.byte	0
+ 297 003a 00       		.byte	0
+ 298 003b 06       		.uleb128 0x6
+ 299 003c 21       		.uleb128 0x21
+ 300 003d 00       		.byte	0
+ 301 003e 49       		.uleb128 0x49
+ 302 003f 13       		.uleb128 0x13
+ 303 0040 2F       		.uleb128 0x2f
+ 304 0041 0B       		.uleb128 0xb
+ 305 0042 00       		.byte	0
+ 306 0043 00       		.byte	0
+ 307 0044 07       		.uleb128 0x7
+ 308 0045 26       		.uleb128 0x26
+ 309 0046 00       		.byte	0
+ 310 0047 49       		.uleb128 0x49
+ 311 0048 13       		.uleb128 0x13
+ 312 0049 00       		.byte	0
+ 313 004a 00       		.byte	0
+ 314 004b 08       		.uleb128 0x8
+ 315 004c 34       		.uleb128 0x34
+ 316 004d 00       		.byte	0
+ 317 004e 03       		.uleb128 0x3
+ 318 004f 0E       		.uleb128 0xe
+ 319 0050 3A       		.uleb128 0x3a
+ 320 0051 0B       		.uleb128 0xb
+ 321 0052 3B       		.uleb128 0x3b
+ 322 0053 0B       		.uleb128 0xb
+ 323 0054 49       		.uleb128 0x49
+ 324 0055 13       		.uleb128 0x13
+ 325 0056 3F       		.uleb128 0x3f
+ 326 0057 19       		.uleb128 0x19
+ 327 0058 02       		.uleb128 0x2
+ 328 0059 18       		.uleb128 0x18
+ 329 005a 00       		.byte	0
+ 330 005b 00       		.byte	0
+ 331 005c 00       		.byte	0
+ 332              		.section	.debug_aranges,"",%progbits
+ 333 0000 14000000 		.4byte	0x14
+ 334 0004 0200     		.2byte	0x2
+ 335 0006 00000000 		.4byte	.Ldebug_info0
+ 336 000a 04       		.byte	0x4
+ 337 000b 00       		.byte	0
+ 338 000c 0000     		.2byte	0
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 7
+
+
+ 339 000e 0000     		.2byte	0
+ 340 0010 00000000 		.4byte	0
+ 341 0014 00000000 		.4byte	0
+ 342              		.section	.debug_line,"",%progbits
+ 343              	.Ldebug_line0:
+ 344 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 344      02003701 
+ 344      00000201 
+ 344      FB0E0D00 
+ 344      01010101 
+ 345              	.LASF9:
+ 346 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 346      6E74385F 
+ 346      7400
+ 347              	.LASF19:
+ 348 000a 433A5C55 		.ascii	"C:\\Users\\elon1\\Desktop\\programs\\psoc\\Workspac"
+ 348      73657273 
+ 348      5C656C6F 
+ 348      6E315C44 
+ 348      65736B74 
+ 349 0037 6530315C 		.ascii	"e01\\draft.cydsn\000"
+ 349      64726166 
+ 349      742E6379 
+ 349      64736E00 
+ 350              	.LASF16:
+ 351 0047 63795F6D 		.ascii	"cy_metadata\000"
+ 351      65746164 
+ 351      61746100 
+ 352              	.LASF7:
+ 353 0053 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 353      206C6F6E 
+ 353      6720756E 
+ 353      7369676E 
+ 353      65642069 
+ 354              	.LASF1:
+ 355 006a 756E7369 		.ascii	"unsigned char\000"
+ 355      676E6564 
+ 355      20636861 
+ 355      7200
+ 356              	.LASF5:
+ 357 0078 6C6F6E67 		.ascii	"long unsigned int\000"
+ 357      20756E73 
+ 357      69676E65 
+ 357      6420696E 
+ 357      7400
+ 358              	.LASF3:
+ 359 008a 73686F72 		.ascii	"short unsigned int\000"
+ 359      7420756E 
+ 359      7369676E 
+ 359      65642069 
+ 359      6E7400
+ 360              	.LASF13:
+ 361 009d 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 361      6574615F 
+ 361      63757374 
+ 361      6E766C00 
+ 362              	.LASF12:
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 8
+
+
+ 363 00ad 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 363      6574615F 
+ 363      636F6E66 
+ 363      69676563 
+ 363      6300
+ 364              	.LASF8:
+ 365 00bf 756E7369 		.ascii	"unsigned int\000"
+ 365      676E6564 
+ 365      20696E74 
+ 365      00
+ 366              	.LASF17:
+ 367 00cc 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 367      43313120 
+ 367      352E342E 
+ 367      31203230 
+ 367      31363036 
+ 368 00ff 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 368      20726576 
+ 368      6973696F 
+ 368      6E203233 
+ 368      37373135 
+ 369 0132 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 369      66756E63 
+ 369      74696F6E 
+ 369      2D736563 
+ 369      74696F6E 
+ 370              	.LASF10:
+ 371 015a 75696E74 		.ascii	"uint8_t\000"
+ 371      385F7400 
+ 372              	.LASF15:
+ 373 0162 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 373      6574615F 
+ 373      666C6173 
+ 373      6870726F 
+ 373      74656374 
+ 374              	.LASF14:
+ 375 0177 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 375      6574615F 
+ 375      776F6E76 
+ 375      6C00
+ 376              	.LASF11:
+ 377 0185 73697A65 		.ascii	"sizetype\000"
+ 377      74797065 
+ 377      00
+ 378              	.LASF6:
+ 379 018e 6C6F6E67 		.ascii	"long long int\000"
+ 379      206C6F6E 
+ 379      6720696E 
+ 379      7400
+ 380              	.LASF2:
+ 381 019c 73686F72 		.ascii	"short int\000"
+ 381      7420696E 
+ 381      7400
+ 382              	.LASF4:
+ 383 01a6 6C6F6E67 		.ascii	"long int\000"
+ 383      20696E74 
+ 383      00
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\ccYz7Lmd.s 			page 9
+
+
+ 384              	.LASF0:
+ 385 01af 7369676E 		.ascii	"signed char\000"
+ 385      65642063 
+ 385      68617200 
+ 386              	.LASF18:
+ 387 01bb 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 387      72617465 
+ 387      645F536F 
+ 387      75726365 
+ 387      5C50536F 
+ 388              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,10 @@
+C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+C:/Users/eylonk/OneDrive\ -\ Xsight\ Labs\ Ltd/Desktop/eylon/general/programs/psoc/Workspace01/eylons_project.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+

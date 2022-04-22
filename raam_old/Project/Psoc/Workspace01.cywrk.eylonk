@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\eylons_project\Source Files\main.c">
+<ExpandedNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft\TopDesign</v>
+<v>Workspace01\draft\draft.cydwr</v>
+<v>Workspace01\draft\draft.cydwr\Pins</v>
+<v>Workspace01\draft\draft.cydwr\Analog</v>
+<v>Workspace01\draft\draft.cydwr\Clocks</v>
+<v>Workspace01\draft\draft.cydwr\Interrupts</v>
+<v>Workspace01\draft\draft.cydwr\DMA</v>
+<v>Workspace01\draft\draft.cydwr\System</v>
+<v>Workspace01\draft\draft.cydwr\Directives</v>
+<v>Workspace01\draft\draft.cydwr\Flash Security</v>
+<v>Workspace01\draft\draft.cydwr\EEPROM</v>
+<v>Workspace01\draft\Header Files</v>
+<v>Workspace01\draft\Header Files\cyapicallbacks.h</v>
+<v>Workspace01\draft\Source Files</v>
+<v>Workspace01\draft\Source Files\main.c</v>
+<v>Workspace01\draft\Generated_Source</v>
+<v>Workspace01\draft\Generated_Source\PSoC5</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\TopDesign</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Pins</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Analog</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Clocks</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Interrupts</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\DMA</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\System</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Directives</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Flash Security</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\EEPROM</v>
+<v>Workspace01\eylons_project\Header Files</v>
+<v>Workspace01\eylons_project\Header Files\cyapicallbacks.h</v>
+<v>Workspace01\eylons_project\Source Files</v>
+<v>Workspace01\eylons_project\Source Files\main.c</v>
+<v>Workspace01\eylons_project\Generated_Source</v>
+<v>Workspace01\eylons_project\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\TopDesign</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Pins</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Analog</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Clocks</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Interrupts</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\DMA</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\System</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Directives</v>
+<v>Workspace01\eylons_project\eylons_project.cydwr\Flash Security</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\TopDesign</v>
+<v>Workspace01\draft\TopDesign\TopDesign.cysch</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\TopDesign</v>
+<v>Workspace01\eylons_project\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\TopDesign</v>
+<v>Workspace01\draft\TopDesign\TopDesign.cysch</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\TopDesign</v>
+<v>Workspace01\eylons_project\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\CortexM3</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyDmac.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cymetadata.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cyPm.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CySpc.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cyutils.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\direction_out.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\main.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\operation_input.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\pulse_out.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_left.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_right.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\draft.elf</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\draft.hex</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\draft.map</v>
+<v>Workspace01\draft\draft.gpdsc</v>
+<v>Workspace01\draft\draft.rpt</v>
+<v>Workspace01\draft\draft_timing.html</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\CortexM3</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\direction_out.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\leds_control.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\leds_enable.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\operation_input.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\pulse_out.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_left.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_right.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\eylons_project.elf</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\eylons_project.hex</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\eylons_project.map</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\Clock_1.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\CyDmac.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\cymetadata.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\cyPm.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\CySpc.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\cyutils.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\direction_out.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\main.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\operation_input.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\pulse_out.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_left.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_right.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\eylons_project.elf</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\eylons_project.hex</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Release\eylons_project.map</v>
+<v>Workspace01\eylons_project\eylons_project.gpdsc</v>
+<v>Workspace01\eylons_project\eylons_project.rpt</v>
+<v>Workspace01\eylons_project\eylons_project_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\CortexM3</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyDmac.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>Workspace01\draft\CortexM3\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\draft\CY8C58LP Family Datasheet</v>
+<v>Workspace01\draft\System Reference Guides</v>
+<v>Workspace01\draft\System Reference Guides\cy_boot_v6_0</v>
+<v>Workspace01\draft\cy_pins_v2_20</v>
+<v>Workspace01\draft\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\eylons_project\CY8C58LP Family Datasheet</v>
+<v>Workspace01\eylons_project\System Reference Guides</v>
+<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_0</v>
+<v>Workspace01\eylons_project\cy_clock_v2_20.pdf</v>
+<v>Workspace01\eylons_project\cy_pins_v2_20</v>
+<v>Workspace01\eylons_project\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Workspace01\eylons_project\OpAmp_v1_90.pdf</v>
+<v>Workspace01\eylons_project\VDAC8_v1_90.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Workspace01</v>
+<v>Workspace01\draft</v>
+<v>Workspace01\draft\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\draft\CY8C58LP Family Datasheet</v>
+<v>Workspace01\draft\System Reference Guides</v>
+<v>Workspace01\draft\System Reference Guides\cy_boot_v6_0</v>
+<v>Workspace01\draft\cy_pins_v2_20</v>
+<v>Workspace01\draft\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\eylons_project\CY8C58LP Family Datasheet</v>
+<v>Workspace01\eylons_project\System Reference Guides</v>
+<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_0</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\eylons_project.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\eylons_project.cydsn\main.c" />
+<name v=".\eylons_project.cydsn\eylons_project.cydwr" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1643, 726" SelectedTabbedMdiWindow="c92b88d1-f0be-4de1-b098-4db583dbb2bc"><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\TopDesign\TopDesign.cysch" Guid="c92b88d1-f0be-4de1-b098-4db583dbb2bc" /><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\main.c" Guid="0d831992-7c59-41e6-a0b0-c5604ccc3a1e" /><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\eylons_project.cydwr" Guid="4cd3922d-e8be-4459-9139-43f065dff031" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4c155799-0d67-4fc5-9172-b6a83fa8a676" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

@@ -1,0 +1,1556 @@
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** #include <stdlib.h>
+  15:main.c        **** 
+  16:main.c        **** int main(void)
+  17:main.c        **** {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  18:main.c        ****     // Starting the DAC used for leds display of magnets location
+  19:main.c        ****     // As the magnet is closer to the sample more leds will turn up. 
+  20:main.c        ****     VDAC8_1_Start();
+  36              		.loc 1 20 0
+  37 0002 FFF7FEFF 		bl	VDAC8_1_Start
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 2
+
+
+  38              	.LVL0:
+  21:main.c        ****     //total steps are 1445;
+  22:main.c        ****     int total_steps = 1450;
+  23:main.c        ****     //int middle_steps = 725;
+  24:main.c        ****     
+  25:main.c        ****     int current_delay;
+  26:main.c        ****     int min_speed_delay = 700;
+  27:main.c        ****     int max_speed_delay = 250;
+  28:main.c        ****     
+  29:main.c        ****     int big_delay = 750;
+  30:main.c        ****     int max_vdac_power = 245; //255 for full power (maximum of 4V) and 0 for the least power (0V)
+  31:main.c        ****     int always_enable_leds = 1; 
+  32:main.c        ****     
+  33:main.c        ****     
+  34:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  39              		.loc 1 34 0
+  40              		.syntax unified
+  41              	@ 34 "main.c" 1
+  42 0006 62B6     		CPSIE   i
+  43              	@ 0 "" 2
+  35:main.c        **** 
+  36:main.c        ****     Opamp_1_Start();
+  44              		.loc 1 36 0
+  45              		.thumb
+  46              		.syntax unified
+  47 0008 FFF7FEFF 		bl	Opamp_1_Start
+  48              	.LVL1:
+  37:main.c        ****     Opamp_1_Init();
+  49              		.loc 1 37 0
+  50 000c FFF7FEFF 		bl	Opamp_1_Init
+  51              	.LVL2:
+  52              	.L2:
+  38:main.c        ****     
+  39:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  40:main.c        **** 
+  41:main.c        ****     for(;;)
+  42:main.c        ****     {
+  43:main.c        ****         if (operation_input_Read() == 0)
+  53              		.loc 1 43 0
+  54 0010 FFF7FEFF 		bl	operation_input_Read
+  55              	.LVL3:
+  56 0014 0028     		cmp	r0, #0
+  57 0016 57D1     		bne	.L3
+  44:main.c        ****         {
+  45:main.c        ****             if (sensor_left_Read() == 1)
+  58              		.loc 1 45 0
+  59 0018 FFF7FEFF 		bl	sensor_left_Read
+  60              	.LVL4:
+  61 001c 0128     		cmp	r0, #1
+  62 001e 4FD1     		bne	.L4
+  46:main.c        ****             {
+  47:main.c        ****                 if (sensor_right_Read() == 0)
+  63              		.loc 1 47 0
+  64 0020 FFF7FEFF 		bl	sensor_right_Read
+  65              	.LVL5:
+  66 0024 0028     		cmp	r0, #0
+  67 0026 3CD1     		bne	.L5
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 3
+
+
+  48:main.c        ****                 {
+  49:main.c        ****                     // The magnet is on the right sensor (sample) and needs to move to the left one
+  50:main.c        ****                     direction_out_Write(0);
+  68              		.loc 1 50 0
+  69 0028 FFF7FEFF 		bl	direction_out_Write
+  70              	.LVL6:
+  51:main.c        ****                     VDAC8_1_SetValue(0);
+  71              		.loc 1 51 0
+  72 002c 0020     		movs	r0, #0
+  73 002e FFF7FEFF 		bl	VDAC8_1_SetValue
+  74              	.LVL7:
+  75              	.LBB2:
+  52:main.c        ****                     for (int i=0;i<total_steps;i++)
+  76              		.loc 1 52 0
+  77 0032 0024     		movs	r4, #0
+  78 0034 30E0     		b	.L6
+  79              	.LVL8:
+  80              	.L12:
+  53:main.c        ****                     {
+  54:main.c        ****                         VDAC8_1_SetValue((int)(i*max_vdac_power/total_steps));
+  81              		.loc 1 54 0
+  82 0036 F523     		movs	r3, #245
+  83 0038 03FB04F3 		mul	r3, r3, r4
+  84 003c 5248     		ldr	r0, .L26
+  85 003e 80FB0320 		smull	r2, r0, r0, r3
+  86 0042 DB17     		asrs	r3, r3, #31
+  87 0044 C3EB6020 		rsb	r0, r3, r0, asr #9
+  88 0048 C0B2     		uxtb	r0, r0
+  89 004a FFF7FEFF 		bl	VDAC8_1_SetValue
+  90              	.LVL9:
+  55:main.c        ****                         if (i < 50)
+  91              		.loc 1 55 0
+  92 004e 312C     		cmp	r4, #49
+  93 0050 03DC     		bgt	.L7
+  56:main.c        ****                             leds_enable_Write(0 + always_enable_leds);
+  94              		.loc 1 56 0
+  95 0052 0120     		movs	r0, #1
+  96 0054 FFF7FEFF 		bl	leds_enable_Write
+  97              	.LVL10:
+  98 0058 02E0     		b	.L8
+  99              	.L7:
+  57:main.c        ****                         else
+  58:main.c        ****                             leds_enable_Write(1);
+ 100              		.loc 1 58 0
+ 101 005a 0120     		movs	r0, #1
+ 102 005c FFF7FEFF 		bl	leds_enable_Write
+ 103              	.LVL11:
+ 104              	.L8:
+  59:main.c        ****                             
+  60:main.c        ****                             
+  61:main.c        ****                         if (sensor_left_Read() == 0)
+ 105              		.loc 1 61 0
+ 106 0060 FFF7FEFF 		bl	sensor_left_Read
+ 107              	.LVL12:
+ 108 0064 0028     		cmp	r0, #0
+ 109 0066 D3D0     		beq	.L2
+  62:main.c        ****                             break;
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 4
+
+
+  63:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
+ 110              		.loc 1 63 0
+ 111 0068 FFF7FEFF 		bl	pulse_out_Read
+ 112              	.LVL13:
+ 113 006c C043     		mvns	r0, r0
+ 114 006e C0B2     		uxtb	r0, r0
+ 115 0070 FFF7FEFF 		bl	pulse_out_Write
+ 116              	.LVL14:
+  64:main.c        ****                         current_delay = abs(725-i);
+ 117              		.loc 1 64 0
+ 118 0074 C4F53570 		rsb	r0, r4, #724
+ 119 0078 0130     		adds	r0, r0, #1
+ 120 007a 0028     		cmp	r0, #0
+ 121 007c B8BF     		it	lt
+ 122 007e 4042     		rsblt	r0, r0, #0
+ 123              	.LVL15:
+  65:main.c        ****                         if (current_delay > min_speed_delay)
+ 124              		.loc 1 65 0
+ 125 0080 B0F52F7F 		cmp	r0, #700
+ 126 0084 01DD     		ble	.L10
+  66:main.c        ****                             current_delay = min_speed_delay;
+ 127              		.loc 1 66 0
+ 128 0086 4FF42F70 		mov	r0, #700
+ 129              	.LVL16:
+ 130              	.L10:
+  67:main.c        ****                         if (current_delay < max_speed_delay)
+ 131              		.loc 1 67 0
+ 132 008a F928     		cmp	r0, #249
+ 133 008c 00DC     		bgt	.L11
+  68:main.c        ****                             current_delay = max_speed_delay;
+ 134              		.loc 1 68 0
+ 135 008e FA20     		movs	r0, #250
+ 136              	.LVL17:
+ 137              	.L11:
+  69:main.c        ****                         
+  70:main.c        ****                         CyDelayUs(current_delay);
+ 138              		.loc 1 70 0 discriminator 2
+ 139 0090 80B2     		uxth	r0, r0
+ 140              	.LVL18:
+ 141 0092 FFF7FEFF 		bl	CyDelayUs
+ 142              	.LVL19:
+  52:main.c        ****                     {
+ 143              		.loc 1 52 0 discriminator 2
+ 144 0096 0134     		adds	r4, r4, #1
+ 145              	.LVL20:
+ 146              	.L6:
+  52:main.c        ****                     {
+ 147              		.loc 1 52 0 is_stmt 0 discriminator 1
+ 148 0098 40F2A953 		movw	r3, #1449
+ 149 009c 9C42     		cmp	r4, r3
+ 150 009e CADD     		ble	.L12
+ 151 00a0 B6E7     		b	.L2
+ 152              	.LVL21:
+ 153              	.L5:
+ 154              	.LBE2:
+  71:main.c        ****                     }
+  72:main.c        ****                 }
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 5
+
+
+  73:main.c        ****                 else
+  74:main.c        ****                 {
+  75:main.c        ****                     // The magnet is in the middle and needs to move to the left sensor.
+  76:main.c        ****                     direction_out_Write(operation_input_Read());
+ 155              		.loc 1 76 0 is_stmt 1
+ 156 00a2 FFF7FEFF 		bl	operation_input_Read
+ 157              	.LVL22:
+ 158 00a6 FFF7FEFF 		bl	direction_out_Write
+ 159              	.LVL23:
+  77:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
+ 160              		.loc 1 77 0
+ 161 00aa FFF7FEFF 		bl	pulse_out_Read
+ 162              	.LVL24:
+ 163 00ae C043     		mvns	r0, r0
+ 164 00b0 C0B2     		uxtb	r0, r0
+ 165 00b2 FFF7FEFF 		bl	pulse_out_Write
+ 166              	.LVL25:
+  78:main.c        ****                     CyDelayUs(big_delay);
+ 167              		.loc 1 78 0
+ 168 00b6 40F2EE20 		movw	r0, #750
+ 169 00ba FFF7FEFF 		bl	CyDelayUs
+ 170              	.LVL26:
+ 171 00be A7E7     		b	.L2
+ 172              	.L4:
+  79:main.c        ****                 }
+  80:main.c        ****             }
+  81:main.c        ****             else
+  82:main.c        ****             // The magnet is on the left.
+  83:main.c        ****             {
+  84:main.c        ****                 VDAC8_1_SetValue(max_vdac_power);
+ 173              		.loc 1 84 0
+ 174 00c0 F520     		movs	r0, #245
+ 175 00c2 FFF7FEFF 		bl	VDAC8_1_SetValue
+ 176              	.LVL27:
+ 177 00c6 A3E7     		b	.L2
+ 178              	.L3:
+  85:main.c        ****             }
+  86:main.c        ****         }
+  87:main.c        ****         else 
+  88:main.c        ****         {
+  89:main.c        ****             if (sensor_right_Read() == 1)
+ 179              		.loc 1 89 0
+ 180 00c8 FFF7FEFF 		bl	sensor_right_Read
+ 181              	.LVL28:
+ 182 00cc 0128     		cmp	r0, #1
+ 183 00ce 53D1     		bne	.L13
+  90:main.c        ****             {
+  91:main.c        ****                 if (sensor_left_Read() == 0)
+ 184              		.loc 1 91 0
+ 185 00d0 FFF7FEFF 		bl	sensor_left_Read
+ 186              	.LVL29:
+ 187 00d4 0028     		cmp	r0, #0
+ 188 00d6 41D1     		bne	.L14
+  92:main.c        ****                 {
+  93:main.c        ****                     // The magnet is on the left sensor and needs to move to the right one.
+  94:main.c        ****                     direction_out_Write(1);
+ 189              		.loc 1 94 0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 6
+
+
+ 190 00d8 0120     		movs	r0, #1
+ 191 00da FFF7FEFF 		bl	direction_out_Write
+ 192              	.LVL30:
+  95:main.c        ****                     VDAC8_1_SetValue(max_vdac_power);
+ 193              		.loc 1 95 0
+ 194 00de F520     		movs	r0, #245
+ 195 00e0 FFF7FEFF 		bl	VDAC8_1_SetValue
+ 196              	.LVL31:
+ 197              	.LBB3:
+  96:main.c        ****                     for (int i=0;i<total_steps;i++)
+ 198              		.loc 1 96 0
+ 199 00e4 0024     		movs	r4, #0
+ 200 00e6 34E0     		b	.L15
+ 201              	.LVL32:
+ 202              	.L20:
+  97:main.c        ****                     {
+  98:main.c        ****                         VDAC8_1_SetValue(max_vdac_power - (int)(i*max_vdac_power/total_steps));
+ 203              		.loc 1 98 0
+ 204 00e8 F523     		movs	r3, #245
+ 205 00ea 03FB04F3 		mul	r3, r3, r4
+ 206 00ee 2648     		ldr	r0, .L26
+ 207 00f0 80FB0320 		smull	r2, r0, r0, r3
+ 208 00f4 DB17     		asrs	r3, r3, #31
+ 209 00f6 C3EB6020 		rsb	r0, r3, r0, asr #9
+ 210 00fa C0F1F500 		rsb	r0, r0, #245
+ 211 00fe C0B2     		uxtb	r0, r0
+ 212 0100 FFF7FEFF 		bl	VDAC8_1_SetValue
+ 213              	.LVL33:
+  99:main.c        ****                         if (i > total_steps - 50)
+ 214              		.loc 1 99 0
+ 215 0104 B4F5AF6F 		cmp	r4, #1400
+ 216 0108 03DD     		ble	.L16
+ 100:main.c        ****                             leds_enable_Write(0 + always_enable_leds);
+ 217              		.loc 1 100 0
+ 218 010a 0120     		movs	r0, #1
+ 219 010c FFF7FEFF 		bl	leds_enable_Write
+ 220              	.LVL34:
+ 221 0110 02E0     		b	.L17
+ 222              	.L16:
+ 101:main.c        ****                         else
+ 102:main.c        ****                             leds_enable_Write(1);
+ 223              		.loc 1 102 0
+ 224 0112 0120     		movs	r0, #1
+ 225 0114 FFF7FEFF 		bl	leds_enable_Write
+ 226              	.LVL35:
+ 227              	.L17:
+ 103:main.c        ****                             
+ 104:main.c        ****                         if (sensor_right_Read() == 0)
+ 228              		.loc 1 104 0
+ 229 0118 FFF7FEFF 		bl	sensor_right_Read
+ 230              	.LVL36:
+ 231 011c 0028     		cmp	r0, #0
+ 232 011e 3FF477AF 		beq	.L2
+ 105:main.c        ****                             break;
+ 106:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
+ 233              		.loc 1 106 0
+ 234 0122 FFF7FEFF 		bl	pulse_out_Read
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 7
+
+
+ 235              	.LVL37:
+ 236 0126 C043     		mvns	r0, r0
+ 237 0128 C0B2     		uxtb	r0, r0
+ 238 012a FFF7FEFF 		bl	pulse_out_Write
+ 239              	.LVL38:
+ 107:main.c        ****                         current_delay = abs(725-i);
+ 240              		.loc 1 107 0
+ 241 012e C4F53570 		rsb	r0, r4, #724
+ 242 0132 0130     		adds	r0, r0, #1
+ 243 0134 0028     		cmp	r0, #0
+ 244 0136 B8BF     		it	lt
+ 245 0138 4042     		rsblt	r0, r0, #0
+ 246              	.LVL39:
+ 108:main.c        ****                         if (current_delay > min_speed_delay)
+ 247              		.loc 1 108 0
+ 248 013a B0F52F7F 		cmp	r0, #700
+ 249 013e 01DD     		ble	.L18
+ 109:main.c        ****                             current_delay = min_speed_delay;
+ 250              		.loc 1 109 0
+ 251 0140 4FF42F70 		mov	r0, #700
+ 252              	.LVL40:
+ 253              	.L18:
+ 110:main.c        ****                         if (current_delay < max_speed_delay)
+ 254              		.loc 1 110 0
+ 255 0144 F928     		cmp	r0, #249
+ 256 0146 00DC     		bgt	.L19
+ 111:main.c        ****                             current_delay = max_speed_delay;
+ 257              		.loc 1 111 0
+ 258 0148 FA20     		movs	r0, #250
+ 259              	.LVL41:
+ 260              	.L19:
+ 112:main.c        ****                         
+ 113:main.c        ****                         CyDelayUs(current_delay);
+ 261              		.loc 1 113 0 discriminator 2
+ 262 014a 80B2     		uxth	r0, r0
+ 263              	.LVL42:
+ 264 014c FFF7FEFF 		bl	CyDelayUs
+ 265              	.LVL43:
+  96:main.c        ****                     {
+ 266              		.loc 1 96 0 discriminator 2
+ 267 0150 0134     		adds	r4, r4, #1
+ 268              	.LVL44:
+ 269              	.L15:
+  96:main.c        ****                     {
+ 270              		.loc 1 96 0 is_stmt 0 discriminator 1
+ 271 0152 40F2A953 		movw	r3, #1449
+ 272 0156 9C42     		cmp	r4, r3
+ 273 0158 C6DD     		ble	.L20
+ 274 015a 59E7     		b	.L2
+ 275              	.LVL45:
+ 276              	.L14:
+ 277              	.LBE3:
+ 114:main.c        ****                     }
+ 115:main.c        ****                 }
+ 116:main.c        ****                 else
+ 117:main.c        ****                 {
+ 118:main.c        ****                     // The magnet is in the middle and needs to move to the right sensor.
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 8
+
+
+ 119:main.c        ****                     // direction_out_Write(operation_input_Read());
+ 120:main.c        ****                     direction_out_Write(0);
+ 278              		.loc 1 120 0 is_stmt 1
+ 279 015c 0020     		movs	r0, #0
+ 280 015e FFF7FEFF 		bl	direction_out_Write
+ 281              	.LVL46:
+ 121:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
+ 282              		.loc 1 121 0
+ 283 0162 FFF7FEFF 		bl	pulse_out_Read
+ 284              	.LVL47:
+ 285 0166 C043     		mvns	r0, r0
+ 286 0168 C0B2     		uxtb	r0, r0
+ 287 016a FFF7FEFF 		bl	pulse_out_Write
+ 288              	.LVL48:
+ 122:main.c        ****                     CyDelayUs(big_delay);
+ 289              		.loc 1 122 0
+ 290 016e 40F2EE20 		movw	r0, #750
+ 291 0172 FFF7FEFF 		bl	CyDelayUs
+ 292              	.LVL49:
+ 293 0176 4BE7     		b	.L2
+ 294              	.L13:
+ 123:main.c        ****                 }
+ 124:main.c        ****             }
+ 125:main.c        ****             else 
+ 126:main.c        ****             // The magnet is on the smaple.
+ 127:main.c        ****             {
+ 128:main.c        ****                 VDAC8_1_SetValue(0);
+ 295              		.loc 1 128 0
+ 296 0178 0020     		movs	r0, #0
+ 297 017a FFF7FEFF 		bl	VDAC8_1_SetValue
+ 298              	.LVL50:
+ 129:main.c        ****                 leds_enable_Write(0 + always_enable_leds);
+ 299              		.loc 1 129 0
+ 300 017e 0120     		movs	r0, #1
+ 301 0180 FFF7FEFF 		bl	leds_enable_Write
+ 302              	.LVL51:
+ 303 0184 44E7     		b	.L2
+ 304              	.L27:
+ 305 0186 00BF     		.align	2
+ 306              	.L26:
+ 307 0188 D3FC645A 		.word	1516567763
+ 308              		.cfi_endproc
+ 309              	.LFE64:
+ 310              		.size	main, .-main
+ 311              		.text
+ 312              	.Letext0:
+ 313              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 314              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 315              		.file 4 "Generated_Source\\PSoC5/VDAC8_1.h"
+ 316              		.file 5 "Generated_Source\\PSoC5/leds_enable.h"
+ 317              		.file 6 "Generated_Source\\PSoC5/sensor_left.h"
+ 318              		.file 7 "Generated_Source\\PSoC5/pulse_out.h"
+ 319              		.file 8 "Generated_Source\\PSoC5/CyLib.h"
+ 320              		.file 9 "Generated_Source\\PSoC5/sensor_right.h"
+ 321              		.file 10 "Generated_Source\\PSoC5/Opamp_1.h"
+ 322              		.file 11 "Generated_Source\\PSoC5/operation_input.h"
+ 323              		.file 12 "Generated_Source\\PSoC5/direction_out.h"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 9
+
+
+ 324              		.file 13 "Generated_Source\\PSoC5/core_cm3.h"
+ 325              		.section	.debug_info,"",%progbits
+ 326              	.Ldebug_info0:
+ 327 0000 13040000 		.4byte	0x413
+ 328 0004 0400     		.2byte	0x4
+ 329 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 330 000a 04       		.byte	0x4
+ 331 000b 01       		.uleb128 0x1
+ 332 000c 2A010000 		.4byte	.LASF35
+ 333 0010 0C       		.byte	0xc
+ 334 0011 B4020000 		.4byte	.LASF36
+ 335 0015 6F000000 		.4byte	.LASF37
+ 336 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 337 001d 00000000 		.4byte	0
+ 338 0021 00000000 		.4byte	.Ldebug_line0
+ 339 0025 02       		.uleb128 0x2
+ 340 0026 08       		.byte	0x8
+ 341 0027 07       		.byte	0x7
+ 342 0028 6D020000 		.4byte	.LASF0
+ 343 002c 02       		.uleb128 0x2
+ 344 002d 04       		.byte	0x4
+ 345 002e 07       		.byte	0x7
+ 346 002f 52020000 		.4byte	.LASF1
+ 347 0033 03       		.uleb128 0x3
+ 348 0034 04       		.byte	0x4
+ 349 0035 05       		.byte	0x5
+ 350 0036 696E7400 		.ascii	"int\000"
+ 351 003a 02       		.uleb128 0x2
+ 352 003b 01       		.byte	0x1
+ 353 003c 06       		.byte	0x6
+ 354 003d 10010000 		.4byte	.LASF2
+ 355 0041 02       		.uleb128 0x2
+ 356 0042 01       		.byte	0x1
+ 357 0043 08       		.byte	0x8
+ 358 0044 1C010000 		.4byte	.LASF3
+ 359 0048 02       		.uleb128 0x2
+ 360 0049 02       		.byte	0x2
+ 361 004a 05       		.byte	0x5
+ 362 004b D0020000 		.4byte	.LASF4
+ 363 004f 02       		.uleb128 0x2
+ 364 0050 02       		.byte	0x2
+ 365 0051 07       		.byte	0x7
+ 366 0052 C5010000 		.4byte	.LASF5
+ 367 0056 04       		.uleb128 0x4
+ 368 0057 22000000 		.4byte	.LASF9
+ 369 005b 02       		.byte	0x2
+ 370 005c 3F       		.byte	0x3f
+ 371 005d 61000000 		.4byte	0x61
+ 372 0061 02       		.uleb128 0x2
+ 373 0062 04       		.byte	0x4
+ 374 0063 05       		.byte	0x5
+ 375 0064 DA020000 		.4byte	.LASF6
+ 376 0068 02       		.uleb128 0x2
+ 377 0069 04       		.byte	0x4
+ 378 006a 07       		.byte	0x7
+ 379 006b 0F020000 		.4byte	.LASF7
+ 380 006f 02       		.uleb128 0x2
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 10
+
+
+ 381 0070 08       		.byte	0x8
+ 382 0071 05       		.byte	0x5
+ 383 0072 A6020000 		.4byte	.LASF8
+ 384 0076 04       		.uleb128 0x4
+ 385 0077 95020000 		.4byte	.LASF10
+ 386 007b 03       		.byte	0x3
+ 387 007c 2C       		.byte	0x2c
+ 388 007d 56000000 		.4byte	0x56
+ 389 0081 02       		.uleb128 0x2
+ 390 0082 04       		.byte	0x4
+ 391 0083 04       		.byte	0x4
+ 392 0084 0A010000 		.4byte	.LASF11
+ 393 0088 02       		.uleb128 0x2
+ 394 0089 08       		.byte	0x8
+ 395 008a 04       		.byte	0x4
+ 396 008b DF000000 		.4byte	.LASF12
+ 397 008f 02       		.uleb128 0x2
+ 398 0090 01       		.byte	0x1
+ 399 0091 08       		.byte	0x8
+ 400 0092 BB020000 		.4byte	.LASF13
+ 401 0096 02       		.uleb128 0x2
+ 402 0097 08       		.byte	0x8
+ 403 0098 04       		.byte	0x4
+ 404 0099 E3020000 		.4byte	.LASF14
+ 405 009d 02       		.uleb128 0x2
+ 406 009e 04       		.byte	0x4
+ 407 009f 07       		.byte	0x7
+ 408 00a0 9D020000 		.4byte	.LASF15
+ 409 00a4 05       		.uleb128 0x5
+ 410 00a5 21020000 		.4byte	.LASF38
+ 411 00a9 01       		.byte	0x1
+ 412 00aa 10       		.byte	0x10
+ 413 00ab 33000000 		.4byte	0x33
+ 414 00af 00000000 		.4byte	.LFB64
+ 415 00b3 8C010000 		.4byte	.LFE64-.LFB64
+ 416 00b7 01       		.uleb128 0x1
+ 417 00b8 9C       		.byte	0x9c
+ 418 00b9 81030000 		.4byte	0x381
+ 419 00bd 06       		.uleb128 0x6
+ 420 00be EF020000 		.4byte	.LASF16
+ 421 00c2 01       		.byte	0x1
+ 422 00c3 16       		.byte	0x16
+ 423 00c4 33000000 		.4byte	0x33
+ 424 00c8 AA05     		.2byte	0x5aa
+ 425 00ca 07       		.uleb128 0x7
+ 426 00cb 5F020000 		.4byte	.LASF17
+ 427 00cf 01       		.byte	0x1
+ 428 00d0 19       		.byte	0x19
+ 429 00d1 33000000 		.4byte	0x33
+ 430 00d5 00000000 		.4byte	.LLST0
+ 431 00d9 06       		.uleb128 0x6
+ 432 00da FA000000 		.4byte	.LASF18
+ 433 00de 01       		.byte	0x1
+ 434 00df 1A       		.byte	0x1a
+ 435 00e0 33000000 		.4byte	0x33
+ 436 00e4 BC02     		.2byte	0x2bc
+ 437 00e6 08       		.uleb128 0x8
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 11
+
+
+ 438 00e7 C0020000 		.4byte	.LASF19
+ 439 00eb 01       		.byte	0x1
+ 440 00ec 1B       		.byte	0x1b
+ 441 00ed 33000000 		.4byte	0x33
+ 442 00f1 FA       		.byte	0xfa
+ 443 00f2 06       		.uleb128 0x6
+ 444 00f3 05020000 		.4byte	.LASF20
+ 445 00f7 01       		.byte	0x1
+ 446 00f8 1D       		.byte	0x1d
+ 447 00f9 33000000 		.4byte	0x33
+ 448 00fd EE02     		.2byte	0x2ee
+ 449 00ff 08       		.uleb128 0x8
+ 450 0100 4F000000 		.4byte	.LASF21
+ 451 0104 01       		.byte	0x1
+ 452 0105 1E       		.byte	0x1e
+ 453 0106 33000000 		.4byte	0x33
+ 454 010a F5       		.byte	0xf5
+ 455 010b 08       		.uleb128 0x8
+ 456 010c 00000000 		.4byte	.LASF22
+ 457 0110 01       		.byte	0x1
+ 458 0111 1F       		.byte	0x1f
+ 459 0112 33000000 		.4byte	0x33
+ 460 0116 01       		.byte	0x1
+ 461 0117 09       		.uleb128 0x9
+ 462 0118 32000000 		.4byte	.LBB2
+ 463 011c 70000000 		.4byte	.LBE2-.LBB2
+ 464 0120 B0010000 		.4byte	0x1b0
+ 465 0124 0A       		.uleb128 0xa
+ 466 0125 6900     		.ascii	"i\000"
+ 467 0127 01       		.byte	0x1
+ 468 0128 34       		.byte	0x34
+ 469 0129 33000000 		.4byte	0x33
+ 470 012d 1E000000 		.4byte	.LLST1
+ 471 0131 0B       		.uleb128 0xb
+ 472 0132 4E000000 		.4byte	.LVL9
+ 473 0136 92030000 		.4byte	0x392
+ 474 013a 65010000 		.4byte	0x165
+ 475 013e 0C       		.uleb128 0xc
+ 476 013f 01       		.uleb128 0x1
+ 477 0140 50       		.byte	0x50
+ 478 0141 22       		.uleb128 0x22
+ 479 0142 74       		.byte	0x74
+ 480 0143 00       		.sleb128 0
+ 481 0144 08       		.byte	0x8
+ 482 0145 F5       		.byte	0xf5
+ 483 0146 1E       		.byte	0x1e
+ 484 0147 F7       		.byte	0xf7
+ 485 0148 33       		.uleb128 0x33
+ 486 0149 F7       		.byte	0xf7
+ 487 014a 25       		.uleb128 0x25
+ 488 014b 0C       		.byte	0xc
+ 489 014c D3FC645A 		.4byte	0x5a64fcd3
+ 490 0150 F7       		.byte	0xf7
+ 491 0151 25       		.uleb128 0x25
+ 492 0152 1E       		.byte	0x1e
+ 493 0153 08       		.byte	0x8
+ 494 0154 20       		.byte	0x20
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 12
+
+
+ 495 0155 F7       		.byte	0xf7
+ 496 0156 25       		.uleb128 0x25
+ 497 0157 25       		.byte	0x25
+ 498 0158 F7       		.byte	0xf7
+ 499 0159 2C       		.uleb128 0x2c
+ 500 015a 39       		.byte	0x39
+ 501 015b 26       		.byte	0x26
+ 502 015c 74       		.byte	0x74
+ 503 015d 00       		.sleb128 0
+ 504 015e 08       		.byte	0x8
+ 505 015f F5       		.byte	0xf5
+ 506 0160 1E       		.byte	0x1e
+ 507 0161 4F       		.byte	0x4f
+ 508 0162 26       		.byte	0x26
+ 509 0163 1C       		.byte	0x1c
+ 510 0164 00       		.byte	0
+ 511 0165 0B       		.uleb128 0xb
+ 512 0166 58000000 		.4byte	.LVL10
+ 513 016a 9D030000 		.4byte	0x39d
+ 514 016e 78010000 		.4byte	0x178
+ 515 0172 0C       		.uleb128 0xc
+ 516 0173 01       		.uleb128 0x1
+ 517 0174 50       		.byte	0x50
+ 518 0175 01       		.uleb128 0x1
+ 519 0176 31       		.byte	0x31
+ 520 0177 00       		.byte	0
+ 521 0178 0B       		.uleb128 0xb
+ 522 0179 60000000 		.4byte	.LVL11
+ 523 017d 9D030000 		.4byte	0x39d
+ 524 0181 8B010000 		.4byte	0x18b
+ 525 0185 0C       		.uleb128 0xc
+ 526 0186 01       		.uleb128 0x1
+ 527 0187 50       		.byte	0x50
+ 528 0188 01       		.uleb128 0x1
+ 529 0189 31       		.byte	0x31
+ 530 018a 00       		.byte	0
+ 531 018b 0D       		.uleb128 0xd
+ 532 018c 64000000 		.4byte	.LVL12
+ 533 0190 A8030000 		.4byte	0x3a8
+ 534 0194 0D       		.uleb128 0xd
+ 535 0195 6C000000 		.4byte	.LVL13
+ 536 0199 B3030000 		.4byte	0x3b3
+ 537 019d 0D       		.uleb128 0xd
+ 538 019e 74000000 		.4byte	.LVL14
+ 539 01a2 BE030000 		.4byte	0x3be
+ 540 01a6 0D       		.uleb128 0xd
+ 541 01a7 96000000 		.4byte	.LVL19
+ 542 01ab C9030000 		.4byte	0x3c9
+ 543 01af 00       		.byte	0
+ 544 01b0 09       		.uleb128 0x9
+ 545 01b1 E4000000 		.4byte	.LBB3
+ 546 01b5 78000000 		.4byte	.LBE3-.LBB3
+ 547 01b9 4C020000 		.4byte	0x24c
+ 548 01bd 0A       		.uleb128 0xa
+ 549 01be 6900     		.ascii	"i\000"
+ 550 01c0 01       		.byte	0x1
+ 551 01c1 60       		.byte	0x60
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 13
+
+
+ 552 01c2 33000000 		.4byte	0x33
+ 553 01c6 3D000000 		.4byte	.LLST2
+ 554 01ca 0B       		.uleb128 0xb
+ 555 01cb 04010000 		.4byte	.LVL33
+ 556 01cf 92030000 		.4byte	0x392
+ 557 01d3 01020000 		.4byte	0x201
+ 558 01d7 0C       		.uleb128 0xc
+ 559 01d8 01       		.uleb128 0x1
+ 560 01d9 50       		.byte	0x50
+ 561 01da 25       		.uleb128 0x25
+ 562 01db 74       		.byte	0x74
+ 563 01dc 00       		.sleb128 0
+ 564 01dd 08       		.byte	0x8
+ 565 01de F5       		.byte	0xf5
+ 566 01df 1E       		.byte	0x1e
+ 567 01e0 4F       		.byte	0x4f
+ 568 01e1 26       		.byte	0x26
+ 569 01e2 74       		.byte	0x74
+ 570 01e3 00       		.sleb128 0
+ 571 01e4 08       		.byte	0x8
+ 572 01e5 F5       		.byte	0xf5
+ 573 01e6 1E       		.byte	0x1e
+ 574 01e7 F7       		.byte	0xf7
+ 575 01e8 33       		.uleb128 0x33
+ 576 01e9 F7       		.byte	0xf7
+ 577 01ea 25       		.uleb128 0x25
+ 578 01eb 0C       		.byte	0xc
+ 579 01ec D3FC645A 		.4byte	0x5a64fcd3
+ 580 01f0 F7       		.byte	0xf7
+ 581 01f1 25       		.uleb128 0x25
+ 582 01f2 1E       		.byte	0x1e
+ 583 01f3 08       		.byte	0x8
+ 584 01f4 20       		.byte	0x20
+ 585 01f5 F7       		.byte	0xf7
+ 586 01f6 25       		.uleb128 0x25
+ 587 01f7 25       		.byte	0x25
+ 588 01f8 F7       		.byte	0xf7
+ 589 01f9 2C       		.uleb128 0x2c
+ 590 01fa 39       		.byte	0x39
+ 591 01fb 26       		.byte	0x26
+ 592 01fc 1C       		.byte	0x1c
+ 593 01fd 23       		.byte	0x23
+ 594 01fe F501     		.uleb128 0xf5
+ 595 0200 00       		.byte	0
+ 596 0201 0B       		.uleb128 0xb
+ 597 0202 10010000 		.4byte	.LVL34
+ 598 0206 9D030000 		.4byte	0x39d
+ 599 020a 14020000 		.4byte	0x214
+ 600 020e 0C       		.uleb128 0xc
+ 601 020f 01       		.uleb128 0x1
+ 602 0210 50       		.byte	0x50
+ 603 0211 01       		.uleb128 0x1
+ 604 0212 31       		.byte	0x31
+ 605 0213 00       		.byte	0
+ 606 0214 0B       		.uleb128 0xb
+ 607 0215 18010000 		.4byte	.LVL35
+ 608 0219 9D030000 		.4byte	0x39d
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 14
+
+
+ 609 021d 27020000 		.4byte	0x227
+ 610 0221 0C       		.uleb128 0xc
+ 611 0222 01       		.uleb128 0x1
+ 612 0223 50       		.byte	0x50
+ 613 0224 01       		.uleb128 0x1
+ 614 0225 31       		.byte	0x31
+ 615 0226 00       		.byte	0
+ 616 0227 0D       		.uleb128 0xd
+ 617 0228 1C010000 		.4byte	.LVL36
+ 618 022c D4030000 		.4byte	0x3d4
+ 619 0230 0D       		.uleb128 0xd
+ 620 0231 26010000 		.4byte	.LVL37
+ 621 0235 B3030000 		.4byte	0x3b3
+ 622 0239 0D       		.uleb128 0xd
+ 623 023a 2E010000 		.4byte	.LVL38
+ 624 023e BE030000 		.4byte	0x3be
+ 625 0242 0D       		.uleb128 0xd
+ 626 0243 50010000 		.4byte	.LVL43
+ 627 0247 C9030000 		.4byte	0x3c9
+ 628 024b 00       		.byte	0
+ 629 024c 0D       		.uleb128 0xd
+ 630 024d 06000000 		.4byte	.LVL0
+ 631 0251 DF030000 		.4byte	0x3df
+ 632 0255 0D       		.uleb128 0xd
+ 633 0256 0C000000 		.4byte	.LVL1
+ 634 025a EA030000 		.4byte	0x3ea
+ 635 025e 0D       		.uleb128 0xd
+ 636 025f 10000000 		.4byte	.LVL2
+ 637 0263 F5030000 		.4byte	0x3f5
+ 638 0267 0D       		.uleb128 0xd
+ 639 0268 14000000 		.4byte	.LVL3
+ 640 026c 00040000 		.4byte	0x400
+ 641 0270 0D       		.uleb128 0xd
+ 642 0271 1C000000 		.4byte	.LVL4
+ 643 0275 A8030000 		.4byte	0x3a8
+ 644 0279 0D       		.uleb128 0xd
+ 645 027a 24000000 		.4byte	.LVL5
+ 646 027e D4030000 		.4byte	0x3d4
+ 647 0282 0D       		.uleb128 0xd
+ 648 0283 2C000000 		.4byte	.LVL6
+ 649 0287 0B040000 		.4byte	0x40b
+ 650 028b 0B       		.uleb128 0xb
+ 651 028c 32000000 		.4byte	.LVL7
+ 652 0290 92030000 		.4byte	0x392
+ 653 0294 9E020000 		.4byte	0x29e
+ 654 0298 0C       		.uleb128 0xc
+ 655 0299 01       		.uleb128 0x1
+ 656 029a 50       		.byte	0x50
+ 657 029b 01       		.uleb128 0x1
+ 658 029c 30       		.byte	0x30
+ 659 029d 00       		.byte	0
+ 660 029e 0D       		.uleb128 0xd
+ 661 029f A6000000 		.4byte	.LVL22
+ 662 02a3 00040000 		.4byte	0x400
+ 663 02a7 0D       		.uleb128 0xd
+ 664 02a8 AA000000 		.4byte	.LVL23
+ 665 02ac 0B040000 		.4byte	0x40b
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 15
+
+
+ 666 02b0 0D       		.uleb128 0xd
+ 667 02b1 AE000000 		.4byte	.LVL24
+ 668 02b5 B3030000 		.4byte	0x3b3
+ 669 02b9 0D       		.uleb128 0xd
+ 670 02ba B6000000 		.4byte	.LVL25
+ 671 02be BE030000 		.4byte	0x3be
+ 672 02c2 0B       		.uleb128 0xb
+ 673 02c3 BE000000 		.4byte	.LVL26
+ 674 02c7 C9030000 		.4byte	0x3c9
+ 675 02cb D7020000 		.4byte	0x2d7
+ 676 02cf 0C       		.uleb128 0xc
+ 677 02d0 01       		.uleb128 0x1
+ 678 02d1 50       		.byte	0x50
+ 679 02d2 03       		.uleb128 0x3
+ 680 02d3 0A       		.byte	0xa
+ 681 02d4 EE02     		.2byte	0x2ee
+ 682 02d6 00       		.byte	0
+ 683 02d7 0B       		.uleb128 0xb
+ 684 02d8 C6000000 		.4byte	.LVL27
+ 685 02dc 92030000 		.4byte	0x392
+ 686 02e0 EB020000 		.4byte	0x2eb
+ 687 02e4 0C       		.uleb128 0xc
+ 688 02e5 01       		.uleb128 0x1
+ 689 02e6 50       		.byte	0x50
+ 690 02e7 02       		.uleb128 0x2
+ 691 02e8 09       		.byte	0x9
+ 692 02e9 F5       		.byte	0xf5
+ 693 02ea 00       		.byte	0
+ 694 02eb 0D       		.uleb128 0xd
+ 695 02ec CC000000 		.4byte	.LVL28
+ 696 02f0 D4030000 		.4byte	0x3d4
+ 697 02f4 0D       		.uleb128 0xd
+ 698 02f5 D4000000 		.4byte	.LVL29
+ 699 02f9 A8030000 		.4byte	0x3a8
+ 700 02fd 0B       		.uleb128 0xb
+ 701 02fe DE000000 		.4byte	.LVL30
+ 702 0302 0B040000 		.4byte	0x40b
+ 703 0306 10030000 		.4byte	0x310
+ 704 030a 0C       		.uleb128 0xc
+ 705 030b 01       		.uleb128 0x1
+ 706 030c 50       		.byte	0x50
+ 707 030d 01       		.uleb128 0x1
+ 708 030e 31       		.byte	0x31
+ 709 030f 00       		.byte	0
+ 710 0310 0B       		.uleb128 0xb
+ 711 0311 E4000000 		.4byte	.LVL31
+ 712 0315 92030000 		.4byte	0x392
+ 713 0319 24030000 		.4byte	0x324
+ 714 031d 0C       		.uleb128 0xc
+ 715 031e 01       		.uleb128 0x1
+ 716 031f 50       		.byte	0x50
+ 717 0320 02       		.uleb128 0x2
+ 718 0321 09       		.byte	0x9
+ 719 0322 F5       		.byte	0xf5
+ 720 0323 00       		.byte	0
+ 721 0324 0B       		.uleb128 0xb
+ 722 0325 62010000 		.4byte	.LVL46
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 16
+
+
+ 723 0329 0B040000 		.4byte	0x40b
+ 724 032d 37030000 		.4byte	0x337
+ 725 0331 0C       		.uleb128 0xc
+ 726 0332 01       		.uleb128 0x1
+ 727 0333 50       		.byte	0x50
+ 728 0334 01       		.uleb128 0x1
+ 729 0335 30       		.byte	0x30
+ 730 0336 00       		.byte	0
+ 731 0337 0D       		.uleb128 0xd
+ 732 0338 66010000 		.4byte	.LVL47
+ 733 033c B3030000 		.4byte	0x3b3
+ 734 0340 0D       		.uleb128 0xd
+ 735 0341 6E010000 		.4byte	.LVL48
+ 736 0345 BE030000 		.4byte	0x3be
+ 737 0349 0B       		.uleb128 0xb
+ 738 034a 76010000 		.4byte	.LVL49
+ 739 034e C9030000 		.4byte	0x3c9
+ 740 0352 5E030000 		.4byte	0x35e
+ 741 0356 0C       		.uleb128 0xc
+ 742 0357 01       		.uleb128 0x1
+ 743 0358 50       		.byte	0x50
+ 744 0359 03       		.uleb128 0x3
+ 745 035a 0A       		.byte	0xa
+ 746 035b EE02     		.2byte	0x2ee
+ 747 035d 00       		.byte	0
+ 748 035e 0B       		.uleb128 0xb
+ 749 035f 7E010000 		.4byte	.LVL50
+ 750 0363 92030000 		.4byte	0x392
+ 751 0367 71030000 		.4byte	0x371
+ 752 036b 0C       		.uleb128 0xc
+ 753 036c 01       		.uleb128 0x1
+ 754 036d 50       		.byte	0x50
+ 755 036e 01       		.uleb128 0x1
+ 756 036f 30       		.byte	0x30
+ 757 0370 00       		.byte	0
+ 758 0371 0E       		.uleb128 0xe
+ 759 0372 84010000 		.4byte	.LVL51
+ 760 0376 9D030000 		.4byte	0x39d
+ 761 037a 0C       		.uleb128 0xc
+ 762 037b 01       		.uleb128 0x1
+ 763 037c 50       		.byte	0x50
+ 764 037d 01       		.uleb128 0x1
+ 765 037e 31       		.byte	0x31
+ 766 037f 00       		.byte	0
+ 767 0380 00       		.byte	0
+ 768 0381 0F       		.uleb128 0xf
+ 769 0382 D8010000 		.4byte	.LASF39
+ 770 0386 0D       		.byte	0xd
+ 771 0387 1207     		.2byte	0x712
+ 772 0389 8D030000 		.4byte	0x38d
+ 773 038d 10       		.uleb128 0x10
+ 774 038e 76000000 		.4byte	0x76
+ 775 0392 11       		.uleb128 0x11
+ 776 0393 84020000 		.4byte	.LASF23
+ 777 0397 84020000 		.4byte	.LASF23
+ 778 039b 04       		.byte	0x4
+ 779 039c 37       		.byte	0x37
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 17
+
+
+ 780 039d 11       		.uleb128 0x11
+ 781 039e 40020000 		.4byte	.LASF24
+ 782 03a2 40020000 		.4byte	.LASF24
+ 783 03a6 05       		.byte	0x5
+ 784 03a7 26       		.byte	0x26
+ 785 03a8 11       		.uleb128 0x11
+ 786 03a9 5E000000 		.4byte	.LASF25
+ 787 03ad 5E000000 		.4byte	.LASF25
+ 788 03b1 06       		.byte	0x6
+ 789 03b2 29       		.byte	0x29
+ 790 03b3 11       		.uleb128 0x11
+ 791 03b4 13000000 		.4byte	.LASF26
+ 792 03b8 13000000 		.4byte	.LASF26
+ 793 03bc 07       		.byte	0x7
+ 794 03bd 29       		.byte	0x29
+ 795 03be 11       		.uleb128 0x11
+ 796 03bf 30020000 		.4byte	.LASF27
+ 797 03c3 30020000 		.4byte	.LASF27
+ 798 03c7 07       		.byte	0x7
+ 799 03c8 26       		.byte	0x26
+ 800 03c9 11       		.uleb128 0x11
+ 801 03ca 26020000 		.4byte	.LASF28
+ 802 03ce 26020000 		.4byte	.LASF28
+ 803 03d2 08       		.byte	0x8
+ 804 03d3 77       		.byte	0x77
+ 805 03d4 11       		.uleb128 0x11
+ 806 03d5 E5010000 		.4byte	.LASF29
+ 807 03d9 E5010000 		.4byte	.LASF29
+ 808 03dd 09       		.byte	0x9
+ 809 03de 29       		.byte	0x29
+ 810 03df 11       		.uleb128 0x11
+ 811 03e0 F7010000 		.4byte	.LASF30
+ 812 03e4 F7010000 		.4byte	.LASF30
+ 813 03e8 04       		.byte	0x4
+ 814 03e9 33       		.byte	0x33
+ 815 03ea 11       		.uleb128 0x11
+ 816 03eb 2C000000 		.4byte	.LASF31
+ 817 03ef 2C000000 		.4byte	.LASF31
+ 818 03f3 0A       		.byte	0xa
+ 819 03f4 33       		.byte	0x33
+ 820 03f5 11       		.uleb128 0x11
+ 821 03f6 B8010000 		.4byte	.LASF32
+ 822 03fa B8010000 		.4byte	.LASF32
+ 823 03fe 0A       		.byte	0xa
+ 824 03ff 3A       		.byte	0x3a
+ 825 0400 11       		.uleb128 0x11
+ 826 0401 3A000000 		.4byte	.LASF33
+ 827 0405 3A000000 		.4byte	.LASF33
+ 828 0409 0B       		.byte	0xb
+ 829 040a 29       		.byte	0x29
+ 830 040b 11       		.uleb128 0x11
+ 831 040c E6000000 		.4byte	.LASF34
+ 832 0410 E6000000 		.4byte	.LASF34
+ 833 0414 0C       		.byte	0xc
+ 834 0415 26       		.byte	0x26
+ 835 0416 00       		.byte	0
+ 836              		.section	.debug_abbrev,"",%progbits
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 18
+
+
+ 837              	.Ldebug_abbrev0:
+ 838 0000 01       		.uleb128 0x1
+ 839 0001 11       		.uleb128 0x11
+ 840 0002 01       		.byte	0x1
+ 841 0003 25       		.uleb128 0x25
+ 842 0004 0E       		.uleb128 0xe
+ 843 0005 13       		.uleb128 0x13
+ 844 0006 0B       		.uleb128 0xb
+ 845 0007 03       		.uleb128 0x3
+ 846 0008 0E       		.uleb128 0xe
+ 847 0009 1B       		.uleb128 0x1b
+ 848 000a 0E       		.uleb128 0xe
+ 849 000b 55       		.uleb128 0x55
+ 850 000c 17       		.uleb128 0x17
+ 851 000d 11       		.uleb128 0x11
+ 852 000e 01       		.uleb128 0x1
+ 853 000f 10       		.uleb128 0x10
+ 854 0010 17       		.uleb128 0x17
+ 855 0011 00       		.byte	0
+ 856 0012 00       		.byte	0
+ 857 0013 02       		.uleb128 0x2
+ 858 0014 24       		.uleb128 0x24
+ 859 0015 00       		.byte	0
+ 860 0016 0B       		.uleb128 0xb
+ 861 0017 0B       		.uleb128 0xb
+ 862 0018 3E       		.uleb128 0x3e
+ 863 0019 0B       		.uleb128 0xb
+ 864 001a 03       		.uleb128 0x3
+ 865 001b 0E       		.uleb128 0xe
+ 866 001c 00       		.byte	0
+ 867 001d 00       		.byte	0
+ 868 001e 03       		.uleb128 0x3
+ 869 001f 24       		.uleb128 0x24
+ 870 0020 00       		.byte	0
+ 871 0021 0B       		.uleb128 0xb
+ 872 0022 0B       		.uleb128 0xb
+ 873 0023 3E       		.uleb128 0x3e
+ 874 0024 0B       		.uleb128 0xb
+ 875 0025 03       		.uleb128 0x3
+ 876 0026 08       		.uleb128 0x8
+ 877 0027 00       		.byte	0
+ 878 0028 00       		.byte	0
+ 879 0029 04       		.uleb128 0x4
+ 880 002a 16       		.uleb128 0x16
+ 881 002b 00       		.byte	0
+ 882 002c 03       		.uleb128 0x3
+ 883 002d 0E       		.uleb128 0xe
+ 884 002e 3A       		.uleb128 0x3a
+ 885 002f 0B       		.uleb128 0xb
+ 886 0030 3B       		.uleb128 0x3b
+ 887 0031 0B       		.uleb128 0xb
+ 888 0032 49       		.uleb128 0x49
+ 889 0033 13       		.uleb128 0x13
+ 890 0034 00       		.byte	0
+ 891 0035 00       		.byte	0
+ 892 0036 05       		.uleb128 0x5
+ 893 0037 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 19
+
+
+ 894 0038 01       		.byte	0x1
+ 895 0039 3F       		.uleb128 0x3f
+ 896 003a 19       		.uleb128 0x19
+ 897 003b 03       		.uleb128 0x3
+ 898 003c 0E       		.uleb128 0xe
+ 899 003d 3A       		.uleb128 0x3a
+ 900 003e 0B       		.uleb128 0xb
+ 901 003f 3B       		.uleb128 0x3b
+ 902 0040 0B       		.uleb128 0xb
+ 903 0041 27       		.uleb128 0x27
+ 904 0042 19       		.uleb128 0x19
+ 905 0043 49       		.uleb128 0x49
+ 906 0044 13       		.uleb128 0x13
+ 907 0045 8701     		.uleb128 0x87
+ 908 0047 19       		.uleb128 0x19
+ 909 0048 11       		.uleb128 0x11
+ 910 0049 01       		.uleb128 0x1
+ 911 004a 12       		.uleb128 0x12
+ 912 004b 06       		.uleb128 0x6
+ 913 004c 40       		.uleb128 0x40
+ 914 004d 18       		.uleb128 0x18
+ 915 004e 9742     		.uleb128 0x2117
+ 916 0050 19       		.uleb128 0x19
+ 917 0051 01       		.uleb128 0x1
+ 918 0052 13       		.uleb128 0x13
+ 919 0053 00       		.byte	0
+ 920 0054 00       		.byte	0
+ 921 0055 06       		.uleb128 0x6
+ 922 0056 34       		.uleb128 0x34
+ 923 0057 00       		.byte	0
+ 924 0058 03       		.uleb128 0x3
+ 925 0059 0E       		.uleb128 0xe
+ 926 005a 3A       		.uleb128 0x3a
+ 927 005b 0B       		.uleb128 0xb
+ 928 005c 3B       		.uleb128 0x3b
+ 929 005d 0B       		.uleb128 0xb
+ 930 005e 49       		.uleb128 0x49
+ 931 005f 13       		.uleb128 0x13
+ 932 0060 1C       		.uleb128 0x1c
+ 933 0061 05       		.uleb128 0x5
+ 934 0062 00       		.byte	0
+ 935 0063 00       		.byte	0
+ 936 0064 07       		.uleb128 0x7
+ 937 0065 34       		.uleb128 0x34
+ 938 0066 00       		.byte	0
+ 939 0067 03       		.uleb128 0x3
+ 940 0068 0E       		.uleb128 0xe
+ 941 0069 3A       		.uleb128 0x3a
+ 942 006a 0B       		.uleb128 0xb
+ 943 006b 3B       		.uleb128 0x3b
+ 944 006c 0B       		.uleb128 0xb
+ 945 006d 49       		.uleb128 0x49
+ 946 006e 13       		.uleb128 0x13
+ 947 006f 02       		.uleb128 0x2
+ 948 0070 17       		.uleb128 0x17
+ 949 0071 00       		.byte	0
+ 950 0072 00       		.byte	0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 20
+
+
+ 951 0073 08       		.uleb128 0x8
+ 952 0074 34       		.uleb128 0x34
+ 953 0075 00       		.byte	0
+ 954 0076 03       		.uleb128 0x3
+ 955 0077 0E       		.uleb128 0xe
+ 956 0078 3A       		.uleb128 0x3a
+ 957 0079 0B       		.uleb128 0xb
+ 958 007a 3B       		.uleb128 0x3b
+ 959 007b 0B       		.uleb128 0xb
+ 960 007c 49       		.uleb128 0x49
+ 961 007d 13       		.uleb128 0x13
+ 962 007e 1C       		.uleb128 0x1c
+ 963 007f 0B       		.uleb128 0xb
+ 964 0080 00       		.byte	0
+ 965 0081 00       		.byte	0
+ 966 0082 09       		.uleb128 0x9
+ 967 0083 0B       		.uleb128 0xb
+ 968 0084 01       		.byte	0x1
+ 969 0085 11       		.uleb128 0x11
+ 970 0086 01       		.uleb128 0x1
+ 971 0087 12       		.uleb128 0x12
+ 972 0088 06       		.uleb128 0x6
+ 973 0089 01       		.uleb128 0x1
+ 974 008a 13       		.uleb128 0x13
+ 975 008b 00       		.byte	0
+ 976 008c 00       		.byte	0
+ 977 008d 0A       		.uleb128 0xa
+ 978 008e 34       		.uleb128 0x34
+ 979 008f 00       		.byte	0
+ 980 0090 03       		.uleb128 0x3
+ 981 0091 08       		.uleb128 0x8
+ 982 0092 3A       		.uleb128 0x3a
+ 983 0093 0B       		.uleb128 0xb
+ 984 0094 3B       		.uleb128 0x3b
+ 985 0095 0B       		.uleb128 0xb
+ 986 0096 49       		.uleb128 0x49
+ 987 0097 13       		.uleb128 0x13
+ 988 0098 02       		.uleb128 0x2
+ 989 0099 17       		.uleb128 0x17
+ 990 009a 00       		.byte	0
+ 991 009b 00       		.byte	0
+ 992 009c 0B       		.uleb128 0xb
+ 993 009d 898201   		.uleb128 0x4109
+ 994 00a0 01       		.byte	0x1
+ 995 00a1 11       		.uleb128 0x11
+ 996 00a2 01       		.uleb128 0x1
+ 997 00a3 31       		.uleb128 0x31
+ 998 00a4 13       		.uleb128 0x13
+ 999 00a5 01       		.uleb128 0x1
+ 1000 00a6 13       		.uleb128 0x13
+ 1001 00a7 00       		.byte	0
+ 1002 00a8 00       		.byte	0
+ 1003 00a9 0C       		.uleb128 0xc
+ 1004 00aa 8A8201   		.uleb128 0x410a
+ 1005 00ad 00       		.byte	0
+ 1006 00ae 02       		.uleb128 0x2
+ 1007 00af 18       		.uleb128 0x18
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 21
+
+
+ 1008 00b0 9142     		.uleb128 0x2111
+ 1009 00b2 18       		.uleb128 0x18
+ 1010 00b3 00       		.byte	0
+ 1011 00b4 00       		.byte	0
+ 1012 00b5 0D       		.uleb128 0xd
+ 1013 00b6 898201   		.uleb128 0x4109
+ 1014 00b9 00       		.byte	0
+ 1015 00ba 11       		.uleb128 0x11
+ 1016 00bb 01       		.uleb128 0x1
+ 1017 00bc 31       		.uleb128 0x31
+ 1018 00bd 13       		.uleb128 0x13
+ 1019 00be 00       		.byte	0
+ 1020 00bf 00       		.byte	0
+ 1021 00c0 0E       		.uleb128 0xe
+ 1022 00c1 898201   		.uleb128 0x4109
+ 1023 00c4 01       		.byte	0x1
+ 1024 00c5 11       		.uleb128 0x11
+ 1025 00c6 01       		.uleb128 0x1
+ 1026 00c7 31       		.uleb128 0x31
+ 1027 00c8 13       		.uleb128 0x13
+ 1028 00c9 00       		.byte	0
+ 1029 00ca 00       		.byte	0
+ 1030 00cb 0F       		.uleb128 0xf
+ 1031 00cc 34       		.uleb128 0x34
+ 1032 00cd 00       		.byte	0
+ 1033 00ce 03       		.uleb128 0x3
+ 1034 00cf 0E       		.uleb128 0xe
+ 1035 00d0 3A       		.uleb128 0x3a
+ 1036 00d1 0B       		.uleb128 0xb
+ 1037 00d2 3B       		.uleb128 0x3b
+ 1038 00d3 05       		.uleb128 0x5
+ 1039 00d4 49       		.uleb128 0x49
+ 1040 00d5 13       		.uleb128 0x13
+ 1041 00d6 3F       		.uleb128 0x3f
+ 1042 00d7 19       		.uleb128 0x19
+ 1043 00d8 3C       		.uleb128 0x3c
+ 1044 00d9 19       		.uleb128 0x19
+ 1045 00da 00       		.byte	0
+ 1046 00db 00       		.byte	0
+ 1047 00dc 10       		.uleb128 0x10
+ 1048 00dd 35       		.uleb128 0x35
+ 1049 00de 00       		.byte	0
+ 1050 00df 49       		.uleb128 0x49
+ 1051 00e0 13       		.uleb128 0x13
+ 1052 00e1 00       		.byte	0
+ 1053 00e2 00       		.byte	0
+ 1054 00e3 11       		.uleb128 0x11
+ 1055 00e4 2E       		.uleb128 0x2e
+ 1056 00e5 00       		.byte	0
+ 1057 00e6 3F       		.uleb128 0x3f
+ 1058 00e7 19       		.uleb128 0x19
+ 1059 00e8 3C       		.uleb128 0x3c
+ 1060 00e9 19       		.uleb128 0x19
+ 1061 00ea 6E       		.uleb128 0x6e
+ 1062 00eb 0E       		.uleb128 0xe
+ 1063 00ec 03       		.uleb128 0x3
+ 1064 00ed 0E       		.uleb128 0xe
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 22
+
+
+ 1065 00ee 3A       		.uleb128 0x3a
+ 1066 00ef 0B       		.uleb128 0xb
+ 1067 00f0 3B       		.uleb128 0x3b
+ 1068 00f1 0B       		.uleb128 0xb
+ 1069 00f2 00       		.byte	0
+ 1070 00f3 00       		.byte	0
+ 1071 00f4 00       		.byte	0
+ 1072              		.section	.debug_loc,"",%progbits
+ 1073              	.Ldebug_loc0:
+ 1074              	.LLST0:
+ 1075 0000 80000000 		.4byte	.LVL15
+ 1076 0004 92000000 		.4byte	.LVL18
+ 1077 0008 0100     		.2byte	0x1
+ 1078 000a 50       		.byte	0x50
+ 1079 000b 3A010000 		.4byte	.LVL39
+ 1080 000f 4C010000 		.4byte	.LVL42
+ 1081 0013 0100     		.2byte	0x1
+ 1082 0015 50       		.byte	0x50
+ 1083 0016 00000000 		.4byte	0
+ 1084 001a 00000000 		.4byte	0
+ 1085              	.LLST1:
+ 1086 001e 32000000 		.4byte	.LVL7
+ 1087 0022 36000000 		.4byte	.LVL8
+ 1088 0026 0200     		.2byte	0x2
+ 1089 0028 30       		.byte	0x30
+ 1090 0029 9F       		.byte	0x9f
+ 1091 002a 36000000 		.4byte	.LVL8
+ 1092 002e A2000000 		.4byte	.LVL21
+ 1093 0032 0100     		.2byte	0x1
+ 1094 0034 54       		.byte	0x54
+ 1095 0035 00000000 		.4byte	0
+ 1096 0039 00000000 		.4byte	0
+ 1097              	.LLST2:
+ 1098 003d E4000000 		.4byte	.LVL31
+ 1099 0041 E8000000 		.4byte	.LVL32
+ 1100 0045 0200     		.2byte	0x2
+ 1101 0047 30       		.byte	0x30
+ 1102 0048 9F       		.byte	0x9f
+ 1103 0049 E8000000 		.4byte	.LVL32
+ 1104 004d 5C010000 		.4byte	.LVL45
+ 1105 0051 0100     		.2byte	0x1
+ 1106 0053 54       		.byte	0x54
+ 1107 0054 00000000 		.4byte	0
+ 1108 0058 00000000 		.4byte	0
+ 1109              		.section	.debug_aranges,"",%progbits
+ 1110 0000 1C000000 		.4byte	0x1c
+ 1111 0004 0200     		.2byte	0x2
+ 1112 0006 00000000 		.4byte	.Ldebug_info0
+ 1113 000a 04       		.byte	0x4
+ 1114 000b 00       		.byte	0
+ 1115 000c 0000     		.2byte	0
+ 1116 000e 0000     		.2byte	0
+ 1117 0010 00000000 		.4byte	.LFB64
+ 1118 0014 8C010000 		.4byte	.LFE64-.LFB64
+ 1119 0018 00000000 		.4byte	0
+ 1120 001c 00000000 		.4byte	0
+ 1121              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 23
+
+
+ 1122              	.Ldebug_ranges0:
+ 1123 0000 00000000 		.4byte	.LFB64
+ 1124 0004 8C010000 		.4byte	.LFE64
+ 1125 0008 00000000 		.4byte	0
+ 1126 000c 00000000 		.4byte	0
+ 1127              		.section	.debug_line,"",%progbits
+ 1128              	.Ldebug_line0:
+ 1129 0000 3E020000 		.section	.debug_str,"MS",%progbits,1
+ 1129      0200CF01 
+ 1129      00000201 
+ 1129      FB0E0D00 
+ 1129      01010101 
+ 1130              	.LASF22:
+ 1131 0000 616C7761 		.ascii	"always_enable_leds\000"
+ 1131      79735F65 
+ 1131      6E61626C 
+ 1131      655F6C65 
+ 1131      647300
+ 1132              	.LASF26:
+ 1133 0013 70756C73 		.ascii	"pulse_out_Read\000"
+ 1133      655F6F75 
+ 1133      745F5265 
+ 1133      616400
+ 1134              	.LASF9:
+ 1135 0022 5F5F696E 		.ascii	"__int32_t\000"
+ 1135      7433325F 
+ 1135      7400
+ 1136              	.LASF31:
+ 1137 002c 4F70616D 		.ascii	"Opamp_1_Start\000"
+ 1137      705F315F 
+ 1137      53746172 
+ 1137      7400
+ 1138              	.LASF33:
+ 1139 003a 6F706572 		.ascii	"operation_input_Read\000"
+ 1139      6174696F 
+ 1139      6E5F696E 
+ 1139      7075745F 
+ 1139      52656164 
+ 1140              	.LASF21:
+ 1141 004f 6D61785F 		.ascii	"max_vdac_power\000"
+ 1141      76646163 
+ 1141      5F706F77 
+ 1141      657200
+ 1142              	.LASF25:
+ 1143 005e 73656E73 		.ascii	"sensor_left_Read\000"
+ 1143      6F725F6C 
+ 1143      6566745F 
+ 1143      52656164 
+ 1143      00
+ 1144              	.LASF37:
+ 1145 006f 433A5C55 		.ascii	"C:\\Users\\eylonk\\OneDrive - Xsight Labs Ltd\\Desk"
+ 1145      73657273 
+ 1145      5C65796C 
+ 1145      6F6E6B5C 
+ 1145      4F6E6544 
+ 1146 009e 746F705C 		.ascii	"top\\eylon\\general\\programs\\psoc\\Workspace01\\e"
+ 1146      65796C6F 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 24
+
+
+ 1146      6E5C6765 
+ 1146      6E657261 
+ 1146      6C5C7072 
+ 1147 00cb 796C6F6E 		.ascii	"ylons_project.cydsn\000"
+ 1147      735F7072 
+ 1147      6F6A6563 
+ 1147      742E6379 
+ 1147      64736E00 
+ 1148              	.LASF12:
+ 1149 00df 646F7562 		.ascii	"double\000"
+ 1149      6C6500
+ 1150              	.LASF34:
+ 1151 00e6 64697265 		.ascii	"direction_out_Write\000"
+ 1151      6374696F 
+ 1151      6E5F6F75 
+ 1151      745F5772 
+ 1151      69746500 
+ 1152              	.LASF18:
+ 1153 00fa 6D696E5F 		.ascii	"min_speed_delay\000"
+ 1153      73706565 
+ 1153      645F6465 
+ 1153      6C617900 
+ 1154              	.LASF11:
+ 1155 010a 666C6F61 		.ascii	"float\000"
+ 1155      7400
+ 1156              	.LASF2:
+ 1157 0110 7369676E 		.ascii	"signed char\000"
+ 1157      65642063 
+ 1157      68617200 
+ 1158              	.LASF3:
+ 1159 011c 756E7369 		.ascii	"unsigned char\000"
+ 1159      676E6564 
+ 1159      20636861 
+ 1159      7200
+ 1160              	.LASF35:
+ 1161 012a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1161      43313120 
+ 1161      352E342E 
+ 1161      31203230 
+ 1161      31363036 
+ 1162 015d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1162      20726576 
+ 1162      6973696F 
+ 1162      6E203233 
+ 1162      37373135 
+ 1163 0190 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1163      66756E63 
+ 1163      74696F6E 
+ 1163      2D736563 
+ 1163      74696F6E 
+ 1164              	.LASF32:
+ 1165 01b8 4F70616D 		.ascii	"Opamp_1_Init\000"
+ 1165      705F315F 
+ 1165      496E6974 
+ 1165      00
+ 1166              	.LASF5:
+ 1167 01c5 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 25
+
+
+ 1167      7420756E 
+ 1167      7369676E 
+ 1167      65642069 
+ 1167      6E7400
+ 1168              	.LASF39:
+ 1169 01d8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1169      52784275 
+ 1169      66666572 
+ 1169      00
+ 1170              	.LASF29:
+ 1171 01e5 73656E73 		.ascii	"sensor_right_Read\000"
+ 1171      6F725F72 
+ 1171      69676874 
+ 1171      5F526561 
+ 1171      6400
+ 1172              	.LASF30:
+ 1173 01f7 56444143 		.ascii	"VDAC8_1_Start\000"
+ 1173      385F315F 
+ 1173      53746172 
+ 1173      7400
+ 1174              	.LASF20:
+ 1175 0205 6269675F 		.ascii	"big_delay\000"
+ 1175      64656C61 
+ 1175      7900
+ 1176              	.LASF7:
+ 1177 020f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1177      20756E73 
+ 1177      69676E65 
+ 1177      6420696E 
+ 1177      7400
+ 1178              	.LASF38:
+ 1179 0221 6D61696E 		.ascii	"main\000"
+ 1179      00
+ 1180              	.LASF28:
+ 1181 0226 43794465 		.ascii	"CyDelayUs\000"
+ 1181      6C617955 
+ 1181      7300
+ 1182              	.LASF27:
+ 1183 0230 70756C73 		.ascii	"pulse_out_Write\000"
+ 1183      655F6F75 
+ 1183      745F5772 
+ 1183      69746500 
+ 1184              	.LASF24:
+ 1185 0240 6C656473 		.ascii	"leds_enable_Write\000"
+ 1185      5F656E61 
+ 1185      626C655F 
+ 1185      57726974 
+ 1185      6500
+ 1186              	.LASF1:
+ 1187 0252 756E7369 		.ascii	"unsigned int\000"
+ 1187      676E6564 
+ 1187      20696E74 
+ 1187      00
+ 1188              	.LASF17:
+ 1189 025f 63757272 		.ascii	"current_delay\000"
+ 1189      656E745F 
+ 1189      64656C61 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccTVnGrM.s 			page 26
+
+
+ 1189      7900
+ 1190              	.LASF0:
+ 1191 026d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1191      206C6F6E 
+ 1191      6720756E 
+ 1191      7369676E 
+ 1191      65642069 
+ 1192              	.LASF23:
+ 1193 0284 56444143 		.ascii	"VDAC8_1_SetValue\000"
+ 1193      385F315F 
+ 1193      53657456 
+ 1193      616C7565 
+ 1193      00
+ 1194              	.LASF10:
+ 1195 0295 696E7433 		.ascii	"int32_t\000"
+ 1195      325F7400 
+ 1196              	.LASF15:
+ 1197 029d 73697A65 		.ascii	"sizetype\000"
+ 1197      74797065 
+ 1197      00
+ 1198              	.LASF8:
+ 1199 02a6 6C6F6E67 		.ascii	"long long int\000"
+ 1199      206C6F6E 
+ 1199      6720696E 
+ 1199      7400
+ 1200              	.LASF36:
+ 1201 02b4 6D61696E 		.ascii	"main.c\000"
+ 1201      2E6300
+ 1202              	.LASF13:
+ 1203 02bb 63686172 		.ascii	"char\000"
+ 1203      00
+ 1204              	.LASF19:
+ 1205 02c0 6D61785F 		.ascii	"max_speed_delay\000"
+ 1205      73706565 
+ 1205      645F6465 
+ 1205      6C617900 
+ 1206              	.LASF4:
+ 1207 02d0 73686F72 		.ascii	"short int\000"
+ 1207      7420696E 
+ 1207      7400
+ 1208              	.LASF6:
+ 1209 02da 6C6F6E67 		.ascii	"long int\000"
+ 1209      20696E74 
+ 1209      00
+ 1210              	.LASF14:
+ 1211 02e3 6C6F6E67 		.ascii	"long double\000"
+ 1211      20646F75 
+ 1211      626C6500 
+ 1212              	.LASF16:
+ 1213 02ef 746F7461 		.ascii	"total_steps\000"
+ 1213      6C5F7374 
+ 1213      65707300 
+ 1214              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
