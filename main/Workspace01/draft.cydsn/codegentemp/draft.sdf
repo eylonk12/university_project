@@ -1,0 +1,23 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2022-04-10T13:53:13Z")
+ (DESIGN "draft")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.4")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "draft")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT operation_input\(0\)_PAD operation_input\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT sensor_left\(0\)_PAD sensor_left\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT sensor_right\(0\)_PAD sensor_right\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT direction_out\(0\)_PAD direction_out\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT pulse_out\(0\)_PAD pulse_out\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

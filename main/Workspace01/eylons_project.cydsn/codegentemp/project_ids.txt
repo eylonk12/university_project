@@ -1,0 +1,7 @@
+C:\Users\eylonk\university_project\university_project\main\Workspace01\draft.cydsn\draft.cyprj|9101ff89-cc9f-42dc-890f-72055a2bf412
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ed5af9df-9b71-4d1e-bf8d-0b301e03948e
+C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|6da2cd66-569b-4698-8266-6275eb2c8d83
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|52047af6-27da-4d65-bbc3-4522e146509d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|684f87ba-0be2-4bd0-aa60-8340d1225913
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|298ad4e1-4516-49ae-868b-8a839fc30057
+C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\eylons_project.cyprj|96064e88-f314-4ec4-879e-295a7ca0370b

@@ -1,0 +1,22 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2021-03-02T14:35:07Z")
+ (DESIGN "lesson3_interrupts")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.4")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "lesson3_interrupts")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT ClockBlock.clk_bus_glb sw1_Int.clock (0.000:0.000:0.000))
+    (INTERCONNECT sw1.interrupt sw1_Int.interrupt (1.000:1.000:1.000))
+    (INTERCONNECT sw1\(0\)_PAD sw1\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT led\(0\)_PAD led\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

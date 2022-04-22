@@ -1,0 +1,28 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2022-04-22T13:36:07Z")
+ (DESIGN "eylons_project")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.4")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "eylons_project")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT ClockBlock.dclk_0 \\VDAC8_1\:viDAC8\\.strobe_udb (8.294:8.294:8.294))
+    (INTERCONNECT __ONE__.q operation_input\(0\).pin_input (0.000:0.000:0.000))
+    (INTERCONNECT operation_input\(0\).pad_out operation_input\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT pulse_out\(0\)_PAD pulse_out\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT operation_input\(0\).pad_out operation_input\(0\)_PAD (0.000:0.000:0.000))
+    (INTERCONNECT operation_input\(0\)_PAD operation_input\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT sensor_left\(0\)_PAD sensor_left\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT sensor_right\(0\)_PAD sensor_right\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT direction_out\(0\)_PAD direction_out\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT leds_enable\(0\)_PAD leds_enable\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

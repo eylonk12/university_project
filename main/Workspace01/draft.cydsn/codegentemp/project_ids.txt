@@ -1,0 +1,7 @@
+C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\eylons_project.cyprj|239ab901-584e-48ef-81a6-cd6e43a5d3e8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f437035c-3722-4e0f-8e49-11f97e035709
+C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|bd61e854-dbf6-4ec9-8176-9f7e49e7364d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|3a8edcbb-79b6-4d2f-ab3a-b390142f231d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|728a7303-4f0e-4afd-9ddb-0e1e9e2d583d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ebe59999-368c-4705-a309-49506993aa3a
+C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\draft.cydsn\draft.cyprj|7a9ff0e7-7327-4075-9da1-c490b1c104fa

@@ -1,0 +1,6 @@
+C:\Users\elon1\Desktop\psoc\Workspace01\lesson2.cydsn\lesson2.cyprj|bb521f9c-4b24-4b33-8516-6d27c623bcb3
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f3d149dd-4341-42bc-b4bd-cc64f8b407ff
+C:\Users\elon1\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|a92f70dd-b913-4687-8b7f-a8e279fd378f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|046e1431-c3b9-4b8e-ae90-2cd66b44c33e
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|64676c05-a09d-4e0e-88af-0d8ee5efbaee
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|178aa117-d65c-4eda-9467-10fb92f19656

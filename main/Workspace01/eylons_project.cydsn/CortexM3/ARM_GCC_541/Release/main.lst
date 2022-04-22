@@ -1,0 +1,1188 @@
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.startup.main,"ax",%progbits
+  20              		.align	1
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** #include <stdlib.h>
+  15:main.c        **** 
+  16:main.c        **** int main(void)
+  17:main.c        **** {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 38B5     		push	{r3, r4, r5, lr}
+  34              		.cfi_def_cfa_offset 16
+  35              		.cfi_offset 3, -16
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  18:main.c        ****     //total steps are 1445;
+  19:main.c        ****     int total_steps = 1450;
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 2
+
+
+  20:main.c        ****     //int middle_steps = 725;
+  21:main.c        ****     
+  22:main.c        ****     int current_delay;
+  23:main.c        ****     int min_speed_delay = 700;
+  24:main.c        ****     int max_speed_delay = 250;
+  25:main.c        ****     
+  26:main.c        ****     int big_delay = 750;
+  27:main.c        ****     
+  28:main.c        ****     
+  29:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  39              		.loc 1 29 0
+  40              		.syntax unified
+  41              	@ 29 "main.c" 1
+  42 0002 62B6     		CPSIE   i
+  43              	@ 0 "" 2
+  44              		.thumb
+  45              		.syntax unified
+  46              	.LBB2:
+  30:main.c        **** 
+  31:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  32:main.c        **** 
+  33:main.c        ****     for(;;)
+  34:main.c        ****     {
+  35:main.c        ****         if (operation_input_Read() == 0)
+  36:main.c        ****         {
+  37:main.c        ****             if (sensor_left_Read() == 1)
+  38:main.c        ****             {
+  39:main.c        ****                 if (sensor_right_Read() == 0)
+  40:main.c        ****                 {
+  41:main.c        ****                     direction_out_Write(0);
+  42:main.c        ****                     for (int i=0;i<total_steps;i++)
+  43:main.c        ****                     {
+  44:main.c        ****                         if (sensor_left_Read() == 0)
+  45:main.c        ****                             break;
+  46:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
+  47:main.c        ****                         current_delay = abs(725-i);
+  48:main.c        ****                         if (current_delay > min_speed_delay)
+  49:main.c        ****                             current_delay = min_speed_delay;
+  50:main.c        ****                         if (current_delay < max_speed_delay)
+  51:main.c        ****                             current_delay = max_speed_delay;
+  52:main.c        ****                         
+  53:main.c        ****                         CyDelayUs(current_delay);
+  54:main.c        ****                     }
+  55:main.c        ****                 }
+  56:main.c        ****                 else
+  57:main.c        ****                 {
+  58:main.c        ****                     direction_out_Write(operation_input_Read());
+  59:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
+  60:main.c        ****                     CyDelayUs(big_delay);
+  61:main.c        ****                 }
+  62:main.c        ****             }
+  63:main.c        ****         }
+  64:main.c        ****         else //going right 
+  65:main.c        ****         {
+  66:main.c        ****             if (sensor_right_Read() == 1)
+  67:main.c        ****             {
+  68:main.c        ****                 if (sensor_left_Read() == 0)
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 3
+
+
+  69:main.c        ****                 {
+  70:main.c        ****                     direction_out_Write(1);
+  71:main.c        ****                     for (int i=0;i<total_steps;i++)
+  47              		.loc 1 71 0
+  48 0004 6FF43575 		mvn	r5, #724
+  49              	.L2:
+  50              	.LBE2:
+  35:main.c        ****         {
+  51              		.loc 1 35 0
+  52 0008 FFF7FEFF 		bl	operation_input_Read
+  53              	.LVL1:
+  54 000c 48BB     		cbnz	r0, .L3
+  37:main.c        ****             {
+  55              		.loc 1 37 0
+  56 000e FFF7FEFF 		bl	sensor_left_Read
+  57              	.LVL2:
+  58 0012 0128     		cmp	r0, #1
+  59 0014 F8D1     		bne	.L2
+  39:main.c        ****                 {
+  60              		.loc 1 39 0
+  61 0016 FFF7FEFF 		bl	sensor_right_Read
+  62              	.LVL3:
+  63 001a 0028     		cmp	r0, #0
+  64 001c 4CD1     		bne	.L10
+  41:main.c        ****                     for (int i=0;i<total_steps;i++)
+  65              		.loc 1 41 0
+  66 001e FFF7FEFF 		bl	direction_out_Write
+  67              	.LVL4:
+  68 0022 40F2D524 		movw	r4, #725
+  69              	.LVL5:
+  70              	.L8:
+  71              	.LBB3:
+  44:main.c        ****                             break;
+  72              		.loc 1 44 0
+  73 0026 FFF7FEFF 		bl	sensor_left_Read
+  74              	.LVL6:
+  75 002a 0028     		cmp	r0, #0
+  76 002c ECD0     		beq	.L2
+  46:main.c        ****                         current_delay = abs(725-i);
+  77              		.loc 1 46 0
+  78 002e FFF7FEFF 		bl	pulse_out_Read
+  79              	.LVL7:
+  80 0032 C043     		mvns	r0, r0
+  81 0034 C0B2     		uxtb	r0, r0
+  82 0036 FFF7FEFF 		bl	pulse_out_Write
+  83              	.LVL8:
+  47:main.c        ****                         if (current_delay > min_speed_delay)
+  84              		.loc 1 47 0
+  85 003a 84EAE470 		eor	r0, r4, r4, asr #31
+  86 003e A0EBE470 		sub	r0, r0, r4, asr #31
+  87              	.LVL9:
+  48:main.c        ****                             current_delay = min_speed_delay;
+  88              		.loc 1 48 0
+  89 0042 B0F52F7F 		cmp	r0, #700
+  90 0046 03DC     		bgt	.L14
+  51:main.c        ****                         
+  91              		.loc 1 51 0
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 4
+
+
+  92 0048 FA28     		cmp	r0, #250
+  93 004a B8BF     		it	lt
+  94 004c FA20     		movlt	r0, #250
+  95              	.LVL10:
+  96 004e 01E0     		b	.L7
+  97              	.LVL11:
+  98              	.L14:
+  49:main.c        ****                         if (current_delay < max_speed_delay)
+  99              		.loc 1 49 0
+ 100 0050 4FF42F70 		mov	r0, #700
+ 101              	.LVL12:
+ 102              	.L7:
+  53:main.c        ****                     }
+ 103              		.loc 1 53 0 discriminator 2
+ 104 0054 80B2     		uxth	r0, r0
+ 105              	.LVL13:
+ 106 0056 013C     		subs	r4, r4, #1
+ 107              	.LVL14:
+ 108 0058 FFF7FEFF 		bl	CyDelayUs
+ 109              	.LVL15:
+  42:main.c        ****                     {
+ 110              		.loc 1 42 0 discriminator 2
+ 111 005c AC42     		cmp	r4, r5
+ 112 005e E2D1     		bne	.L8
+ 113 0060 D2E7     		b	.L2
+ 114              	.L3:
+ 115              	.LBE3:
+  66:main.c        ****             {
+ 116              		.loc 1 66 0
+ 117 0062 FFF7FEFF 		bl	sensor_right_Read
+ 118              	.LVL16:
+ 119 0066 0128     		cmp	r0, #1
+ 120 0068 0446     		mov	r4, r0
+ 121 006a CDD1     		bne	.L2
+  68:main.c        ****                 {
+ 122              		.loc 1 68 0
+ 123 006c FFF7FEFF 		bl	sensor_left_Read
+ 124              	.LVL17:
+ 125 0070 10BB     		cbnz	r0, .L10
+  70:main.c        ****                     for (int i=0;i<total_steps;i++)
+ 126              		.loc 1 70 0
+ 127 0072 2046     		mov	r0, r4
+ 128 0074 FFF7FEFF 		bl	direction_out_Write
+ 129              	.LVL18:
+ 130 0078 40F2D524 		movw	r4, #725
+ 131              	.LVL19:
+ 132              	.L13:
+ 133              	.LBB4:
+  72:main.c        ****                     {
+  73:main.c        ****                         if (sensor_right_Read() == 0)
+ 134              		.loc 1 73 0
+ 135 007c FFF7FEFF 		bl	sensor_right_Read
+ 136              	.LVL20:
+ 137 0080 0028     		cmp	r0, #0
+ 138 0082 C1D0     		beq	.L2
+  74:main.c        ****                             break;
+  75:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 5
+
+
+ 139              		.loc 1 75 0
+ 140 0084 FFF7FEFF 		bl	pulse_out_Read
+ 141              	.LVL21:
+ 142 0088 C043     		mvns	r0, r0
+ 143 008a C0B2     		uxtb	r0, r0
+ 144 008c FFF7FEFF 		bl	pulse_out_Write
+ 145              	.LVL22:
+  76:main.c        ****                         current_delay = abs(725-i);
+ 146              		.loc 1 76 0
+ 147 0090 84EAE470 		eor	r0, r4, r4, asr #31
+ 148 0094 A0EBE470 		sub	r0, r0, r4, asr #31
+ 149              	.LVL23:
+  77:main.c        ****                         if (current_delay > min_speed_delay)
+ 150              		.loc 1 77 0
+ 151 0098 B0F52F7F 		cmp	r0, #700
+ 152 009c 03DC     		bgt	.L16
+  78:main.c        ****                             current_delay = min_speed_delay;
+  79:main.c        ****                         if (current_delay < max_speed_delay)
+  80:main.c        ****                             current_delay = max_speed_delay;
+ 153              		.loc 1 80 0
+ 154 009e FA28     		cmp	r0, #250
+ 155 00a0 B8BF     		it	lt
+ 156 00a2 FA20     		movlt	r0, #250
+ 157              	.LVL24:
+ 158 00a4 01E0     		b	.L12
+ 159              	.LVL25:
+ 160              	.L16:
+  78:main.c        ****                             current_delay = min_speed_delay;
+ 161              		.loc 1 78 0
+ 162 00a6 4FF42F70 		mov	r0, #700
+ 163              	.LVL26:
+ 164              	.L12:
+  81:main.c        ****                         
+  82:main.c        ****                         CyDelayUs(current_delay);
+ 165              		.loc 1 82 0 discriminator 2
+ 166 00aa 80B2     		uxth	r0, r0
+ 167              	.LVL27:
+ 168 00ac 013C     		subs	r4, r4, #1
+ 169              	.LVL28:
+ 170 00ae FFF7FEFF 		bl	CyDelayUs
+ 171              	.LVL29:
+  71:main.c        ****                     {
+ 172              		.loc 1 71 0 discriminator 2
+ 173 00b2 AC42     		cmp	r4, r5
+ 174 00b4 E2D1     		bne	.L13
+ 175 00b6 A7E7     		b	.L2
+ 176              	.L10:
+ 177              	.LBE4:
+  83:main.c        ****                     }
+  84:main.c        ****                 }
+  85:main.c        ****                 else
+  86:main.c        ****                 {
+  87:main.c        ****                     direction_out_Write(operation_input_Read());
+ 178              		.loc 1 87 0
+ 179 00b8 FFF7FEFF 		bl	operation_input_Read
+ 180              	.LVL30:
+ 181 00bc FFF7FEFF 		bl	direction_out_Write
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 6
+
+
+ 182              	.LVL31:
+  88:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
+ 183              		.loc 1 88 0
+ 184 00c0 FFF7FEFF 		bl	pulse_out_Read
+ 185              	.LVL32:
+ 186 00c4 C043     		mvns	r0, r0
+ 187 00c6 C0B2     		uxtb	r0, r0
+ 188 00c8 FFF7FEFF 		bl	pulse_out_Write
+ 189              	.LVL33:
+  89:main.c        ****                     CyDelayUs(big_delay);
+ 190              		.loc 1 89 0
+ 191 00cc 40F2EE20 		movw	r0, #750
+ 192 00d0 FFF7FEFF 		bl	CyDelayUs
+ 193              	.LVL34:
+ 194 00d4 98E7     		b	.L2
+ 195              		.cfi_endproc
+ 196              	.LFE64:
+ 197              		.size	main, .-main
+ 198              		.text
+ 199              	.Letext0:
+ 200              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 201              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 202              		.file 4 "Generated_Source\\PSoC5/sensor_right.h"
+ 203              		.file 5 "Generated_Source\\PSoC5/pulse_out.h"
+ 204              		.file 6 "Generated_Source\\PSoC5/CyLib.h"
+ 205              		.file 7 "Generated_Source\\PSoC5/sensor_left.h"
+ 206              		.file 8 "Generated_Source\\PSoC5/operation_input.h"
+ 207              		.file 9 "Generated_Source\\PSoC5/direction_out.h"
+ 208              		.file 10 "Generated_Source\\PSoC5/core_cm3.h"
+ 209              		.section	.debug_info,"",%progbits
+ 210              	.Ldebug_info0:
+ 211 0000 54020000 		.4byte	0x254
+ 212 0004 0400     		.2byte	0x4
+ 213 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 214 000a 04       		.byte	0x4
+ 215 000b 01       		.uleb128 0x1
+ 216 000c B4010000 		.4byte	.LASF28
+ 217 0010 0C       		.byte	0xc
+ 218 0011 8E010000 		.4byte	.LASF29
+ 219 0015 D8000000 		.4byte	.LASF30
+ 220 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 221 001d 00000000 		.4byte	0
+ 222 0021 00000000 		.4byte	.Ldebug_line0
+ 223 0025 02       		.uleb128 0x2
+ 224 0026 01       		.byte	0x1
+ 225 0027 06       		.byte	0x6
+ 226 0028 69000000 		.4byte	.LASF0
+ 227 002c 02       		.uleb128 0x2
+ 228 002d 01       		.byte	0x1
+ 229 002e 08       		.byte	0x8
+ 230 002f 75000000 		.4byte	.LASF1
+ 231 0033 02       		.uleb128 0x2
+ 232 0034 02       		.byte	0x2
+ 233 0035 05       		.byte	0x5
+ 234 0036 AA010000 		.4byte	.LASF2
+ 235 003a 02       		.uleb128 0x2
+ 236 003b 02       		.byte	0x2
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 7
+
+
+ 237 003c 07       		.byte	0x7
+ 238 003d 95000000 		.4byte	.LASF3
+ 239 0041 03       		.uleb128 0x3
+ 240 0042 0F000000 		.4byte	.LASF9
+ 241 0046 02       		.byte	0x2
+ 242 0047 3F       		.byte	0x3f
+ 243 0048 4C000000 		.4byte	0x4c
+ 244 004c 02       		.uleb128 0x2
+ 245 004d 04       		.byte	0x4
+ 246 004e 05       		.byte	0x5
+ 247 004f 42020000 		.4byte	.LASF4
+ 248 0053 02       		.uleb128 0x2
+ 249 0054 04       		.byte	0x4
+ 250 0055 07       		.byte	0x7
+ 251 0056 83000000 		.4byte	.LASF5
+ 252 005a 02       		.uleb128 0x2
+ 253 005b 08       		.byte	0x8
+ 254 005c 05       		.byte	0x5
+ 255 005d 80010000 		.4byte	.LASF6
+ 256 0061 02       		.uleb128 0x2
+ 257 0062 08       		.byte	0x8
+ 258 0063 07       		.byte	0x7
+ 259 0064 58010000 		.4byte	.LASF7
+ 260 0068 04       		.uleb128 0x4
+ 261 0069 04       		.byte	0x4
+ 262 006a 05       		.byte	0x5
+ 263 006b 696E7400 		.ascii	"int\000"
+ 264 006f 02       		.uleb128 0x2
+ 265 0070 04       		.byte	0x4
+ 266 0071 07       		.byte	0x7
+ 267 0072 3D010000 		.4byte	.LASF8
+ 268 0076 03       		.uleb128 0x3
+ 269 0077 6F010000 		.4byte	.LASF10
+ 270 007b 03       		.byte	0x3
+ 271 007c 2C       		.byte	0x2c
+ 272 007d 41000000 		.4byte	0x41
+ 273 0081 02       		.uleb128 0x2
+ 274 0082 04       		.byte	0x4
+ 275 0083 04       		.byte	0x4
+ 276 0084 63000000 		.4byte	.LASF11
+ 277 0088 02       		.uleb128 0x2
+ 278 0089 08       		.byte	0x8
+ 279 008a 04       		.byte	0x4
+ 280 008b D1000000 		.4byte	.LASF12
+ 281 008f 02       		.uleb128 0x2
+ 282 0090 01       		.byte	0x1
+ 283 0091 08       		.byte	0x8
+ 284 0092 95010000 		.4byte	.LASF13
+ 285 0096 02       		.uleb128 0x2
+ 286 0097 04       		.byte	0x4
+ 287 0098 07       		.byte	0x7
+ 288 0099 77010000 		.4byte	.LASF14
+ 289 009d 02       		.uleb128 0x2
+ 290 009e 08       		.byte	0x8
+ 291 009f 04       		.byte	0x4
+ 292 00a0 4B020000 		.4byte	.LASF15
+ 293 00a4 05       		.uleb128 0x5
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 8
+
+
+ 294 00a5 1E010000 		.4byte	.LASF31
+ 295 00a9 01       		.byte	0x1
+ 296 00aa 10       		.byte	0x10
+ 297 00ab 68000000 		.4byte	0x68
+ 298 00af 00000000 		.4byte	.LFB64
+ 299 00b3 D6000000 		.4byte	.LFE64-.LFB64
+ 300 00b7 01       		.uleb128 0x1
+ 301 00b8 9C       		.byte	0x9c
+ 302 00b9 F9010000 		.4byte	0x1f9
+ 303 00bd 06       		.uleb128 0x6
+ 304 00be 57020000 		.4byte	.LASF16
+ 305 00c2 01       		.byte	0x1
+ 306 00c3 13       		.byte	0x13
+ 307 00c4 68000000 		.4byte	0x68
+ 308 00c8 AA05     		.2byte	0x5aa
+ 309 00ca 07       		.uleb128 0x7
+ 310 00cb 4A010000 		.4byte	.LASF17
+ 311 00cf 01       		.byte	0x1
+ 312 00d0 16       		.byte	0x16
+ 313 00d1 68000000 		.4byte	0x68
+ 314 00d5 00000000 		.4byte	.LLST0
+ 315 00d9 06       		.uleb128 0x6
+ 316 00da 53000000 		.4byte	.LASF18
+ 317 00de 01       		.byte	0x1
+ 318 00df 17       		.byte	0x17
+ 319 00e0 68000000 		.4byte	0x68
+ 320 00e4 BC02     		.2byte	0x2bc
+ 321 00e6 08       		.uleb128 0x8
+ 322 00e7 9A010000 		.4byte	.LASF19
+ 323 00eb 01       		.byte	0x1
+ 324 00ec 18       		.byte	0x18
+ 325 00ed 68000000 		.4byte	0x68
+ 326 00f1 FA       		.byte	0xfa
+ 327 00f2 06       		.uleb128 0x6
+ 328 00f3 C7000000 		.4byte	.LASF20
+ 329 00f7 01       		.byte	0x1
+ 330 00f8 1A       		.byte	0x1a
+ 331 00f9 68000000 		.4byte	0x68
+ 332 00fd EE02     		.2byte	0x2ee
+ 333 00ff 09       		.uleb128 0x9
+ 334 0100 00000000 		.4byte	.Ldebug_ranges0+0
+ 335 0104 3A010000 		.4byte	0x13a
+ 336 0108 0A       		.uleb128 0xa
+ 337 0109 6900     		.ascii	"i\000"
+ 338 010b 01       		.byte	0x1
+ 339 010c 47       		.byte	0x47
+ 340 010d 68000000 		.4byte	0x68
+ 341 0111 62000000 		.4byte	.LLST1
+ 342 0115 0B       		.uleb128 0xb
+ 343 0116 80000000 		.4byte	.LVL20
+ 344 011a 0A020000 		.4byte	0x20a
+ 345 011e 0B       		.uleb128 0xb
+ 346 011f 88000000 		.4byte	.LVL21
+ 347 0123 15020000 		.4byte	0x215
+ 348 0127 0B       		.uleb128 0xb
+ 349 0128 90000000 		.4byte	.LVL22
+ 350 012c 20020000 		.4byte	0x220
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 9
+
+
+ 351 0130 0B       		.uleb128 0xb
+ 352 0131 B2000000 		.4byte	.LVL29
+ 353 0135 2B020000 		.4byte	0x22b
+ 354 0139 00       		.byte	0
+ 355 013a 0C       		.uleb128 0xc
+ 356 013b 26000000 		.4byte	.LBB3
+ 357 013f 3C000000 		.4byte	.LBE3-.LBB3
+ 358 0143 79010000 		.4byte	0x179
+ 359 0147 0A       		.uleb128 0xa
+ 360 0148 6900     		.ascii	"i\000"
+ 361 014a 01       		.byte	0x1
+ 362 014b 2A       		.byte	0x2a
+ 363 014c 68000000 		.4byte	0x68
+ 364 0150 98000000 		.4byte	.LLST2
+ 365 0154 0B       		.uleb128 0xb
+ 366 0155 2A000000 		.4byte	.LVL6
+ 367 0159 36020000 		.4byte	0x236
+ 368 015d 0B       		.uleb128 0xb
+ 369 015e 32000000 		.4byte	.LVL7
+ 370 0162 15020000 		.4byte	0x215
+ 371 0166 0B       		.uleb128 0xb
+ 372 0167 3A000000 		.4byte	.LVL8
+ 373 016b 20020000 		.4byte	0x220
+ 374 016f 0B       		.uleb128 0xb
+ 375 0170 5C000000 		.4byte	.LVL15
+ 376 0174 2B020000 		.4byte	0x22b
+ 377 0178 00       		.byte	0
+ 378 0179 0B       		.uleb128 0xb
+ 379 017a 0C000000 		.4byte	.LVL1
+ 380 017e 41020000 		.4byte	0x241
+ 381 0182 0B       		.uleb128 0xb
+ 382 0183 12000000 		.4byte	.LVL2
+ 383 0187 36020000 		.4byte	0x236
+ 384 018b 0B       		.uleb128 0xb
+ 385 018c 1A000000 		.4byte	.LVL3
+ 386 0190 0A020000 		.4byte	0x20a
+ 387 0194 0B       		.uleb128 0xb
+ 388 0195 22000000 		.4byte	.LVL4
+ 389 0199 4C020000 		.4byte	0x24c
+ 390 019d 0B       		.uleb128 0xb
+ 391 019e 66000000 		.4byte	.LVL16
+ 392 01a2 0A020000 		.4byte	0x20a
+ 393 01a6 0B       		.uleb128 0xb
+ 394 01a7 70000000 		.4byte	.LVL17
+ 395 01ab 36020000 		.4byte	0x236
+ 396 01af 0D       		.uleb128 0xd
+ 397 01b0 78000000 		.4byte	.LVL18
+ 398 01b4 4C020000 		.4byte	0x24c
+ 399 01b8 C3010000 		.4byte	0x1c3
+ 400 01bc 0E       		.uleb128 0xe
+ 401 01bd 01       		.uleb128 0x1
+ 402 01be 50       		.byte	0x50
+ 403 01bf 02       		.uleb128 0x2
+ 404 01c0 74       		.byte	0x74
+ 405 01c1 00       		.sleb128 0
+ 406 01c2 00       		.byte	0
+ 407 01c3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 10
+
+
+ 408 01c4 BC000000 		.4byte	.LVL30
+ 409 01c8 41020000 		.4byte	0x241
+ 410 01cc 0B       		.uleb128 0xb
+ 411 01cd C0000000 		.4byte	.LVL31
+ 412 01d1 4C020000 		.4byte	0x24c
+ 413 01d5 0B       		.uleb128 0xb
+ 414 01d6 C4000000 		.4byte	.LVL32
+ 415 01da 15020000 		.4byte	0x215
+ 416 01de 0B       		.uleb128 0xb
+ 417 01df CC000000 		.4byte	.LVL33
+ 418 01e3 20020000 		.4byte	0x220
+ 419 01e7 0F       		.uleb128 0xf
+ 420 01e8 D4000000 		.4byte	.LVL34
+ 421 01ec 2B020000 		.4byte	0x22b
+ 422 01f0 0E       		.uleb128 0xe
+ 423 01f1 01       		.uleb128 0x1
+ 424 01f2 50       		.byte	0x50
+ 425 01f3 03       		.uleb128 0x3
+ 426 01f4 0A       		.byte	0xa
+ 427 01f5 EE02     		.2byte	0x2ee
+ 428 01f7 00       		.byte	0
+ 429 01f8 00       		.byte	0
+ 430 01f9 10       		.uleb128 0x10
+ 431 01fa A8000000 		.4byte	.LASF32
+ 432 01fe 0A       		.byte	0xa
+ 433 01ff 1207     		.2byte	0x712
+ 434 0201 05020000 		.4byte	0x205
+ 435 0205 11       		.uleb128 0x11
+ 436 0206 76000000 		.4byte	0x76
+ 437 020a 12       		.uleb128 0x12
+ 438 020b B5000000 		.4byte	.LASF21
+ 439 020f B5000000 		.4byte	.LASF21
+ 440 0213 04       		.byte	0x4
+ 441 0214 29       		.byte	0x29
+ 442 0215 12       		.uleb128 0x12
+ 443 0216 00000000 		.4byte	.LASF22
+ 444 021a 00000000 		.4byte	.LASF22
+ 445 021e 05       		.byte	0x5
+ 446 021f 29       		.byte	0x29
+ 447 0220 12       		.uleb128 0x12
+ 448 0221 2D010000 		.4byte	.LASF23
+ 449 0225 2D010000 		.4byte	.LASF23
+ 450 0229 05       		.byte	0x5
+ 451 022a 26       		.byte	0x26
+ 452 022b 12       		.uleb128 0x12
+ 453 022c 23010000 		.4byte	.LASF24
+ 454 0230 23010000 		.4byte	.LASF24
+ 455 0234 06       		.byte	0x6
+ 456 0235 77       		.byte	0x77
+ 457 0236 12       		.uleb128 0x12
+ 458 0237 2E000000 		.4byte	.LASF25
+ 459 023b 2E000000 		.4byte	.LASF25
+ 460 023f 07       		.byte	0x7
+ 461 0240 29       		.byte	0x29
+ 462 0241 12       		.uleb128 0x12
+ 463 0242 19000000 		.4byte	.LASF26
+ 464 0246 19000000 		.4byte	.LASF26
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 11
+
+
+ 465 024a 08       		.byte	0x8
+ 466 024b 29       		.byte	0x29
+ 467 024c 12       		.uleb128 0x12
+ 468 024d 3F000000 		.4byte	.LASF27
+ 469 0251 3F000000 		.4byte	.LASF27
+ 470 0255 09       		.byte	0x9
+ 471 0256 26       		.byte	0x26
+ 472 0257 00       		.byte	0
+ 473              		.section	.debug_abbrev,"",%progbits
+ 474              	.Ldebug_abbrev0:
+ 475 0000 01       		.uleb128 0x1
+ 476 0001 11       		.uleb128 0x11
+ 477 0002 01       		.byte	0x1
+ 478 0003 25       		.uleb128 0x25
+ 479 0004 0E       		.uleb128 0xe
+ 480 0005 13       		.uleb128 0x13
+ 481 0006 0B       		.uleb128 0xb
+ 482 0007 03       		.uleb128 0x3
+ 483 0008 0E       		.uleb128 0xe
+ 484 0009 1B       		.uleb128 0x1b
+ 485 000a 0E       		.uleb128 0xe
+ 486 000b 55       		.uleb128 0x55
+ 487 000c 17       		.uleb128 0x17
+ 488 000d 11       		.uleb128 0x11
+ 489 000e 01       		.uleb128 0x1
+ 490 000f 10       		.uleb128 0x10
+ 491 0010 17       		.uleb128 0x17
+ 492 0011 00       		.byte	0
+ 493 0012 00       		.byte	0
+ 494 0013 02       		.uleb128 0x2
+ 495 0014 24       		.uleb128 0x24
+ 496 0015 00       		.byte	0
+ 497 0016 0B       		.uleb128 0xb
+ 498 0017 0B       		.uleb128 0xb
+ 499 0018 3E       		.uleb128 0x3e
+ 500 0019 0B       		.uleb128 0xb
+ 501 001a 03       		.uleb128 0x3
+ 502 001b 0E       		.uleb128 0xe
+ 503 001c 00       		.byte	0
+ 504 001d 00       		.byte	0
+ 505 001e 03       		.uleb128 0x3
+ 506 001f 16       		.uleb128 0x16
+ 507 0020 00       		.byte	0
+ 508 0021 03       		.uleb128 0x3
+ 509 0022 0E       		.uleb128 0xe
+ 510 0023 3A       		.uleb128 0x3a
+ 511 0024 0B       		.uleb128 0xb
+ 512 0025 3B       		.uleb128 0x3b
+ 513 0026 0B       		.uleb128 0xb
+ 514 0027 49       		.uleb128 0x49
+ 515 0028 13       		.uleb128 0x13
+ 516 0029 00       		.byte	0
+ 517 002a 00       		.byte	0
+ 518 002b 04       		.uleb128 0x4
+ 519 002c 24       		.uleb128 0x24
+ 520 002d 00       		.byte	0
+ 521 002e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 12
+
+
+ 522 002f 0B       		.uleb128 0xb
+ 523 0030 3E       		.uleb128 0x3e
+ 524 0031 0B       		.uleb128 0xb
+ 525 0032 03       		.uleb128 0x3
+ 526 0033 08       		.uleb128 0x8
+ 527 0034 00       		.byte	0
+ 528 0035 00       		.byte	0
+ 529 0036 05       		.uleb128 0x5
+ 530 0037 2E       		.uleb128 0x2e
+ 531 0038 01       		.byte	0x1
+ 532 0039 3F       		.uleb128 0x3f
+ 533 003a 19       		.uleb128 0x19
+ 534 003b 03       		.uleb128 0x3
+ 535 003c 0E       		.uleb128 0xe
+ 536 003d 3A       		.uleb128 0x3a
+ 537 003e 0B       		.uleb128 0xb
+ 538 003f 3B       		.uleb128 0x3b
+ 539 0040 0B       		.uleb128 0xb
+ 540 0041 27       		.uleb128 0x27
+ 541 0042 19       		.uleb128 0x19
+ 542 0043 49       		.uleb128 0x49
+ 543 0044 13       		.uleb128 0x13
+ 544 0045 8701     		.uleb128 0x87
+ 545 0047 19       		.uleb128 0x19
+ 546 0048 11       		.uleb128 0x11
+ 547 0049 01       		.uleb128 0x1
+ 548 004a 12       		.uleb128 0x12
+ 549 004b 06       		.uleb128 0x6
+ 550 004c 40       		.uleb128 0x40
+ 551 004d 18       		.uleb128 0x18
+ 552 004e 9742     		.uleb128 0x2117
+ 553 0050 19       		.uleb128 0x19
+ 554 0051 01       		.uleb128 0x1
+ 555 0052 13       		.uleb128 0x13
+ 556 0053 00       		.byte	0
+ 557 0054 00       		.byte	0
+ 558 0055 06       		.uleb128 0x6
+ 559 0056 34       		.uleb128 0x34
+ 560 0057 00       		.byte	0
+ 561 0058 03       		.uleb128 0x3
+ 562 0059 0E       		.uleb128 0xe
+ 563 005a 3A       		.uleb128 0x3a
+ 564 005b 0B       		.uleb128 0xb
+ 565 005c 3B       		.uleb128 0x3b
+ 566 005d 0B       		.uleb128 0xb
+ 567 005e 49       		.uleb128 0x49
+ 568 005f 13       		.uleb128 0x13
+ 569 0060 1C       		.uleb128 0x1c
+ 570 0061 05       		.uleb128 0x5
+ 571 0062 00       		.byte	0
+ 572 0063 00       		.byte	0
+ 573 0064 07       		.uleb128 0x7
+ 574 0065 34       		.uleb128 0x34
+ 575 0066 00       		.byte	0
+ 576 0067 03       		.uleb128 0x3
+ 577 0068 0E       		.uleb128 0xe
+ 578 0069 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 13
+
+
+ 579 006a 0B       		.uleb128 0xb
+ 580 006b 3B       		.uleb128 0x3b
+ 581 006c 0B       		.uleb128 0xb
+ 582 006d 49       		.uleb128 0x49
+ 583 006e 13       		.uleb128 0x13
+ 584 006f 02       		.uleb128 0x2
+ 585 0070 17       		.uleb128 0x17
+ 586 0071 00       		.byte	0
+ 587 0072 00       		.byte	0
+ 588 0073 08       		.uleb128 0x8
+ 589 0074 34       		.uleb128 0x34
+ 590 0075 00       		.byte	0
+ 591 0076 03       		.uleb128 0x3
+ 592 0077 0E       		.uleb128 0xe
+ 593 0078 3A       		.uleb128 0x3a
+ 594 0079 0B       		.uleb128 0xb
+ 595 007a 3B       		.uleb128 0x3b
+ 596 007b 0B       		.uleb128 0xb
+ 597 007c 49       		.uleb128 0x49
+ 598 007d 13       		.uleb128 0x13
+ 599 007e 1C       		.uleb128 0x1c
+ 600 007f 0B       		.uleb128 0xb
+ 601 0080 00       		.byte	0
+ 602 0081 00       		.byte	0
+ 603 0082 09       		.uleb128 0x9
+ 604 0083 0B       		.uleb128 0xb
+ 605 0084 01       		.byte	0x1
+ 606 0085 55       		.uleb128 0x55
+ 607 0086 17       		.uleb128 0x17
+ 608 0087 01       		.uleb128 0x1
+ 609 0088 13       		.uleb128 0x13
+ 610 0089 00       		.byte	0
+ 611 008a 00       		.byte	0
+ 612 008b 0A       		.uleb128 0xa
+ 613 008c 34       		.uleb128 0x34
+ 614 008d 00       		.byte	0
+ 615 008e 03       		.uleb128 0x3
+ 616 008f 08       		.uleb128 0x8
+ 617 0090 3A       		.uleb128 0x3a
+ 618 0091 0B       		.uleb128 0xb
+ 619 0092 3B       		.uleb128 0x3b
+ 620 0093 0B       		.uleb128 0xb
+ 621 0094 49       		.uleb128 0x49
+ 622 0095 13       		.uleb128 0x13
+ 623 0096 02       		.uleb128 0x2
+ 624 0097 17       		.uleb128 0x17
+ 625 0098 00       		.byte	0
+ 626 0099 00       		.byte	0
+ 627 009a 0B       		.uleb128 0xb
+ 628 009b 898201   		.uleb128 0x4109
+ 629 009e 00       		.byte	0
+ 630 009f 11       		.uleb128 0x11
+ 631 00a0 01       		.uleb128 0x1
+ 632 00a1 31       		.uleb128 0x31
+ 633 00a2 13       		.uleb128 0x13
+ 634 00a3 00       		.byte	0
+ 635 00a4 00       		.byte	0
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 14
+
+
+ 636 00a5 0C       		.uleb128 0xc
+ 637 00a6 0B       		.uleb128 0xb
+ 638 00a7 01       		.byte	0x1
+ 639 00a8 11       		.uleb128 0x11
+ 640 00a9 01       		.uleb128 0x1
+ 641 00aa 12       		.uleb128 0x12
+ 642 00ab 06       		.uleb128 0x6
+ 643 00ac 01       		.uleb128 0x1
+ 644 00ad 13       		.uleb128 0x13
+ 645 00ae 00       		.byte	0
+ 646 00af 00       		.byte	0
+ 647 00b0 0D       		.uleb128 0xd
+ 648 00b1 898201   		.uleb128 0x4109
+ 649 00b4 01       		.byte	0x1
+ 650 00b5 11       		.uleb128 0x11
+ 651 00b6 01       		.uleb128 0x1
+ 652 00b7 31       		.uleb128 0x31
+ 653 00b8 13       		.uleb128 0x13
+ 654 00b9 01       		.uleb128 0x1
+ 655 00ba 13       		.uleb128 0x13
+ 656 00bb 00       		.byte	0
+ 657 00bc 00       		.byte	0
+ 658 00bd 0E       		.uleb128 0xe
+ 659 00be 8A8201   		.uleb128 0x410a
+ 660 00c1 00       		.byte	0
+ 661 00c2 02       		.uleb128 0x2
+ 662 00c3 18       		.uleb128 0x18
+ 663 00c4 9142     		.uleb128 0x2111
+ 664 00c6 18       		.uleb128 0x18
+ 665 00c7 00       		.byte	0
+ 666 00c8 00       		.byte	0
+ 667 00c9 0F       		.uleb128 0xf
+ 668 00ca 898201   		.uleb128 0x4109
+ 669 00cd 01       		.byte	0x1
+ 670 00ce 11       		.uleb128 0x11
+ 671 00cf 01       		.uleb128 0x1
+ 672 00d0 31       		.uleb128 0x31
+ 673 00d1 13       		.uleb128 0x13
+ 674 00d2 00       		.byte	0
+ 675 00d3 00       		.byte	0
+ 676 00d4 10       		.uleb128 0x10
+ 677 00d5 34       		.uleb128 0x34
+ 678 00d6 00       		.byte	0
+ 679 00d7 03       		.uleb128 0x3
+ 680 00d8 0E       		.uleb128 0xe
+ 681 00d9 3A       		.uleb128 0x3a
+ 682 00da 0B       		.uleb128 0xb
+ 683 00db 3B       		.uleb128 0x3b
+ 684 00dc 05       		.uleb128 0x5
+ 685 00dd 49       		.uleb128 0x49
+ 686 00de 13       		.uleb128 0x13
+ 687 00df 3F       		.uleb128 0x3f
+ 688 00e0 19       		.uleb128 0x19
+ 689 00e1 3C       		.uleb128 0x3c
+ 690 00e2 19       		.uleb128 0x19
+ 691 00e3 00       		.byte	0
+ 692 00e4 00       		.byte	0
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 15
+
+
+ 693 00e5 11       		.uleb128 0x11
+ 694 00e6 35       		.uleb128 0x35
+ 695 00e7 00       		.byte	0
+ 696 00e8 49       		.uleb128 0x49
+ 697 00e9 13       		.uleb128 0x13
+ 698 00ea 00       		.byte	0
+ 699 00eb 00       		.byte	0
+ 700 00ec 12       		.uleb128 0x12
+ 701 00ed 2E       		.uleb128 0x2e
+ 702 00ee 00       		.byte	0
+ 703 00ef 3F       		.uleb128 0x3f
+ 704 00f0 19       		.uleb128 0x19
+ 705 00f1 3C       		.uleb128 0x3c
+ 706 00f2 19       		.uleb128 0x19
+ 707 00f3 6E       		.uleb128 0x6e
+ 708 00f4 0E       		.uleb128 0xe
+ 709 00f5 03       		.uleb128 0x3
+ 710 00f6 0E       		.uleb128 0xe
+ 711 00f7 3A       		.uleb128 0x3a
+ 712 00f8 0B       		.uleb128 0xb
+ 713 00f9 3B       		.uleb128 0x3b
+ 714 00fa 0B       		.uleb128 0xb
+ 715 00fb 00       		.byte	0
+ 716 00fc 00       		.byte	0
+ 717 00fd 00       		.byte	0
+ 718              		.section	.debug_loc,"",%progbits
+ 719              	.Ldebug_loc0:
+ 720              	.LLST0:
+ 721 0000 42000000 		.4byte	.LVL9
+ 722 0004 4E000000 		.4byte	.LVL10
+ 723 0008 0100     		.2byte	0x1
+ 724 000a 50       		.byte	0x50
+ 725 000b 4E000000 		.4byte	.LVL10
+ 726 000f 50000000 		.4byte	.LVL11
+ 727 0013 0D00     		.2byte	0xd
+ 728 0015 74       		.byte	0x74
+ 729 0016 00       		.sleb128 0
+ 730 0017 4F       		.byte	0x4f
+ 731 0018 26       		.byte	0x26
+ 732 0019 74       		.byte	0x74
+ 733 001a 00       		.sleb128 0
+ 734 001b 27       		.byte	0x27
+ 735 001c 74       		.byte	0x74
+ 736 001d 00       		.sleb128 0
+ 737 001e 4F       		.byte	0x4f
+ 738 001f 26       		.byte	0x26
+ 739 0020 1C       		.byte	0x1c
+ 740 0021 9F       		.byte	0x9f
+ 741 0022 50000000 		.4byte	.LVL11
+ 742 0026 56000000 		.4byte	.LVL13
+ 743 002a 0100     		.2byte	0x1
+ 744 002c 50       		.byte	0x50
+ 745 002d 98000000 		.4byte	.LVL23
+ 746 0031 A4000000 		.4byte	.LVL24
+ 747 0035 0100     		.2byte	0x1
+ 748 0037 50       		.byte	0x50
+ 749 0038 A4000000 		.4byte	.LVL24
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 16
+
+
+ 750 003c A6000000 		.4byte	.LVL25
+ 751 0040 0D00     		.2byte	0xd
+ 752 0042 74       		.byte	0x74
+ 753 0043 00       		.sleb128 0
+ 754 0044 4F       		.byte	0x4f
+ 755 0045 26       		.byte	0x26
+ 756 0046 74       		.byte	0x74
+ 757 0047 00       		.sleb128 0
+ 758 0048 27       		.byte	0x27
+ 759 0049 74       		.byte	0x74
+ 760 004a 00       		.sleb128 0
+ 761 004b 4F       		.byte	0x4f
+ 762 004c 26       		.byte	0x26
+ 763 004d 1C       		.byte	0x1c
+ 764 004e 9F       		.byte	0x9f
+ 765 004f A6000000 		.4byte	.LVL25
+ 766 0053 AC000000 		.4byte	.LVL27
+ 767 0057 0100     		.2byte	0x1
+ 768 0059 50       		.byte	0x50
+ 769 005a 00000000 		.4byte	0
+ 770 005e 00000000 		.4byte	0
+ 771              	.LLST1:
+ 772 0062 78000000 		.4byte	.LVL18
+ 773 0066 7C000000 		.4byte	.LVL19
+ 774 006a 0200     		.2byte	0x2
+ 775 006c 30       		.byte	0x30
+ 776 006d 9F       		.byte	0x9f
+ 777 006e 7C000000 		.4byte	.LVL19
+ 778 0072 AE000000 		.4byte	.LVL28
+ 779 0076 0700     		.2byte	0x7
+ 780 0078 0A       		.byte	0xa
+ 781 0079 D502     		.2byte	0x2d5
+ 782 007b 74       		.byte	0x74
+ 783 007c 00       		.sleb128 0
+ 784 007d 1C       		.byte	0x1c
+ 785 007e 9F       		.byte	0x9f
+ 786 007f AE000000 		.4byte	.LVL28
+ 787 0083 B2000000 		.4byte	.LVL29
+ 788 0087 0700     		.2byte	0x7
+ 789 0089 0A       		.byte	0xa
+ 790 008a D402     		.2byte	0x2d4
+ 791 008c 74       		.byte	0x74
+ 792 008d 00       		.sleb128 0
+ 793 008e 1C       		.byte	0x1c
+ 794 008f 9F       		.byte	0x9f
+ 795 0090 00000000 		.4byte	0
+ 796 0094 00000000 		.4byte	0
+ 797              	.LLST2:
+ 798 0098 22000000 		.4byte	.LVL4
+ 799 009c 26000000 		.4byte	.LVL5
+ 800 00a0 0200     		.2byte	0x2
+ 801 00a2 30       		.byte	0x30
+ 802 00a3 9F       		.byte	0x9f
+ 803 00a4 26000000 		.4byte	.LVL5
+ 804 00a8 58000000 		.4byte	.LVL14
+ 805 00ac 0700     		.2byte	0x7
+ 806 00ae 0A       		.byte	0xa
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 17
+
+
+ 807 00af D502     		.2byte	0x2d5
+ 808 00b1 74       		.byte	0x74
+ 809 00b2 00       		.sleb128 0
+ 810 00b3 1C       		.byte	0x1c
+ 811 00b4 9F       		.byte	0x9f
+ 812 00b5 58000000 		.4byte	.LVL14
+ 813 00b9 5C000000 		.4byte	.LVL15
+ 814 00bd 0700     		.2byte	0x7
+ 815 00bf 0A       		.byte	0xa
+ 816 00c0 D402     		.2byte	0x2d4
+ 817 00c2 74       		.byte	0x74
+ 818 00c3 00       		.sleb128 0
+ 819 00c4 1C       		.byte	0x1c
+ 820 00c5 9F       		.byte	0x9f
+ 821 00c6 00000000 		.4byte	0
+ 822 00ca 00000000 		.4byte	0
+ 823              		.section	.debug_aranges,"",%progbits
+ 824 0000 1C000000 		.4byte	0x1c
+ 825 0004 0200     		.2byte	0x2
+ 826 0006 00000000 		.4byte	.Ldebug_info0
+ 827 000a 04       		.byte	0x4
+ 828 000b 00       		.byte	0
+ 829 000c 0000     		.2byte	0
+ 830 000e 0000     		.2byte	0
+ 831 0010 00000000 		.4byte	.LFB64
+ 832 0014 D6000000 		.4byte	.LFE64-.LFB64
+ 833 0018 00000000 		.4byte	0
+ 834 001c 00000000 		.4byte	0
+ 835              		.section	.debug_ranges,"",%progbits
+ 836              	.Ldebug_ranges0:
+ 837 0000 04000000 		.4byte	.LBB2
+ 838 0004 08000000 		.4byte	.LBE2
+ 839 0008 7C000000 		.4byte	.LBB4
+ 840 000c B8000000 		.4byte	.LBE4
+ 841 0010 00000000 		.4byte	0
+ 842 0014 00000000 		.4byte	0
+ 843 0018 00000000 		.4byte	.LFB64
+ 844 001c D6000000 		.4byte	.LFE64
+ 845 0020 00000000 		.4byte	0
+ 846 0024 00000000 		.4byte	0
+ 847              		.section	.debug_line,"",%progbits
+ 848              	.Ldebug_line0:
+ 849 0000 F3010000 		.section	.debug_str,"MS",%progbits,1
+ 849      0200A401 
+ 849      00000201 
+ 849      FB0E0D00 
+ 849      01010101 
+ 850              	.LASF22:
+ 851 0000 70756C73 		.ascii	"pulse_out_Read\000"
+ 851      655F6F75 
+ 851      745F5265 
+ 851      616400
+ 852              	.LASF9:
+ 853 000f 5F5F696E 		.ascii	"__int32_t\000"
+ 853      7433325F 
+ 853      7400
+ 854              	.LASF26:
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 18
+
+
+ 855 0019 6F706572 		.ascii	"operation_input_Read\000"
+ 855      6174696F 
+ 855      6E5F696E 
+ 855      7075745F 
+ 855      52656164 
+ 856              	.LASF25:
+ 857 002e 73656E73 		.ascii	"sensor_left_Read\000"
+ 857      6F725F6C 
+ 857      6566745F 
+ 857      52656164 
+ 857      00
+ 858              	.LASF27:
+ 859 003f 64697265 		.ascii	"direction_out_Write\000"
+ 859      6374696F 
+ 859      6E5F6F75 
+ 859      745F5772 
+ 859      69746500 
+ 860              	.LASF18:
+ 861 0053 6D696E5F 		.ascii	"min_speed_delay\000"
+ 861      73706565 
+ 861      645F6465 
+ 861      6C617900 
+ 862              	.LASF11:
+ 863 0063 666C6F61 		.ascii	"float\000"
+ 863      7400
+ 864              	.LASF0:
+ 865 0069 7369676E 		.ascii	"signed char\000"
+ 865      65642063 
+ 865      68617200 
+ 866              	.LASF1:
+ 867 0075 756E7369 		.ascii	"unsigned char\000"
+ 867      676E6564 
+ 867      20636861 
+ 867      7200
+ 868              	.LASF5:
+ 869 0083 6C6F6E67 		.ascii	"long unsigned int\000"
+ 869      20756E73 
+ 869      69676E65 
+ 869      6420696E 
+ 869      7400
+ 870              	.LASF3:
+ 871 0095 73686F72 		.ascii	"short unsigned int\000"
+ 871      7420756E 
+ 871      7369676E 
+ 871      65642069 
+ 871      6E7400
+ 872              	.LASF32:
+ 873 00a8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 873      52784275 
+ 873      66666572 
+ 873      00
+ 874              	.LASF21:
+ 875 00b5 73656E73 		.ascii	"sensor_right_Read\000"
+ 875      6F725F72 
+ 875      69676874 
+ 875      5F526561 
+ 875      6400
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 19
+
+
+ 876              	.LASF20:
+ 877 00c7 6269675F 		.ascii	"big_delay\000"
+ 877      64656C61 
+ 877      7900
+ 878              	.LASF12:
+ 879 00d1 646F7562 		.ascii	"double\000"
+ 879      6C6500
+ 880              	.LASF30:
+ 881 00d8 433A5C55 		.ascii	"C:\\Users\\elon1\\Desktop\\programs\\psoc\\Workspac"
+ 881      73657273 
+ 881      5C656C6F 
+ 881      6E315C44 
+ 881      65736B74 
+ 882 0105 6530315C 		.ascii	"e01\\eylons_project.cydsn\000"
+ 882      65796C6F 
+ 882      6E735F70 
+ 882      726F6A65 
+ 882      63742E63 
+ 883              	.LASF31:
+ 884 011e 6D61696E 		.ascii	"main\000"
+ 884      00
+ 885              	.LASF24:
+ 886 0123 43794465 		.ascii	"CyDelayUs\000"
+ 886      6C617955 
+ 886      7300
+ 887              	.LASF23:
+ 888 012d 70756C73 		.ascii	"pulse_out_Write\000"
+ 888      655F6F75 
+ 888      745F5772 
+ 888      69746500 
+ 889              	.LASF8:
+ 890 013d 756E7369 		.ascii	"unsigned int\000"
+ 890      676E6564 
+ 890      20696E74 
+ 890      00
+ 891              	.LASF17:
+ 892 014a 63757272 		.ascii	"current_delay\000"
+ 892      656E745F 
+ 892      64656C61 
+ 892      7900
+ 893              	.LASF7:
+ 894 0158 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 894      206C6F6E 
+ 894      6720756E 
+ 894      7369676E 
+ 894      65642069 
+ 895              	.LASF10:
+ 896 016f 696E7433 		.ascii	"int32_t\000"
+ 896      325F7400 
+ 897              	.LASF14:
+ 898 0177 73697A65 		.ascii	"sizetype\000"
+ 898      74797065 
+ 898      00
+ 899              	.LASF6:
+ 900 0180 6C6F6E67 		.ascii	"long long int\000"
+ 900      206C6F6E 
+ 900      6720696E 
+ARM GAS  C:\Users\elon1\AppData\Local\Temp\cctWl3k5.s 			page 20
+
+
+ 900      7400
+ 901              	.LASF29:
+ 902 018e 6D61696E 		.ascii	"main.c\000"
+ 902      2E6300
+ 903              	.LASF13:
+ 904 0195 63686172 		.ascii	"char\000"
+ 904      00
+ 905              	.LASF19:
+ 906 019a 6D61785F 		.ascii	"max_speed_delay\000"
+ 906      73706565 
+ 906      645F6465 
+ 906      6C617900 
+ 907              	.LASF2:
+ 908 01aa 73686F72 		.ascii	"short int\000"
+ 908      7420696E 
+ 908      7400
+ 909              	.LASF28:
+ 910 01b4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 910      43313120 
+ 910      352E342E 
+ 910      31203230 
+ 910      31363036 
+ 911 01e7 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 911      20726576 
+ 911      6973696F 
+ 911      6E203233 
+ 911      37373135 
+ 912 021a 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 912      66756E63 
+ 912      74696F6E 
+ 912      2D736563 
+ 912      74696F6E 
+ 913              	.LASF4:
+ 914 0242 6C6F6E67 		.ascii	"long int\000"
+ 914      20696E74 
+ 914      00
+ 915              	.LASF15:
+ 916 024b 6C6F6E67 		.ascii	"long double\000"
+ 916      20646F75 
+ 916      626C6500 
+ 917              	.LASF16:
+ 918 0257 746F7461 		.ascii	"total_steps\000"
+ 918      6C5F7374 
+ 918      65707300 
+ 919              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

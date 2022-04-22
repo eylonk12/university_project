@@ -1,0 +1,887 @@
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** #include <stdlib.h>
+  15:main.c        **** 
+  16:main.c        **** int main(void)
+  17:main.c        **** {
+  28              		.loc 1 17 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36              	.LVL0:
+  18:main.c        ****     int total_steps = 1445;
+  19:main.c        ****     int delay = 425;
+  20:main.c        ****     int enable = 1;
+  21:main.c        ****     
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 2
+
+
+  22:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  37              		.loc 1 22 0
+  38              		.syntax unified
+  39              	@ 22 "main.c" 1
+  40 0002 62B6     		CPSIE   i
+  41              	@ 0 "" 2
+  20:main.c        ****     
+  42              		.loc 1 20 0
+  43              		.thumb
+  44              		.syntax unified
+  45 0004 0124     		movs	r4, #1
+  46              	.LVL1:
+  47              	.L2:
+  23:main.c        **** 
+  24:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  25:main.c        **** 
+  26:main.c        ****     for(;;)
+  27:main.c        ****     {
+  28:main.c        ****         if (sensor_left_Read() == 0 && enable == 1)
+  48              		.loc 1 28 0
+  49 0006 FFF7FEFF 		bl	sensor_left_Read
+  50              	.LVL2:
+  51 000a B0B9     		cbnz	r0, .L3
+  52              		.loc 1 28 0 is_stmt 0 discriminator 1
+  53 000c ACB1     		cbz	r4, .L3
+  54 000e 0EE0     		b	.L9
+  55              	.LVL3:
+  56              	.L5:
+  57              	.LBB2:
+  29:main.c        ****         {
+  30:main.c        ****             for (int i=0;i<total_steps;i++)
+  31:main.c        ****             {
+  32:main.c        ****                 direction_out_Write(1);
+  58              		.loc 1 32 0 is_stmt 1 discriminator 3
+  59 0010 0120     		movs	r0, #1
+  60 0012 FFF7FEFF 		bl	direction_out_Write
+  61              	.LVL4:
+  33:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+  62              		.loc 1 33 0 discriminator 3
+  63 0016 FFF7FEFF 		bl	pulse_out_Read
+  64              	.LVL5:
+  65 001a C043     		mvns	r0, r0
+  66 001c C0B2     		uxtb	r0, r0
+  67 001e FFF7FEFF 		bl	pulse_out_Write
+  68              	.LVL6:
+  34:main.c        ****                 CyDelayUs(delay);
+  69              		.loc 1 34 0 discriminator 3
+  70 0022 40F2A910 		movw	r0, #425
+  71 0026 FFF7FEFF 		bl	CyDelayUs
+  72              	.LVL7:
+  30:main.c        ****             {
+  73              		.loc 1 30 0 discriminator 3
+  74 002a 0134     		adds	r4, r4, #1
+  75              	.LVL8:
+  76 002c 00E0     		b	.L4
+  77              	.LVL9:
+  78              	.L9:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 3
+
+
+  79              	.LBE2:
+  80 002e 0024     		movs	r4, #0
+  81              	.LVL10:
+  82              	.L4:
+  83              	.LBB3:
+  30:main.c        ****             {
+  84              		.loc 1 30 0 is_stmt 0 discriminator 1
+  85 0030 40F2A453 		movw	r3, #1444
+  86 0034 9C42     		cmp	r4, r3
+  87 0036 EBDD     		ble	.L5
+  88              	.LBE3:
+  35:main.c        ****             }
+  36:main.c        ****             enable = 0;
+  89              		.loc 1 36 0 is_stmt 1
+  90 0038 0024     		movs	r4, #0
+  91              	.LVL11:
+  92              	.L3:
+  37:main.c        ****         }
+  38:main.c        ****         
+  39:main.c        ****         if (sensor_right_Read() == 1)
+  93              		.loc 1 39 0
+  94 003a FFF7FEFF 		bl	sensor_right_Read
+  95              	.LVL12:
+  96 003e 0128     		cmp	r0, #1
+  97 0040 E1D1     		bne	.L2
+  98 0042 0CE0     		b	.L6
+  99              	.L8:
+  40:main.c        ****         {
+  41:main.c        ****             while(sensor_left_Read() == 1)
+  42:main.c        ****             {
+  43:main.c        ****                 direction_out_Write(0);
+ 100              		.loc 1 43 0
+ 101 0044 0020     		movs	r0, #0
+ 102 0046 FFF7FEFF 		bl	direction_out_Write
+ 103              	.LVL13:
+  44:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+ 104              		.loc 1 44 0
+ 105 004a FFF7FEFF 		bl	pulse_out_Read
+ 106              	.LVL14:
+ 107 004e C043     		mvns	r0, r0
+ 108 0050 C0B2     		uxtb	r0, r0
+ 109 0052 FFF7FEFF 		bl	pulse_out_Write
+ 110              	.LVL15:
+  45:main.c        ****                 CyDelayUs(delay);
+ 111              		.loc 1 45 0
+ 112 0056 40F2A910 		movw	r0, #425
+ 113 005a FFF7FEFF 		bl	CyDelayUs
+ 114              	.LVL16:
+ 115              	.L6:
+  41:main.c        ****             {
+ 116              		.loc 1 41 0
+ 117 005e FFF7FEFF 		bl	sensor_left_Read
+ 118              	.LVL17:
+ 119 0062 0128     		cmp	r0, #1
+ 120 0064 EED0     		beq	.L8
+ 121 0066 CEE7     		b	.L2
+ 122              		.cfi_endproc
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 4
+
+
+ 123              	.LFE64:
+ 124              		.size	main, .-main
+ 125              		.text
+ 126              	.Letext0:
+ 127              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 128              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 129              		.file 4 "Generated_Source\\PSoC5/direction_out.h"
+ 130              		.file 5 "Generated_Source\\PSoC5/pulse_out.h"
+ 131              		.file 6 "Generated_Source\\PSoC5/CyLib.h"
+ 132              		.file 7 "Generated_Source\\PSoC5/sensor_left.h"
+ 133              		.file 8 "Generated_Source\\PSoC5/sensor_right.h"
+ 134              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
+ 135              		.section	.debug_info,"",%progbits
+ 136              	.Ldebug_info0:
+ 137 0000 D9010000 		.4byte	0x1d9
+ 138 0004 0400     		.2byte	0x4
+ 139 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 140 000a 04       		.byte	0x4
+ 141 000b 01       		.uleb128 0x1
+ 142 000c 6B000000 		.4byte	.LASF25
+ 143 0010 0C       		.byte	0xc
+ 144 0011 0D020000 		.4byte	.LASF26
+ 145 0015 63010000 		.4byte	.LASF27
+ 146 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 147 001d 00000000 		.4byte	0
+ 148 0021 00000000 		.4byte	.Ldebug_line0
+ 149 0025 02       		.uleb128 0x2
+ 150 0026 01       		.byte	0x1
+ 151 0027 06       		.byte	0x6
+ 152 0028 4B000000 		.4byte	.LASF0
+ 153 002c 02       		.uleb128 0x2
+ 154 002d 01       		.byte	0x1
+ 155 002e 08       		.byte	0x8
+ 156 002f 5D000000 		.4byte	.LASF1
+ 157 0033 02       		.uleb128 0x2
+ 158 0034 02       		.byte	0x2
+ 159 0035 05       		.byte	0x5
+ 160 0036 19020000 		.4byte	.LASF2
+ 161 003a 02       		.uleb128 0x2
+ 162 003b 02       		.byte	0x2
+ 163 003c 07       		.byte	0x7
+ 164 003d 0B010000 		.4byte	.LASF3
+ 165 0041 03       		.uleb128 0x3
+ 166 0042 0F000000 		.4byte	.LASF9
+ 167 0046 02       		.byte	0x2
+ 168 0047 3F       		.byte	0x3f
+ 169 0048 4C000000 		.4byte	0x4c
+ 170 004c 02       		.uleb128 0x2
+ 171 004d 04       		.byte	0x4
+ 172 004e 05       		.byte	0x5
+ 173 004f 23020000 		.4byte	.LASF4
+ 174 0053 02       		.uleb128 0x2
+ 175 0054 04       		.byte	0x4
+ 176 0055 07       		.byte	0x7
+ 177 0056 F9000000 		.4byte	.LASF5
+ 178 005a 02       		.uleb128 0x2
+ 179 005b 08       		.byte	0x8
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 5
+
+
+ 180 005c 05       		.byte	0x5
+ 181 005d FF010000 		.4byte	.LASF6
+ 182 0061 02       		.uleb128 0x2
+ 183 0062 08       		.byte	0x8
+ 184 0063 07       		.byte	0x7
+ 185 0064 D7010000 		.4byte	.LASF7
+ 186 0068 04       		.uleb128 0x4
+ 187 0069 04       		.byte	0x4
+ 188 006a 05       		.byte	0x5
+ 189 006b 696E7400 		.ascii	"int\000"
+ 190 006f 02       		.uleb128 0x2
+ 191 0070 04       		.byte	0x4
+ 192 0071 07       		.byte	0x7
+ 193 0072 CA010000 		.4byte	.LASF8
+ 194 0076 03       		.uleb128 0x3
+ 195 0077 EE010000 		.4byte	.LASF10
+ 196 007b 03       		.byte	0x3
+ 197 007c 2C       		.byte	0x2c
+ 198 007d 41000000 		.4byte	0x41
+ 199 0081 02       		.uleb128 0x2
+ 200 0082 04       		.byte	0x4
+ 201 0083 04       		.byte	0x4
+ 202 0084 45000000 		.4byte	.LASF11
+ 203 0088 02       		.uleb128 0x2
+ 204 0089 08       		.byte	0x8
+ 205 008a 04       		.byte	0x4
+ 206 008b 3D010000 		.4byte	.LASF12
+ 207 008f 02       		.uleb128 0x2
+ 208 0090 01       		.byte	0x1
+ 209 0091 08       		.byte	0x8
+ 210 0092 14020000 		.4byte	.LASF13
+ 211 0096 02       		.uleb128 0x2
+ 212 0097 04       		.byte	0x4
+ 213 0098 07       		.byte	0x7
+ 214 0099 F6010000 		.4byte	.LASF14
+ 215 009d 02       		.uleb128 0x2
+ 216 009e 08       		.byte	0x8
+ 217 009f 04       		.byte	0x4
+ 218 00a0 2C020000 		.4byte	.LASF15
+ 219 00a4 05       		.uleb128 0x5
+ 220 00a5 44010000 		.4byte	.LASF28
+ 221 00a9 01       		.byte	0x1
+ 222 00aa 10       		.byte	0x10
+ 223 00ab 68000000 		.4byte	0x68
+ 224 00af 00000000 		.4byte	.LFB64
+ 225 00b3 68000000 		.4byte	.LFE64-.LFB64
+ 226 00b7 01       		.uleb128 0x1
+ 227 00b8 9C       		.byte	0x9c
+ 228 00b9 89010000 		.4byte	0x189
+ 229 00bd 06       		.uleb128 0x6
+ 230 00be 38020000 		.4byte	.LASF16
+ 231 00c2 01       		.byte	0x1
+ 232 00c3 12       		.byte	0x12
+ 233 00c4 68000000 		.4byte	0x68
+ 234 00c8 A505     		.2byte	0x5a5
+ 235 00ca 06       		.uleb128 0x6
+ 236 00cb 57000000 		.4byte	.LASF17
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 6
+
+
+ 237 00cf 01       		.byte	0x1
+ 238 00d0 13       		.byte	0x13
+ 239 00d1 68000000 		.4byte	0x68
+ 240 00d5 A901     		.2byte	0x1a9
+ 241 00d7 07       		.uleb128 0x7
+ 242 00d8 2A000000 		.4byte	.LASF18
+ 243 00dc 01       		.byte	0x1
+ 244 00dd 14       		.byte	0x14
+ 245 00de 68000000 		.4byte	0x68
+ 246 00e2 00000000 		.4byte	.LLST0
+ 247 00e6 08       		.uleb128 0x8
+ 248 00e7 00000000 		.4byte	.Ldebug_ranges0+0
+ 249 00eb 33010000 		.4byte	0x133
+ 250 00ef 09       		.uleb128 0x9
+ 251 00f0 6900     		.ascii	"i\000"
+ 252 00f2 01       		.byte	0x1
+ 253 00f3 1E       		.byte	0x1e
+ 254 00f4 68000000 		.4byte	0x68
+ 255 00f8 35000000 		.4byte	.LLST1
+ 256 00fc 0A       		.uleb128 0xa
+ 257 00fd 16000000 		.4byte	.LVL4
+ 258 0101 9A010000 		.4byte	0x19a
+ 259 0105 0F010000 		.4byte	0x10f
+ 260 0109 0B       		.uleb128 0xb
+ 261 010a 01       		.uleb128 0x1
+ 262 010b 50       		.byte	0x50
+ 263 010c 01       		.uleb128 0x1
+ 264 010d 31       		.byte	0x31
+ 265 010e 00       		.byte	0
+ 266 010f 0C       		.uleb128 0xc
+ 267 0110 1A000000 		.4byte	.LVL5
+ 268 0114 A5010000 		.4byte	0x1a5
+ 269 0118 0C       		.uleb128 0xc
+ 270 0119 22000000 		.4byte	.LVL6
+ 271 011d B0010000 		.4byte	0x1b0
+ 272 0121 0D       		.uleb128 0xd
+ 273 0122 2A000000 		.4byte	.LVL7
+ 274 0126 BB010000 		.4byte	0x1bb
+ 275 012a 0B       		.uleb128 0xb
+ 276 012b 01       		.uleb128 0x1
+ 277 012c 50       		.byte	0x50
+ 278 012d 03       		.uleb128 0x3
+ 279 012e 0A       		.byte	0xa
+ 280 012f A901     		.2byte	0x1a9
+ 281 0131 00       		.byte	0
+ 282 0132 00       		.byte	0
+ 283 0133 0C       		.uleb128 0xc
+ 284 0134 0A000000 		.4byte	.LVL2
+ 285 0138 C6010000 		.4byte	0x1c6
+ 286 013c 0C       		.uleb128 0xc
+ 287 013d 3E000000 		.4byte	.LVL12
+ 288 0141 D1010000 		.4byte	0x1d1
+ 289 0145 0A       		.uleb128 0xa
+ 290 0146 4A000000 		.4byte	.LVL13
+ 291 014a 9A010000 		.4byte	0x19a
+ 292 014e 58010000 		.4byte	0x158
+ 293 0152 0B       		.uleb128 0xb
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 7
+
+
+ 294 0153 01       		.uleb128 0x1
+ 295 0154 50       		.byte	0x50
+ 296 0155 01       		.uleb128 0x1
+ 297 0156 30       		.byte	0x30
+ 298 0157 00       		.byte	0
+ 299 0158 0C       		.uleb128 0xc
+ 300 0159 4E000000 		.4byte	.LVL14
+ 301 015d A5010000 		.4byte	0x1a5
+ 302 0161 0C       		.uleb128 0xc
+ 303 0162 56000000 		.4byte	.LVL15
+ 304 0166 B0010000 		.4byte	0x1b0
+ 305 016a 0A       		.uleb128 0xa
+ 306 016b 5E000000 		.4byte	.LVL16
+ 307 016f BB010000 		.4byte	0x1bb
+ 308 0173 7F010000 		.4byte	0x17f
+ 309 0177 0B       		.uleb128 0xb
+ 310 0178 01       		.uleb128 0x1
+ 311 0179 50       		.byte	0x50
+ 312 017a 03       		.uleb128 0x3
+ 313 017b 0A       		.byte	0xa
+ 314 017c A901     		.2byte	0x1a9
+ 315 017e 00       		.byte	0
+ 316 017f 0C       		.uleb128 0xc
+ 317 0180 62000000 		.4byte	.LVL17
+ 318 0184 C6010000 		.4byte	0x1c6
+ 319 0188 00       		.byte	0
+ 320 0189 0E       		.uleb128 0xe
+ 321 018a 1E010000 		.4byte	.LASF29
+ 322 018e 09       		.byte	0x9
+ 323 018f 1207     		.2byte	0x712
+ 324 0191 95010000 		.4byte	0x195
+ 325 0195 0F       		.uleb128 0xf
+ 326 0196 76000000 		.4byte	0x76
+ 327 019a 10       		.uleb128 0x10
+ 328 019b 31000000 		.4byte	.LASF19
+ 329 019f 31000000 		.4byte	.LASF19
+ 330 01a3 04       		.byte	0x4
+ 331 01a4 26       		.byte	0x26
+ 332 01a5 10       		.uleb128 0x10
+ 333 01a6 00000000 		.4byte	.LASF20
+ 334 01aa 00000000 		.4byte	.LASF20
+ 335 01ae 05       		.byte	0x5
+ 336 01af 29       		.byte	0x29
+ 337 01b0 10       		.uleb128 0x10
+ 338 01b1 53010000 		.4byte	.LASF21
+ 339 01b5 53010000 		.4byte	.LASF21
+ 340 01b9 05       		.byte	0x5
+ 341 01ba 26       		.byte	0x26
+ 342 01bb 10       		.uleb128 0x10
+ 343 01bc 49010000 		.4byte	.LASF22
+ 344 01c0 49010000 		.4byte	.LASF22
+ 345 01c4 06       		.byte	0x6
+ 346 01c5 77       		.byte	0x77
+ 347 01c6 10       		.uleb128 0x10
+ 348 01c7 19000000 		.4byte	.LASF23
+ 349 01cb 19000000 		.4byte	.LASF23
+ 350 01cf 07       		.byte	0x7
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 8
+
+
+ 351 01d0 29       		.byte	0x29
+ 352 01d1 10       		.uleb128 0x10
+ 353 01d2 2B010000 		.4byte	.LASF24
+ 354 01d6 2B010000 		.4byte	.LASF24
+ 355 01da 08       		.byte	0x8
+ 356 01db 29       		.byte	0x29
+ 357 01dc 00       		.byte	0
+ 358              		.section	.debug_abbrev,"",%progbits
+ 359              	.Ldebug_abbrev0:
+ 360 0000 01       		.uleb128 0x1
+ 361 0001 11       		.uleb128 0x11
+ 362 0002 01       		.byte	0x1
+ 363 0003 25       		.uleb128 0x25
+ 364 0004 0E       		.uleb128 0xe
+ 365 0005 13       		.uleb128 0x13
+ 366 0006 0B       		.uleb128 0xb
+ 367 0007 03       		.uleb128 0x3
+ 368 0008 0E       		.uleb128 0xe
+ 369 0009 1B       		.uleb128 0x1b
+ 370 000a 0E       		.uleb128 0xe
+ 371 000b 55       		.uleb128 0x55
+ 372 000c 17       		.uleb128 0x17
+ 373 000d 11       		.uleb128 0x11
+ 374 000e 01       		.uleb128 0x1
+ 375 000f 10       		.uleb128 0x10
+ 376 0010 17       		.uleb128 0x17
+ 377 0011 00       		.byte	0
+ 378 0012 00       		.byte	0
+ 379 0013 02       		.uleb128 0x2
+ 380 0014 24       		.uleb128 0x24
+ 381 0015 00       		.byte	0
+ 382 0016 0B       		.uleb128 0xb
+ 383 0017 0B       		.uleb128 0xb
+ 384 0018 3E       		.uleb128 0x3e
+ 385 0019 0B       		.uleb128 0xb
+ 386 001a 03       		.uleb128 0x3
+ 387 001b 0E       		.uleb128 0xe
+ 388 001c 00       		.byte	0
+ 389 001d 00       		.byte	0
+ 390 001e 03       		.uleb128 0x3
+ 391 001f 16       		.uleb128 0x16
+ 392 0020 00       		.byte	0
+ 393 0021 03       		.uleb128 0x3
+ 394 0022 0E       		.uleb128 0xe
+ 395 0023 3A       		.uleb128 0x3a
+ 396 0024 0B       		.uleb128 0xb
+ 397 0025 3B       		.uleb128 0x3b
+ 398 0026 0B       		.uleb128 0xb
+ 399 0027 49       		.uleb128 0x49
+ 400 0028 13       		.uleb128 0x13
+ 401 0029 00       		.byte	0
+ 402 002a 00       		.byte	0
+ 403 002b 04       		.uleb128 0x4
+ 404 002c 24       		.uleb128 0x24
+ 405 002d 00       		.byte	0
+ 406 002e 0B       		.uleb128 0xb
+ 407 002f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 9
+
+
+ 408 0030 3E       		.uleb128 0x3e
+ 409 0031 0B       		.uleb128 0xb
+ 410 0032 03       		.uleb128 0x3
+ 411 0033 08       		.uleb128 0x8
+ 412 0034 00       		.byte	0
+ 413 0035 00       		.byte	0
+ 414 0036 05       		.uleb128 0x5
+ 415 0037 2E       		.uleb128 0x2e
+ 416 0038 01       		.byte	0x1
+ 417 0039 3F       		.uleb128 0x3f
+ 418 003a 19       		.uleb128 0x19
+ 419 003b 03       		.uleb128 0x3
+ 420 003c 0E       		.uleb128 0xe
+ 421 003d 3A       		.uleb128 0x3a
+ 422 003e 0B       		.uleb128 0xb
+ 423 003f 3B       		.uleb128 0x3b
+ 424 0040 0B       		.uleb128 0xb
+ 425 0041 27       		.uleb128 0x27
+ 426 0042 19       		.uleb128 0x19
+ 427 0043 49       		.uleb128 0x49
+ 428 0044 13       		.uleb128 0x13
+ 429 0045 8701     		.uleb128 0x87
+ 430 0047 19       		.uleb128 0x19
+ 431 0048 11       		.uleb128 0x11
+ 432 0049 01       		.uleb128 0x1
+ 433 004a 12       		.uleb128 0x12
+ 434 004b 06       		.uleb128 0x6
+ 435 004c 40       		.uleb128 0x40
+ 436 004d 18       		.uleb128 0x18
+ 437 004e 9742     		.uleb128 0x2117
+ 438 0050 19       		.uleb128 0x19
+ 439 0051 01       		.uleb128 0x1
+ 440 0052 13       		.uleb128 0x13
+ 441 0053 00       		.byte	0
+ 442 0054 00       		.byte	0
+ 443 0055 06       		.uleb128 0x6
+ 444 0056 34       		.uleb128 0x34
+ 445 0057 00       		.byte	0
+ 446 0058 03       		.uleb128 0x3
+ 447 0059 0E       		.uleb128 0xe
+ 448 005a 3A       		.uleb128 0x3a
+ 449 005b 0B       		.uleb128 0xb
+ 450 005c 3B       		.uleb128 0x3b
+ 451 005d 0B       		.uleb128 0xb
+ 452 005e 49       		.uleb128 0x49
+ 453 005f 13       		.uleb128 0x13
+ 454 0060 1C       		.uleb128 0x1c
+ 455 0061 05       		.uleb128 0x5
+ 456 0062 00       		.byte	0
+ 457 0063 00       		.byte	0
+ 458 0064 07       		.uleb128 0x7
+ 459 0065 34       		.uleb128 0x34
+ 460 0066 00       		.byte	0
+ 461 0067 03       		.uleb128 0x3
+ 462 0068 0E       		.uleb128 0xe
+ 463 0069 3A       		.uleb128 0x3a
+ 464 006a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 10
+
+
+ 465 006b 3B       		.uleb128 0x3b
+ 466 006c 0B       		.uleb128 0xb
+ 467 006d 49       		.uleb128 0x49
+ 468 006e 13       		.uleb128 0x13
+ 469 006f 02       		.uleb128 0x2
+ 470 0070 17       		.uleb128 0x17
+ 471 0071 00       		.byte	0
+ 472 0072 00       		.byte	0
+ 473 0073 08       		.uleb128 0x8
+ 474 0074 0B       		.uleb128 0xb
+ 475 0075 01       		.byte	0x1
+ 476 0076 55       		.uleb128 0x55
+ 477 0077 17       		.uleb128 0x17
+ 478 0078 01       		.uleb128 0x1
+ 479 0079 13       		.uleb128 0x13
+ 480 007a 00       		.byte	0
+ 481 007b 00       		.byte	0
+ 482 007c 09       		.uleb128 0x9
+ 483 007d 34       		.uleb128 0x34
+ 484 007e 00       		.byte	0
+ 485 007f 03       		.uleb128 0x3
+ 486 0080 08       		.uleb128 0x8
+ 487 0081 3A       		.uleb128 0x3a
+ 488 0082 0B       		.uleb128 0xb
+ 489 0083 3B       		.uleb128 0x3b
+ 490 0084 0B       		.uleb128 0xb
+ 491 0085 49       		.uleb128 0x49
+ 492 0086 13       		.uleb128 0x13
+ 493 0087 02       		.uleb128 0x2
+ 494 0088 17       		.uleb128 0x17
+ 495 0089 00       		.byte	0
+ 496 008a 00       		.byte	0
+ 497 008b 0A       		.uleb128 0xa
+ 498 008c 898201   		.uleb128 0x4109
+ 499 008f 01       		.byte	0x1
+ 500 0090 11       		.uleb128 0x11
+ 501 0091 01       		.uleb128 0x1
+ 502 0092 31       		.uleb128 0x31
+ 503 0093 13       		.uleb128 0x13
+ 504 0094 01       		.uleb128 0x1
+ 505 0095 13       		.uleb128 0x13
+ 506 0096 00       		.byte	0
+ 507 0097 00       		.byte	0
+ 508 0098 0B       		.uleb128 0xb
+ 509 0099 8A8201   		.uleb128 0x410a
+ 510 009c 00       		.byte	0
+ 511 009d 02       		.uleb128 0x2
+ 512 009e 18       		.uleb128 0x18
+ 513 009f 9142     		.uleb128 0x2111
+ 514 00a1 18       		.uleb128 0x18
+ 515 00a2 00       		.byte	0
+ 516 00a3 00       		.byte	0
+ 517 00a4 0C       		.uleb128 0xc
+ 518 00a5 898201   		.uleb128 0x4109
+ 519 00a8 00       		.byte	0
+ 520 00a9 11       		.uleb128 0x11
+ 521 00aa 01       		.uleb128 0x1
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 11
+
+
+ 522 00ab 31       		.uleb128 0x31
+ 523 00ac 13       		.uleb128 0x13
+ 524 00ad 00       		.byte	0
+ 525 00ae 00       		.byte	0
+ 526 00af 0D       		.uleb128 0xd
+ 527 00b0 898201   		.uleb128 0x4109
+ 528 00b3 01       		.byte	0x1
+ 529 00b4 11       		.uleb128 0x11
+ 530 00b5 01       		.uleb128 0x1
+ 531 00b6 31       		.uleb128 0x31
+ 532 00b7 13       		.uleb128 0x13
+ 533 00b8 00       		.byte	0
+ 534 00b9 00       		.byte	0
+ 535 00ba 0E       		.uleb128 0xe
+ 536 00bb 34       		.uleb128 0x34
+ 537 00bc 00       		.byte	0
+ 538 00bd 03       		.uleb128 0x3
+ 539 00be 0E       		.uleb128 0xe
+ 540 00bf 3A       		.uleb128 0x3a
+ 541 00c0 0B       		.uleb128 0xb
+ 542 00c1 3B       		.uleb128 0x3b
+ 543 00c2 05       		.uleb128 0x5
+ 544 00c3 49       		.uleb128 0x49
+ 545 00c4 13       		.uleb128 0x13
+ 546 00c5 3F       		.uleb128 0x3f
+ 547 00c6 19       		.uleb128 0x19
+ 548 00c7 3C       		.uleb128 0x3c
+ 549 00c8 19       		.uleb128 0x19
+ 550 00c9 00       		.byte	0
+ 551 00ca 00       		.byte	0
+ 552 00cb 0F       		.uleb128 0xf
+ 553 00cc 35       		.uleb128 0x35
+ 554 00cd 00       		.byte	0
+ 555 00ce 49       		.uleb128 0x49
+ 556 00cf 13       		.uleb128 0x13
+ 557 00d0 00       		.byte	0
+ 558 00d1 00       		.byte	0
+ 559 00d2 10       		.uleb128 0x10
+ 560 00d3 2E       		.uleb128 0x2e
+ 561 00d4 00       		.byte	0
+ 562 00d5 3F       		.uleb128 0x3f
+ 563 00d6 19       		.uleb128 0x19
+ 564 00d7 3C       		.uleb128 0x3c
+ 565 00d8 19       		.uleb128 0x19
+ 566 00d9 6E       		.uleb128 0x6e
+ 567 00da 0E       		.uleb128 0xe
+ 568 00db 03       		.uleb128 0x3
+ 569 00dc 0E       		.uleb128 0xe
+ 570 00dd 3A       		.uleb128 0x3a
+ 571 00de 0B       		.uleb128 0xb
+ 572 00df 3B       		.uleb128 0x3b
+ 573 00e0 0B       		.uleb128 0xb
+ 574 00e1 00       		.byte	0
+ 575 00e2 00       		.byte	0
+ 576 00e3 00       		.byte	0
+ 577              		.section	.debug_loc,"",%progbits
+ 578              	.Ldebug_loc0:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 12
+
+
+ 579              	.LLST0:
+ 580 0000 02000000 		.4byte	.LVL0
+ 581 0004 06000000 		.4byte	.LVL1
+ 582 0008 0200     		.2byte	0x2
+ 583 000a 31       		.byte	0x31
+ 584 000b 9F       		.byte	0x9f
+ 585 000c 06000000 		.4byte	.LVL1
+ 586 0010 10000000 		.4byte	.LVL3
+ 587 0014 0100     		.2byte	0x1
+ 588 0016 54       		.byte	0x54
+ 589 0017 2E000000 		.4byte	.LVL9
+ 590 001b 30000000 		.4byte	.LVL10
+ 591 001f 0100     		.2byte	0x1
+ 592 0021 54       		.byte	0x54
+ 593 0022 3A000000 		.4byte	.LVL11
+ 594 0026 68000000 		.4byte	.LFE64
+ 595 002a 0100     		.2byte	0x1
+ 596 002c 54       		.byte	0x54
+ 597 002d 00000000 		.4byte	0
+ 598 0031 00000000 		.4byte	0
+ 599              	.LLST1:
+ 600 0035 10000000 		.4byte	.LVL3
+ 601 0039 2E000000 		.4byte	.LVL9
+ 602 003d 0100     		.2byte	0x1
+ 603 003f 54       		.byte	0x54
+ 604 0040 30000000 		.4byte	.LVL10
+ 605 0044 3A000000 		.4byte	.LVL11
+ 606 0048 0100     		.2byte	0x1
+ 607 004a 54       		.byte	0x54
+ 608 004b 00000000 		.4byte	0
+ 609 004f 00000000 		.4byte	0
+ 610              		.section	.debug_aranges,"",%progbits
+ 611 0000 1C000000 		.4byte	0x1c
+ 612 0004 0200     		.2byte	0x2
+ 613 0006 00000000 		.4byte	.Ldebug_info0
+ 614 000a 04       		.byte	0x4
+ 615 000b 00       		.byte	0
+ 616 000c 0000     		.2byte	0
+ 617 000e 0000     		.2byte	0
+ 618 0010 00000000 		.4byte	.LFB64
+ 619 0014 68000000 		.4byte	.LFE64-.LFB64
+ 620 0018 00000000 		.4byte	0
+ 621 001c 00000000 		.4byte	0
+ 622              		.section	.debug_ranges,"",%progbits
+ 623              	.Ldebug_ranges0:
+ 624 0000 10000000 		.4byte	.LBB2
+ 625 0004 2E000000 		.4byte	.LBE2
+ 626 0008 30000000 		.4byte	.LBB3
+ 627 000c 38000000 		.4byte	.LBE3
+ 628 0010 00000000 		.4byte	0
+ 629 0014 00000000 		.4byte	0
+ 630 0018 00000000 		.4byte	.LFB64
+ 631 001c 68000000 		.4byte	.LFE64
+ 632 0020 00000000 		.4byte	0
+ 633 0024 00000000 		.4byte	0
+ 634              		.section	.debug_line,"",%progbits
+ 635              	.Ldebug_line0:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 13
+
+
+ 636 0000 CF010000 		.section	.debug_str,"MS",%progbits,1
+ 636      02008F01 
+ 636      00000201 
+ 636      FB0E0D00 
+ 636      01010101 
+ 637              	.LASF20:
+ 638 0000 70756C73 		.ascii	"pulse_out_Read\000"
+ 638      655F6F75 
+ 638      745F5265 
+ 638      616400
+ 639              	.LASF9:
+ 640 000f 5F5F696E 		.ascii	"__int32_t\000"
+ 640      7433325F 
+ 640      7400
+ 641              	.LASF23:
+ 642 0019 73656E73 		.ascii	"sensor_left_Read\000"
+ 642      6F725F6C 
+ 642      6566745F 
+ 642      52656164 
+ 642      00
+ 643              	.LASF18:
+ 644 002a 656E6162 		.ascii	"enable\000"
+ 644      6C6500
+ 645              	.LASF19:
+ 646 0031 64697265 		.ascii	"direction_out_Write\000"
+ 646      6374696F 
+ 646      6E5F6F75 
+ 646      745F5772 
+ 646      69746500 
+ 647              	.LASF11:
+ 648 0045 666C6F61 		.ascii	"float\000"
+ 648      7400
+ 649              	.LASF0:
+ 650 004b 7369676E 		.ascii	"signed char\000"
+ 650      65642063 
+ 650      68617200 
+ 651              	.LASF17:
+ 652 0057 64656C61 		.ascii	"delay\000"
+ 652      7900
+ 653              	.LASF1:
+ 654 005d 756E7369 		.ascii	"unsigned char\000"
+ 654      676E6564 
+ 654      20636861 
+ 654      7200
+ 655              	.LASF25:
+ 656 006b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 656      43313120 
+ 656      352E342E 
+ 656      31203230 
+ 656      31363036 
+ 657 009e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 657      20726576 
+ 657      6973696F 
+ 657      6E203233 
+ 657      37373135 
+ 658 00d1 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 658      66756E63 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 14
+
+
+ 658      74696F6E 
+ 658      2D736563 
+ 658      74696F6E 
+ 659              	.LASF5:
+ 660 00f9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 660      20756E73 
+ 660      69676E65 
+ 660      6420696E 
+ 660      7400
+ 661              	.LASF3:
+ 662 010b 73686F72 		.ascii	"short unsigned int\000"
+ 662      7420756E 
+ 662      7369676E 
+ 662      65642069 
+ 662      6E7400
+ 663              	.LASF29:
+ 664 011e 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 664      52784275 
+ 664      66666572 
+ 664      00
+ 665              	.LASF24:
+ 666 012b 73656E73 		.ascii	"sensor_right_Read\000"
+ 666      6F725F72 
+ 666      69676874 
+ 666      5F526561 
+ 666      6400
+ 667              	.LASF12:
+ 668 013d 646F7562 		.ascii	"double\000"
+ 668      6C6500
+ 669              	.LASF28:
+ 670 0144 6D61696E 		.ascii	"main\000"
+ 670      00
+ 671              	.LASF22:
+ 672 0149 43794465 		.ascii	"CyDelayUs\000"
+ 672      6C617955 
+ 672      7300
+ 673              	.LASF21:
+ 674 0153 70756C73 		.ascii	"pulse_out_Write\000"
+ 674      655F6F75 
+ 674      745F5772 
+ 674      69746500 
+ 675              	.LASF27:
+ 676 0163 433A5C55 		.ascii	"C:\\Users\\eylonk\\OneDrive - Xsight Labs Ltd\\Desk"
+ 676      73657273 
+ 676      5C65796C 
+ 676      6F6E6B5C 
+ 676      4F6E6544 
+ 677 0192 746F705C 		.ascii	"top\\eylon\\general\\programs\\psoc\\Workspace01\\d"
+ 677      65796C6F 
+ 677      6E5C6765 
+ 677      6E657261 
+ 677      6C5C7072 
+ 678 01bf 72616674 		.ascii	"raft.cydsn\000"
+ 678      2E637964 
+ 678      736E00
+ 679              	.LASF8:
+ 680 01ca 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccn3FqS0.s 			page 15
+
+
+ 680      676E6564 
+ 680      20696E74 
+ 680      00
+ 681              	.LASF7:
+ 682 01d7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 682      206C6F6E 
+ 682      6720756E 
+ 682      7369676E 
+ 682      65642069 
+ 683              	.LASF10:
+ 684 01ee 696E7433 		.ascii	"int32_t\000"
+ 684      325F7400 
+ 685              	.LASF14:
+ 686 01f6 73697A65 		.ascii	"sizetype\000"
+ 686      74797065 
+ 686      00
+ 687              	.LASF6:
+ 688 01ff 6C6F6E67 		.ascii	"long long int\000"
+ 688      206C6F6E 
+ 688      6720696E 
+ 688      7400
+ 689              	.LASF26:
+ 690 020d 6D61696E 		.ascii	"main.c\000"
+ 690      2E6300
+ 691              	.LASF13:
+ 692 0214 63686172 		.ascii	"char\000"
+ 692      00
+ 693              	.LASF2:
+ 694 0219 73686F72 		.ascii	"short int\000"
+ 694      7420696E 
+ 694      7400
+ 695              	.LASF4:
+ 696 0223 6C6F6E67 		.ascii	"long int\000"
+ 696      20696E74 
+ 696      00
+ 697              	.LASF15:
+ 698 022c 6C6F6E67 		.ascii	"long double\000"
+ 698      20646F75 
+ 698      626C6500 
+ 699              	.LASF16:
+ 700 0238 746F7461 		.ascii	"total_steps\000"
+ 700      6C5F7374 
+ 700      65707300 
+ 701              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
