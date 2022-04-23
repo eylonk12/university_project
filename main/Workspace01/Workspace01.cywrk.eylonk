@@ -349,9 +349,7 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\eylons_project.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\eylons_project.cydsn\main.c" />
-<name v=".\eylons_project.cydsn\eylons_project.cydwr" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -359,7 +357,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="848, 366" SelectedTabbedMdiWindow="4cd3922d-e8be-4459-9139-43f065dff031"><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\TopDesign\TopDesign.cysch" Guid="c92b88d1-f0be-4de1-b098-4db583dbb2bc" /><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\main.c" Guid="0d831992-7c59-41e6-a0b0-c5604ccc3a1e" /><DocumentWindow Key="C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Desktop\eylon\general\programs\psoc\Workspace01\eylons_project.cydsn\eylons_project.cydwr" Guid="4cd3922d-e8be-4459-9139-43f065dff031" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4c155799-0d67-4fc5-9172-b6a83fa8a676" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="199, 123" SelectedTabbedMdiWindow="baa32299-38e5-4ed0-ab5c-e96549cef7bd"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4c155799-0d67-4fc5-9172-b6a83fa8a676" /><DocumentWindow Key="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\main.c" Guid="baa32299-38e5-4ed0-ab5c-e96549cef7bd" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
