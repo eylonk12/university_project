@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 1
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 1
 
 
    1              		.syntax unified
@@ -43,1506 +43,1757 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 1
   13:main.c        **** #include <stdio.h>
   14:main.c        **** #include <stdlib.h>
   15:main.c        **** 
-  16:main.c        **** int main(void)
-  17:main.c        **** {
-  28              		.loc 1 17 0
+  16:main.c        **** enum state_e     {start, move_to_sample, stay_on_sample, move_from_sample, stay_off_sample};
+  17:main.c        **** enum direction_e {to_sample = 1, from_sample = 0};
+  18:main.c        **** 
+  19:main.c        **** const int total_steps     = 1450;
+  20:main.c        **** 
+  21:main.c        **** const int start_delay     = 750;
+  22:main.c        **** const int min_speed_delay = 700;
+  23:main.c        **** const int max_speed_delay = 250;
+  24:main.c        **** 
+  25:main.c        ****  //255 for full power (maximum of 4V) and 0 for the least power (0V)
+  26:main.c        **** const int max_vdac_power = 245;
+  27:main.c        **** const int min_vdac_power = 0; 
+  28:main.c        **** 
+  29:main.c        **** const int always_enable_leds = 1; 
+  30:main.c        **** 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 2
+
+
+  31:main.c        **** 
+  32:main.c        **** int main(void)
+  33:main.c        **** {
+  28              		.loc 1 33 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32 0000 10B5     		push	{r4, lr}
-  33              		.cfi_def_cfa_offset 8
-  34              		.cfi_offset 4, -8
-  35              		.cfi_offset 14, -4
-  18:main.c        ****     // Starting the DAC used for leds display of magnets location
-  19:main.c        ****     // As the magnet is closer to the sample more leds will turn up. 
-  20:main.c        ****     VDAC8_1_Start();
-  36              		.loc 1 20 0
-  37 0002 FFF7FEFF 		bl	VDAC8_1_Start
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 2
+  32 0000 70B5     		push	{r4, r5, r6, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+  34:main.c        ****     // Starting the DAC used for leds display of magnets location
+  35:main.c        ****     // As the magnet is closer to the sample more leds will turn up. 
+  36:main.c        ****     VDAC8_1_Start();
+  38              		.loc 1 36 0
+  39 0002 FFF7FEFF 		bl	VDAC8_1_Start
+  40              	.LVL0:
+  37:main.c        ****     
+  38:main.c        ****     int  current_delay;
+  39:main.c        ****     int  current_step = 0;
+  40:main.c        ****     // Indicates if the current state is the first time the magnet moves, 
+  41:main.c        ****     // if so, we can't predict the starting location and therefore moving at 
+  42:main.c        ****     // minimal speed.
+  43:main.c        ****     int  first_moving_state; 
+  44:main.c        ****     enum direction_e direction = from_sample;
+  45:main.c        ****     enum state_e     state     = start;
+  46:main.c        ****     
+  47:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  41              		.loc 1 47 0
+  42              		.syntax unified
+  43              	@ 47 "main.c" 1
+  44 0006 62B6     		CPSIE   i
+  45              	@ 0 "" 2
+  48:main.c        **** 
+  49:main.c        ****     Opamp_1_Start();
+  46              		.loc 1 49 0
+  47              		.thumb
+  48              		.syntax unified
+  49 0008 FFF7FEFF 		bl	Opamp_1_Start
+  50              	.LVL1:
+  50:main.c        ****     Opamp_1_Init();
+  51              		.loc 1 50 0
+  52 000c FFF7FEFF 		bl	Opamp_1_Init
+  53              	.LVL2:
+  45:main.c        ****     
+  54              		.loc 1 45 0
+  55 0010 0024     		movs	r4, #0
+  39:main.c        ****     // Indicates if the current state is the first time the magnet moves, 
+  56              		.loc 1 39 0
+  57 0012 2546     		mov	r5, r4
+  58 0014 0DE0     		b	.L2
+  59              	.LVL3:
+  60              	.L22:
+  51:main.c        ****     
+  52:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 3
 
 
-  38              	.LVL0:
-  21:main.c        ****     //total steps are 1445;
-  22:main.c        ****     int total_steps = 1450;
-  23:main.c        ****     //int middle_steps = 725;
-  24:main.c        ****     
-  25:main.c        ****     int current_delay;
-  26:main.c        ****     int min_speed_delay = 700;
-  27:main.c        ****     int max_speed_delay = 250;
-  28:main.c        ****     
-  29:main.c        ****     int big_delay = 750;
-  30:main.c        ****     int max_vdac_power = 245; //255 for full power (maximum of 4V) and 0 for the least power (0V)
-  31:main.c        ****     int always_enable_leds = 1; 
-  32:main.c        ****     
-  33:main.c        ****     
-  34:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
-  39              		.loc 1 34 0
-  40              		.syntax unified
-  41              	@ 34 "main.c" 1
-  42 0006 62B6     		CPSIE   i
-  43              	@ 0 "" 2
-  35:main.c        **** 
-  36:main.c        ****     Opamp_1_Start();
-  44              		.loc 1 36 0
-  45              		.thumb
-  46              		.syntax unified
-  47 0008 FFF7FEFF 		bl	Opamp_1_Start
-  48              	.LVL1:
-  37:main.c        ****     Opamp_1_Init();
-  49              		.loc 1 37 0
-  50 000c FFF7FEFF 		bl	Opamp_1_Init
-  51              	.LVL2:
-  52              	.L2:
-  38:main.c        ****     
-  39:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-  40:main.c        **** 
-  41:main.c        ****     for(;;)
-  42:main.c        ****     {
-  43:main.c        ****         if (operation_input_Read() == 0)
-  53              		.loc 1 43 0
-  54 0010 FFF7FEFF 		bl	operation_input_Read
-  55              	.LVL3:
-  56 0014 0028     		cmp	r0, #0
-  57 0016 57D1     		bne	.L3
-  44:main.c        ****         {
-  45:main.c        ****             if (sensor_left_Read() == 1)
-  58              		.loc 1 45 0
-  59 0018 FFF7FEFF 		bl	sensor_left_Read
-  60              	.LVL4:
-  61 001c 0128     		cmp	r0, #1
-  62 001e 4FD1     		bne	.L4
-  46:main.c        ****             {
-  47:main.c        ****                 if (sensor_right_Read() == 0)
-  63              		.loc 1 47 0
-  64 0020 FFF7FEFF 		bl	sensor_right_Read
-  65              	.LVL5:
-  66 0024 0028     		cmp	r0, #0
-  67 0026 3CD1     		bne	.L5
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 3
+  53:main.c        **** 
+  54:main.c        ****     
+  55:main.c        ****     for(;;)
+  56:main.c        ****     {
+  57:main.c        ****         direction = operation_input_Read();
+  58:main.c        ****         
+  59:main.c        ****         switch(state){
+  60:main.c        ****             case start:
+  61:main.c        ****                 // On the start state we will always go away from the sample
+  62:main.c        ****                 // regardless of direction input.
+  63:main.c        ****                 if (direction == from_sample){
+  64:main.c        ****                     state = move_from_sample;
+  65:main.c        ****                     // VDAC8_1_SetValue(min_vdac_power);
+  66:main.c        ****                 } else{
+  67:main.c        ****                     state = move_to_sample;
+  61              		.loc 1 67 0
+  62 0016 0124     		movs	r4, #1
+  63              	.LVL4:
+  68:main.c        ****                     // VDAC8_1_SetValue(max_vdac_power);
+  69:main.c        ****                 }
+  70:main.c        ****                 first_moving_state = 1;
+  64              		.loc 1 70 0
+  65 0018 2646     		mov	r6, r4
+  66              	.LVL5:
+  67 001a 0AE0     		b	.L2
+  68              	.LVL6:
+  69              	.L25:
+  71:main.c        ****                 break;
+  72:main.c        **** 
+  73:main.c        ****             case move_to_sample:
+  74:main.c        ****                 direction_out_Write(to_sample);
+  75:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+  76:main.c        ****                 if (first_moving_state == 1){
+  77:main.c        ****                     current_delay = start_delay;
+  78:main.c        ****                 } else{ // The magnet is on the left sensor and needs to move to the right one.
+  79:main.c        ****                     if (current_step < total_steps){
+  80:main.c        ****                         VDAC8_1_SetValue(max_vdac_power - (int)(current_step*max_vdac_power/total_s
+  81:main.c        ****                         if (current_step > total_steps - 50){
+  82:main.c        ****                             leds_enable_Write(always_enable_leds);
+  83:main.c        ****                         } else{
+  84:main.c        ****                             leds_enable_Write(1);
+  85:main.c        ****                         }
+  86:main.c        ****                         
+  87:main.c        ****                         current_delay = abs((total_steps/2)-current_step);
+  88:main.c        ****                         if (current_delay > min_speed_delay){
+  89:main.c        ****                             current_delay = min_speed_delay;
+  90:main.c        ****                         }
+  91:main.c        ****                         if (current_delay < max_speed_delay){
+  92:main.c        ****                             current_delay = max_speed_delay;
+  93:main.c        ****                         }
+  94:main.c        ****                         CyDelayUs(current_delay);
+  95:main.c        ****                     } else{ // Passed the total steps, we assume that if we reach here we are close
+  96:main.c        ****                         CyDelayUs(min_speed_delay);
+  97:main.c        ****                     }
+  98:main.c        ****                     current_step++;
+  99:main.c        ****                     if (sensor_right_Read() == 0){
+ 100:main.c        ****                         current_step = 0;
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 4
 
 
-  48:main.c        ****                 {
-  49:main.c        ****                     // The magnet is on the right sensor (sample) and needs to move to the left one
-  50:main.c        ****                     direction_out_Write(0);
-  68              		.loc 1 50 0
-  69 0028 FFF7FEFF 		bl	direction_out_Write
-  70              	.LVL6:
-  51:main.c        ****                     VDAC8_1_SetValue(0);
-  71              		.loc 1 51 0
-  72 002c 0020     		movs	r0, #0
-  73 002e FFF7FEFF 		bl	VDAC8_1_SetValue
-  74              	.LVL7:
-  75              	.LBB2:
-  52:main.c        ****                     for (int i=0;i<total_steps;i++)
-  76              		.loc 1 52 0
-  77 0032 0024     		movs	r4, #0
-  78 0034 30E0     		b	.L6
-  79              	.LVL8:
-  80              	.L12:
-  53:main.c        ****                     {
-  54:main.c        ****                         VDAC8_1_SetValue((int)(i*max_vdac_power/total_steps));
-  81              		.loc 1 54 0
-  82 0036 F523     		movs	r3, #245
-  83 0038 03FB04F3 		mul	r3, r3, r4
-  84 003c 5248     		ldr	r0, .L26
-  85 003e 80FB0320 		smull	r2, r0, r0, r3
-  86 0042 DB17     		asrs	r3, r3, #31
-  87 0044 C3EB6020 		rsb	r0, r3, r0, asr #9
-  88 0048 C0B2     		uxtb	r0, r0
-  89 004a FFF7FEFF 		bl	VDAC8_1_SetValue
-  90              	.LVL9:
-  55:main.c        ****                         if (i < 50)
-  91              		.loc 1 55 0
-  92 004e 312C     		cmp	r4, #49
-  93 0050 03DC     		bgt	.L7
-  56:main.c        ****                             leds_enable_Write(0 + always_enable_leds);
-  94              		.loc 1 56 0
-  95 0052 0120     		movs	r0, #1
-  96 0054 FFF7FEFF 		bl	leds_enable_Write
-  97              	.LVL10:
-  98 0058 02E0     		b	.L8
-  99              	.L7:
-  57:main.c        ****                         else
-  58:main.c        ****                             leds_enable_Write(1);
- 100              		.loc 1 58 0
- 101 005a 0120     		movs	r0, #1
- 102 005c FFF7FEFF 		bl	leds_enable_Write
- 103              	.LVL11:
- 104              	.L8:
-  59:main.c        ****                             
-  60:main.c        ****                             
-  61:main.c        ****                         if (sensor_left_Read() == 0)
- 105              		.loc 1 61 0
- 106 0060 FFF7FEFF 		bl	sensor_left_Read
- 107              	.LVL12:
- 108 0064 0028     		cmp	r0, #0
- 109 0066 D3D0     		beq	.L2
-  62:main.c        ****                             break;
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 4
+ 101:main.c        ****                         state = stay_on_sample;
+  70              		.loc 1 101 0
+  71 001c 0224     		movs	r4, #2
+  72              	.LVL7:
+ 100:main.c        ****                         state = stay_on_sample;
+  73              		.loc 1 100 0
+  74 001e 0025     		movs	r5, #0
+  75              	.LVL8:
+  76 0020 07E0     		b	.L2
+  77              	.LVL9:
+  78              	.L26:
+ 102:main.c        ****                     }
+ 103:main.c        ****                 }
+ 104:main.c        ****               break;
+ 105:main.c        ****             
+ 106:main.c        ****             case stay_on_sample:
+ 107:main.c        ****                 if (direction_out_Read() == from_sample){
+ 108:main.c        ****                     first_moving_state = 0;
+ 109:main.c        ****                     state = move_to_sample;
+  79              		.loc 1 109 0
+  80 0022 0124     		movs	r4, #1
+  81              	.LVL10:
+ 108:main.c        ****                     state = move_to_sample;
+  82              		.loc 1 108 0
+  83 0024 0026     		movs	r6, #0
+  84              	.LVL11:
+  85 0026 04E0     		b	.L2
+  86              	.LVL12:
+  87              	.L29:
+ 110:main.c        ****                 }
+ 111:main.c        ****               break;
+ 112:main.c        ****             
+ 113:main.c        ****             case move_from_sample:
+ 114:main.c        ****                 direction_out_Write(from_sample);
+ 115:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+ 116:main.c        ****                 if (first_moving_state == 1){
+ 117:main.c        ****                     current_delay = start_delay;
+ 118:main.c        ****                 } else{ // The magnet is on the right sensor and needs to move to the left one.
+ 119:main.c        ****                     if (current_step < total_steps){
+ 120:main.c        ****                         VDAC8_1_SetValue((int)(current_step*max_vdac_power/total_steps));
+ 121:main.c        ****                         if (current_step < 50){
+ 122:main.c        ****                             leds_enable_Write(always_enable_leds);
+ 123:main.c        ****                         } else{
+ 124:main.c        ****                             leds_enable_Write(1);
+ 125:main.c        ****                         }
+ 126:main.c        ****                         
+ 127:main.c        ****                         current_delay = abs((total_steps/2)-current_step);
+ 128:main.c        ****                         if (current_delay > min_speed_delay){
+ 129:main.c        ****                             current_delay = min_speed_delay;
+ 130:main.c        ****                         }
+ 131:main.c        ****                         if (current_delay < max_speed_delay){
+ 132:main.c        ****                             current_delay = max_speed_delay;
+ 133:main.c        ****                         }
+ 134:main.c        ****                         CyDelayUs(current_delay);
+ 135:main.c        ****                     } else{ // Passed the total steps, we assume that if we reach here we are close
+ 136:main.c        ****                         CyDelayUs(min_speed_delay);
+ 137:main.c        ****                     }
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 5
 
 
-  63:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
- 110              		.loc 1 63 0
- 111 0068 FFF7FEFF 		bl	pulse_out_Read
- 112              	.LVL13:
- 113 006c C043     		mvns	r0, r0
- 114 006e C0B2     		uxtb	r0, r0
- 115 0070 FFF7FEFF 		bl	pulse_out_Write
- 116              	.LVL14:
-  64:main.c        ****                         current_delay = abs(725-i);
- 117              		.loc 1 64 0
- 118 0074 C4F53570 		rsb	r0, r4, #724
- 119 0078 0130     		adds	r0, r0, #1
- 120 007a 0028     		cmp	r0, #0
- 121 007c B8BF     		it	lt
- 122 007e 4042     		rsblt	r0, r0, #0
- 123              	.LVL15:
-  65:main.c        ****                         if (current_delay > min_speed_delay)
- 124              		.loc 1 65 0
- 125 0080 B0F52F7F 		cmp	r0, #700
- 126 0084 01DD     		ble	.L10
-  66:main.c        ****                             current_delay = min_speed_delay;
- 127              		.loc 1 66 0
- 128 0086 4FF42F70 		mov	r0, #700
- 129              	.LVL16:
- 130              	.L10:
-  67:main.c        ****                         if (current_delay < max_speed_delay)
- 131              		.loc 1 67 0
- 132 008a F928     		cmp	r0, #249
- 133 008c 00DC     		bgt	.L11
-  68:main.c        ****                             current_delay = max_speed_delay;
- 134              		.loc 1 68 0
- 135 008e FA20     		movs	r0, #250
- 136              	.LVL17:
- 137              	.L11:
-  69:main.c        ****                         
-  70:main.c        ****                         CyDelayUs(current_delay);
- 138              		.loc 1 70 0 discriminator 2
- 139 0090 80B2     		uxth	r0, r0
- 140              	.LVL18:
- 141 0092 FFF7FEFF 		bl	CyDelayUs
- 142              	.LVL19:
-  52:main.c        ****                     {
- 143              		.loc 1 52 0 discriminator 2
- 144 0096 0134     		adds	r4, r4, #1
- 145              	.LVL20:
- 146              	.L6:
-  52:main.c        ****                     {
- 147              		.loc 1 52 0 is_stmt 0 discriminator 1
- 148 0098 40F2A953 		movw	r3, #1449
- 149 009c 9C42     		cmp	r4, r3
- 150 009e CADD     		ble	.L12
- 151 00a0 B6E7     		b	.L2
- 152              	.LVL21:
- 153              	.L5:
- 154              	.LBE2:
-  71:main.c        ****                     }
-  72:main.c        ****                 }
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 5
+ 138:main.c        ****                     current_step++;
+ 139:main.c        ****                     if (sensor_left_Read() == 0){
+ 140:main.c        ****                         current_step = 0;
+ 141:main.c        ****                         state = stay_off_sample;
+  88              		.loc 1 141 0
+  89 0028 0424     		movs	r4, #4
+  90              	.LVL13:
+ 140:main.c        ****                         state = stay_off_sample;
+  91              		.loc 1 140 0
+  92 002a 0025     		movs	r5, #0
+  93              	.LVL14:
+  94 002c 01E0     		b	.L2
+  95              	.LVL15:
+  96              	.L30:
+ 142:main.c        ****                     }
+ 143:main.c        ****                 }
+ 144:main.c        ****               break;
+ 145:main.c        ****             
+ 146:main.c        ****             case stay_off_sample:
+ 147:main.c        ****               if (direction_out_Read() == to_sample){
+ 148:main.c        ****                     first_moving_state = 0;
+ 149:main.c        ****                     state = move_from_sample;
+  97              		.loc 1 149 0
+  98 002e 0324     		movs	r4, #3
+  99              	.LVL16:
+ 148:main.c        ****                     state = move_from_sample;
+ 100              		.loc 1 148 0
+ 101 0030 0026     		movs	r6, #0
+ 102              	.LVL17:
+ 103              	.L2:
+  57:main.c        ****         
+ 104              		.loc 1 57 0
+ 105 0032 FFF7FEFF 		bl	operation_input_Read
+ 106              	.LVL18:
+  59:main.c        ****             case start:
+ 107              		.loc 1 59 0
+ 108 0036 042C     		cmp	r4, #4
+ 109 0038 FBD8     		bhi	.L2
+ 110 003a DFE804F0 		tbb	[pc, r4]
+ 111              	.L5:
+ 112 003e 03       		.byte	(.L4-.L5)/2
+ 113 003f 08       		.byte	(.L6-.L5)/2
+ 114 0040 4B       		.byte	(.L7-.L5)/2
+ 115 0041 50       		.byte	(.L8-.L5)/2
+ 116 0042 91       		.byte	(.L9-.L5)/2
+ 117 0043 00       		.p2align 1
+ 118              	.L4:
+  63:main.c        ****                     state = move_from_sample;
+ 119              		.loc 1 63 0
+ 120 0044 0028     		cmp	r0, #0
+ 121 0046 E6D1     		bne	.L22
+  64:main.c        ****                     // VDAC8_1_SetValue(min_vdac_power);
+ 122              		.loc 1 64 0
+ 123 0048 0324     		movs	r4, #3
+ 124              	.LVL19:
+  70:main.c        ****                 break;
+ 125              		.loc 1 70 0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 6
 
 
-  73:main.c        ****                 else // sensor_right_Read() == 1
-  74:main.c        ****                 {
-  75:main.c        ****                     // The magnet is in the middle and needs to move to the left sensor.
-  76:main.c        ****                     direction_out_Write(operation_input_Read());
- 155              		.loc 1 76 0 is_stmt 1
- 156 00a2 FFF7FEFF 		bl	operation_input_Read
- 157              	.LVL22:
- 158 00a6 FFF7FEFF 		bl	direction_out_Write
- 159              	.LVL23:
-  77:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
- 160              		.loc 1 77 0
- 161 00aa FFF7FEFF 		bl	pulse_out_Read
- 162              	.LVL24:
- 163 00ae C043     		mvns	r0, r0
- 164 00b0 C0B2     		uxtb	r0, r0
- 165 00b2 FFF7FEFF 		bl	pulse_out_Write
- 166              	.LVL25:
-  78:main.c        ****                     CyDelayUs(big_delay);
- 167              		.loc 1 78 0
- 168 00b6 40F2EE20 		movw	r0, #750
- 169 00ba FFF7FEFF 		bl	CyDelayUs
- 170              	.LVL26:
- 171 00be A7E7     		b	.L2
- 172              	.L4:
-  79:main.c        ****                 }
-  80:main.c        ****             }
-  81:main.c        ****             else // sensor_left_Read() == 0
-  82:main.c        ****             // The magnet is on the left.
-  83:main.c        ****             {
-  84:main.c        ****                 VDAC8_1_SetValue(max_vdac_power);
- 173              		.loc 1 84 0
- 174 00c0 F520     		movs	r0, #245
- 175 00c2 FFF7FEFF 		bl	VDAC8_1_SetValue
- 176              	.LVL27:
- 177 00c6 A3E7     		b	.L2
- 178              	.L3:
-  85:main.c        ****             }
-  86:main.c        ****         }
-  87:main.c        ****         else // operation_input_Read() == 1.
-  88:main.c        ****         {
-  89:main.c        ****             if (sensor_right_Read() == 1)
- 179              		.loc 1 89 0
- 180 00c8 FFF7FEFF 		bl	sensor_right_Read
- 181              	.LVL28:
- 182 00cc 0128     		cmp	r0, #1
- 183 00ce 54D1     		bne	.L13
-  90:main.c        ****             {
-  91:main.c        ****                 if (sensor_left_Read() == 0)
- 184              		.loc 1 91 0
- 185 00d0 FFF7FEFF 		bl	sensor_left_Read
- 186              	.LVL29:
- 187 00d4 0028     		cmp	r0, #0
- 188 00d6 41D1     		bne	.L14
-  92:main.c        ****                 {
-  93:main.c        ****                     // The magnet is on the left sensor and needs to move to the right one.
-  94:main.c        ****                     direction_out_Write(1);
- 189              		.loc 1 94 0
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 6
+ 126 004a 0126     		movs	r6, #1
+ 127              	.LVL20:
+ 128 004c F1E7     		b	.L2
+ 129              	.LVL21:
+ 130              	.L6:
+  74:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+ 131              		.loc 1 74 0
+ 132 004e 0120     		movs	r0, #1
+ 133              	.LVL22:
+ 134 0050 FFF7FEFF 		bl	direction_out_Write
+ 135              	.LVL23:
+  75:main.c        ****                 if (first_moving_state == 1){
+ 136              		.loc 1 75 0
+ 137 0054 FFF7FEFF 		bl	pulse_out_Read
+ 138              	.LVL24:
+ 139 0058 C043     		mvns	r0, r0
+ 140 005a C0B2     		uxtb	r0, r0
+ 141 005c FFF7FEFF 		bl	pulse_out_Write
+ 142              	.LVL25:
+  76:main.c        ****                     current_delay = start_delay;
+ 143              		.loc 1 76 0
+ 144 0060 012E     		cmp	r6, #1
+ 145 0062 E6D0     		beq	.L2
+  79:main.c        ****                         VDAC8_1_SetValue(max_vdac_power - (int)(current_step*max_vdac_power/total_s
+ 146              		.loc 1 79 0
+ 147 0064 40F2A953 		movw	r3, #1449
+ 148 0068 9D42     		cmp	r5, r3
+ 149 006a 29DC     		bgt	.L10
+  80:main.c        ****                         if (current_step > total_steps - 50){
+ 150              		.loc 1 80 0
+ 151 006c F523     		movs	r3, #245
+ 152 006e 03FB05F3 		mul	r3, r3, r5
+ 153 0072 3E48     		ldr	r0, .L32
+ 154 0074 80FB0320 		smull	r2, r0, r0, r3
+ 155 0078 DB17     		asrs	r3, r3, #31
+ 156 007a C3EB6020 		rsb	r0, r3, r0, asr #9
+ 157 007e C0F1F500 		rsb	r0, r0, #245
+ 158 0082 C0B2     		uxtb	r0, r0
+ 159 0084 FFF7FEFF 		bl	VDAC8_1_SetValue
+ 160              	.LVL26:
+  81:main.c        ****                             leds_enable_Write(always_enable_leds);
+ 161              		.loc 1 81 0
+ 162 0088 B5F5AF6F 		cmp	r5, #1400
+ 163 008c 03DD     		ble	.L11
+  82:main.c        ****                         } else{
+ 164              		.loc 1 82 0
+ 165 008e 0120     		movs	r0, #1
+ 166 0090 FFF7FEFF 		bl	leds_enable_Write
+ 167              	.LVL27:
+ 168 0094 02E0     		b	.L12
+ 169              	.L11:
+  84:main.c        ****                         }
+ 170              		.loc 1 84 0
+ 171 0096 0120     		movs	r0, #1
+ 172 0098 FFF7FEFF 		bl	leds_enable_Write
+ 173              	.LVL28:
+ 174              	.L12:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 7
 
 
- 190 00d8 0120     		movs	r0, #1
- 191 00da FFF7FEFF 		bl	direction_out_Write
- 192              	.LVL30:
-  95:main.c        ****                     VDAC8_1_SetValue(max_vdac_power);
- 193              		.loc 1 95 0
- 194 00de F520     		movs	r0, #245
- 195 00e0 FFF7FEFF 		bl	VDAC8_1_SetValue
- 196              	.LVL31:
- 197              	.LBB3:
-  96:main.c        ****                     for (int i=0;i<total_steps;i++)
- 198              		.loc 1 96 0
- 199 00e4 0024     		movs	r4, #0
- 200 00e6 34E0     		b	.L15
- 201              	.LVL32:
- 202              	.L20:
-  97:main.c        ****                     {
-  98:main.c        ****                         VDAC8_1_SetValue(max_vdac_power - (int)(i*max_vdac_power/total_steps));
- 203              		.loc 1 98 0
- 204 00e8 F523     		movs	r3, #245
- 205 00ea 03FB04F3 		mul	r3, r3, r4
- 206 00ee 2648     		ldr	r0, .L26
- 207 00f0 80FB0320 		smull	r2, r0, r0, r3
- 208 00f4 DB17     		asrs	r3, r3, #31
- 209 00f6 C3EB6020 		rsb	r0, r3, r0, asr #9
- 210 00fa C0F1F500 		rsb	r0, r0, #245
- 211 00fe C0B2     		uxtb	r0, r0
- 212 0100 FFF7FEFF 		bl	VDAC8_1_SetValue
- 213              	.LVL33:
-  99:main.c        ****                         if (i > total_steps - 50)
- 214              		.loc 1 99 0
- 215 0104 B4F5AF6F 		cmp	r4, #1400
- 216 0108 03DD     		ble	.L16
- 100:main.c        ****                             leds_enable_Write(0 + always_enable_leds);
- 217              		.loc 1 100 0
- 218 010a 0120     		movs	r0, #1
- 219 010c FFF7FEFF 		bl	leds_enable_Write
- 220              	.LVL34:
- 221 0110 02E0     		b	.L17
- 222              	.L16:
- 101:main.c        ****                         else
- 102:main.c        ****                             leds_enable_Write(1);
- 223              		.loc 1 102 0
- 224 0112 0120     		movs	r0, #1
- 225 0114 FFF7FEFF 		bl	leds_enable_Write
- 226              	.LVL35:
- 227              	.L17:
- 103:main.c        ****                             
- 104:main.c        ****                         if (sensor_right_Read() == 0)
- 228              		.loc 1 104 0
- 229 0118 FFF7FEFF 		bl	sensor_right_Read
- 230              	.LVL36:
- 231 011c 0028     		cmp	r0, #0
- 232 011e 3FF477AF 		beq	.L2
- 105:main.c        ****                             break;
- 106:main.c        ****                         pulse_out_Write(~ pulse_out_Read());
- 233              		.loc 1 106 0
- 234 0122 FFF7FEFF 		bl	pulse_out_Read
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 7
+  87:main.c        ****                         if (current_delay > min_speed_delay){
+ 175              		.loc 1 87 0
+ 176 009c C5F53570 		rsb	r0, r5, #724
+ 177 00a0 0130     		adds	r0, r0, #1
+ 178 00a2 0028     		cmp	r0, #0
+ 179 00a4 B8BF     		it	lt
+ 180 00a6 4042     		rsblt	r0, r0, #0
+ 181              	.LVL29:
+  88:main.c        ****                             current_delay = min_speed_delay;
+ 182              		.loc 1 88 0
+ 183 00a8 B0F52F7F 		cmp	r0, #700
+ 184 00ac 01DD     		ble	.L13
+  89:main.c        ****                         }
+ 185              		.loc 1 89 0
+ 186 00ae 4FF42F70 		mov	r0, #700
+ 187              	.LVL30:
+ 188              	.L13:
+  91:main.c        ****                             current_delay = max_speed_delay;
+ 189              		.loc 1 91 0
+ 190 00b2 F928     		cmp	r0, #249
+ 191 00b4 00DC     		bgt	.L14
+  92:main.c        ****                         }
+ 192              		.loc 1 92 0
+ 193 00b6 FA20     		movs	r0, #250
+ 194              	.LVL31:
+ 195              	.L14:
+  94:main.c        ****                     } else{ // Passed the total steps, we assume that if we reach here we are close
+ 196              		.loc 1 94 0
+ 197 00b8 80B2     		uxth	r0, r0
+ 198              	.LVL32:
+ 199 00ba FFF7FEFF 		bl	CyDelayUs
+ 200              	.LVL33:
+ 201 00be 03E0     		b	.L15
+ 202              	.L10:
+  96:main.c        ****                     }
+ 203              		.loc 1 96 0
+ 204 00c0 4FF42F70 		mov	r0, #700
+ 205 00c4 FFF7FEFF 		bl	CyDelayUs
+ 206              	.LVL34:
+ 207              	.L15:
+  98:main.c        ****                     if (sensor_right_Read() == 0){
+ 208              		.loc 1 98 0
+ 209 00c8 0135     		adds	r5, r5, #1
+ 210              	.LVL35:
+  99:main.c        ****                         current_step = 0;
+ 211              		.loc 1 99 0
+ 212 00ca FFF7FEFF 		bl	sensor_right_Read
+ 213              	.LVL36:
+ 214 00ce 0028     		cmp	r0, #0
+ 215 00d0 A4D0     		beq	.L25
+ 216 00d2 AEE7     		b	.L2
+ 217              	.LVL37:
+ 218              	.L7:
+ 107:main.c        ****                     first_moving_state = 0;
+ 219              		.loc 1 107 0
+ 220 00d4 FFF7FEFF 		bl	direction_out_Read
+ 221              	.LVL38:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 8
 
 
- 235              	.LVL37:
- 236 0126 C043     		mvns	r0, r0
- 237 0128 C0B2     		uxtb	r0, r0
- 238 012a FFF7FEFF 		bl	pulse_out_Write
- 239              	.LVL38:
- 107:main.c        ****                         current_delay = abs(725-i);
- 240              		.loc 1 107 0
- 241 012e C4F53570 		rsb	r0, r4, #724
- 242 0132 0130     		adds	r0, r0, #1
- 243 0134 0028     		cmp	r0, #0
- 244 0136 B8BF     		it	lt
- 245 0138 4042     		rsblt	r0, r0, #0
- 246              	.LVL39:
- 108:main.c        ****                         if (current_delay > min_speed_delay)
- 247              		.loc 1 108 0
- 248 013a B0F52F7F 		cmp	r0, #700
- 249 013e 01DD     		ble	.L18
- 109:main.c        ****                             current_delay = min_speed_delay;
- 250              		.loc 1 109 0
- 251 0140 4FF42F70 		mov	r0, #700
- 252              	.LVL40:
- 253              	.L18:
- 110:main.c        ****                         if (current_delay < max_speed_delay)
- 254              		.loc 1 110 0
- 255 0144 F928     		cmp	r0, #249
- 256 0146 00DC     		bgt	.L19
- 111:main.c        ****                             current_delay = max_speed_delay;
- 257              		.loc 1 111 0
- 258 0148 FA20     		movs	r0, #250
- 259              	.LVL41:
- 260              	.L19:
- 112:main.c        ****                         
- 113:main.c        ****                         CyDelayUs(current_delay);
- 261              		.loc 1 113 0 discriminator 2
- 262 014a 80B2     		uxth	r0, r0
- 263              	.LVL42:
- 264 014c FFF7FEFF 		bl	CyDelayUs
- 265              	.LVL43:
-  96:main.c        ****                     {
- 266              		.loc 1 96 0 discriminator 2
- 267 0150 0134     		adds	r4, r4, #1
- 268              	.LVL44:
- 269              	.L15:
-  96:main.c        ****                     {
- 270              		.loc 1 96 0 is_stmt 0 discriminator 1
- 271 0152 40F2A953 		movw	r3, #1449
- 272 0156 9C42     		cmp	r4, r3
- 273 0158 C6DD     		ble	.L20
- 274 015a 59E7     		b	.L2
- 275              	.LVL45:
- 276              	.L14:
- 277              	.LBE3:
- 114:main.c        ****                     }
- 115:main.c        ****                 }
- 116:main.c        ****                 else
- 117:main.c        ****                 {
- 118:main.c        ****                     // The magnet is in the middle and needs to move to the right sensor.
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 8
+ 222 00d8 0028     		cmp	r0, #0
+ 223 00da A2D0     		beq	.L26
+ 224 00dc A9E7     		b	.L2
+ 225              	.LVL39:
+ 226              	.L8:
+ 114:main.c        ****                 pulse_out_Write(~ pulse_out_Read());
+ 227              		.loc 1 114 0
+ 228 00de 0020     		movs	r0, #0
+ 229              	.LVL40:
+ 230 00e0 FFF7FEFF 		bl	direction_out_Write
+ 231              	.LVL41:
+ 115:main.c        ****                 if (first_moving_state == 1){
+ 232              		.loc 1 115 0
+ 233 00e4 FFF7FEFF 		bl	pulse_out_Read
+ 234              	.LVL42:
+ 235 00e8 C043     		mvns	r0, r0
+ 236 00ea C0B2     		uxtb	r0, r0
+ 237 00ec FFF7FEFF 		bl	pulse_out_Write
+ 238              	.LVL43:
+ 116:main.c        ****                     current_delay = start_delay;
+ 239              		.loc 1 116 0
+ 240 00f0 012E     		cmp	r6, #1
+ 241 00f2 9ED0     		beq	.L2
+ 119:main.c        ****                         VDAC8_1_SetValue((int)(current_step*max_vdac_power/total_steps));
+ 242              		.loc 1 119 0
+ 243 00f4 40F2A953 		movw	r3, #1449
+ 244 00f8 9D42     		cmp	r5, r3
+ 245 00fa 26DC     		bgt	.L16
+ 120:main.c        ****                         if (current_step < 50){
+ 246              		.loc 1 120 0
+ 247 00fc F523     		movs	r3, #245
+ 248 00fe 03FB05F3 		mul	r3, r3, r5
+ 249 0102 1A48     		ldr	r0, .L32
+ 250 0104 80FB0320 		smull	r2, r0, r0, r3
+ 251 0108 DB17     		asrs	r3, r3, #31
+ 252 010a C3EB6020 		rsb	r0, r3, r0, asr #9
+ 253 010e C0B2     		uxtb	r0, r0
+ 254 0110 FFF7FEFF 		bl	VDAC8_1_SetValue
+ 255              	.LVL44:
+ 121:main.c        ****                             leds_enable_Write(always_enable_leds);
+ 256              		.loc 1 121 0
+ 257 0114 312D     		cmp	r5, #49
+ 258 0116 03DC     		bgt	.L17
+ 122:main.c        ****                         } else{
+ 259              		.loc 1 122 0
+ 260 0118 0120     		movs	r0, #1
+ 261 011a FFF7FEFF 		bl	leds_enable_Write
+ 262              	.LVL45:
+ 263 011e 02E0     		b	.L18
+ 264              	.L17:
+ 124:main.c        ****                         }
+ 265              		.loc 1 124 0
+ 266 0120 0120     		movs	r0, #1
+ 267 0122 FFF7FEFF 		bl	leds_enable_Write
+ 268              	.LVL46:
+ 269              	.L18:
+ 127:main.c        ****                         if (current_delay > min_speed_delay){
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 9
 
 
- 119:main.c        ****                     // direction_out_Write(operation_input_Read());
- 120:main.c        ****                     direction_out_Write(operation_input_Read());
- 278              		.loc 1 120 0 is_stmt 1
- 279 015c FFF7FEFF 		bl	operation_input_Read
- 280              	.LVL46:
- 281 0160 FFF7FEFF 		bl	direction_out_Write
- 282              	.LVL47:
- 121:main.c        ****                     pulse_out_Write(~ pulse_out_Read());
- 283              		.loc 1 121 0
- 284 0164 FFF7FEFF 		bl	pulse_out_Read
- 285              	.LVL48:
- 286 0168 C043     		mvns	r0, r0
- 287 016a C0B2     		uxtb	r0, r0
- 288 016c FFF7FEFF 		bl	pulse_out_Write
+ 270              		.loc 1 127 0
+ 271 0126 C5F53570 		rsb	r0, r5, #724
+ 272 012a 0130     		adds	r0, r0, #1
+ 273 012c 0028     		cmp	r0, #0
+ 274 012e B8BF     		it	lt
+ 275 0130 4042     		rsblt	r0, r0, #0
+ 276              	.LVL47:
+ 128:main.c        ****                             current_delay = min_speed_delay;
+ 277              		.loc 1 128 0
+ 278 0132 B0F52F7F 		cmp	r0, #700
+ 279 0136 01DD     		ble	.L19
+ 129:main.c        ****                         }
+ 280              		.loc 1 129 0
+ 281 0138 4FF42F70 		mov	r0, #700
+ 282              	.LVL48:
+ 283              	.L19:
+ 131:main.c        ****                             current_delay = max_speed_delay;
+ 284              		.loc 1 131 0
+ 285 013c F928     		cmp	r0, #249
+ 286 013e 00DC     		bgt	.L20
+ 132:main.c        ****                         }
+ 287              		.loc 1 132 0
+ 288 0140 FA20     		movs	r0, #250
  289              	.LVL49:
- 122:main.c        ****                     CyDelayUs(big_delay);
- 290              		.loc 1 122 0
- 291 0170 40F2EE20 		movw	r0, #750
- 292 0174 FFF7FEFF 		bl	CyDelayUs
+ 290              	.L20:
+ 134:main.c        ****                     } else{ // Passed the total steps, we assume that if we reach here we are close
+ 291              		.loc 1 134 0
+ 292 0142 80B2     		uxth	r0, r0
  293              	.LVL50:
- 294 0178 4AE7     		b	.L2
- 295              	.L13:
- 123:main.c        ****                 }
- 124:main.c        ****             }
- 125:main.c        ****             else 
- 126:main.c        ****             // The magnet is on the smaple.
- 127:main.c        ****             {
- 128:main.c        ****                 VDAC8_1_SetValue(0);
- 296              		.loc 1 128 0
- 297 017a 0020     		movs	r0, #0
- 298 017c FFF7FEFF 		bl	VDAC8_1_SetValue
- 299              	.LVL51:
- 129:main.c        ****                 leds_enable_Write(0 + always_enable_leds);
- 300              		.loc 1 129 0
- 301 0180 0120     		movs	r0, #1
- 302 0182 FFF7FEFF 		bl	leds_enable_Write
- 303              	.LVL52:
- 304 0186 43E7     		b	.L2
- 305              	.L27:
- 306              		.align	2
- 307              	.L26:
- 308 0188 D3FC645A 		.word	1516567763
- 309              		.cfi_endproc
- 310              	.LFE64:
- 311              		.size	main, .-main
- 312              		.text
- 313              	.Letext0:
- 314              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 315              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 316              		.file 4 "Generated_Source\\PSoC5/VDAC8_1.h"
- 317              		.file 5 "Generated_Source\\PSoC5/leds_enable.h"
- 318              		.file 6 "Generated_Source\\PSoC5/sensor_left.h"
- 319              		.file 7 "Generated_Source\\PSoC5/pulse_out.h"
- 320              		.file 8 "Generated_Source\\PSoC5/CyLib.h"
- 321              		.file 9 "Generated_Source\\PSoC5/sensor_right.h"
- 322              		.file 10 "Generated_Source\\PSoC5/Opamp_1.h"
- 323              		.file 11 "Generated_Source\\PSoC5/operation_input.h"
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 9
+ 294 0144 FFF7FEFF 		bl	CyDelayUs
+ 295              	.LVL51:
+ 296 0148 03E0     		b	.L21
+ 297              	.L16:
+ 136:main.c        ****                     }
+ 298              		.loc 1 136 0
+ 299 014a 4FF42F70 		mov	r0, #700
+ 300 014e FFF7FEFF 		bl	CyDelayUs
+ 301              	.LVL52:
+ 302              	.L21:
+ 138:main.c        ****                     if (sensor_left_Read() == 0){
+ 303              		.loc 1 138 0
+ 304 0152 0135     		adds	r5, r5, #1
+ 305              	.LVL53:
+ 139:main.c        ****                         current_step = 0;
+ 306              		.loc 1 139 0
+ 307 0154 FFF7FEFF 		bl	sensor_left_Read
+ 308              	.LVL54:
+ 309 0158 0028     		cmp	r0, #0
+ 310 015a 3FF465AF 		beq	.L29
+ 311 015e 68E7     		b	.L2
+ 312              	.LVL55:
+ 313              	.L9:
+ 147:main.c        ****                     first_moving_state = 0;
+ 314              		.loc 1 147 0
+ 315 0160 FFF7FEFF 		bl	direction_out_Read
+ 316              	.LVL56:
+ 317 0164 0128     		cmp	r0, #1
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 10
 
 
- 324              		.file 12 "Generated_Source\\PSoC5/direction_out.h"
- 325              		.file 13 "Generated_Source\\PSoC5/core_cm3.h"
- 326              		.section	.debug_info,"",%progbits
- 327              	.Ldebug_info0:
- 328 0000 12040000 		.4byte	0x412
- 329 0004 0400     		.2byte	0x4
- 330 0006 00000000 		.4byte	.Ldebug_abbrev0
- 331 000a 04       		.byte	0x4
- 332 000b 01       		.uleb128 0x1
- 333 000c BA000000 		.4byte	.LASF35
- 334 0010 0C       		.byte	0xc
- 335 0011 A0020000 		.4byte	.LASF36
- 336 0015 68010000 		.4byte	.LASF37
- 337 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 338 001d 00000000 		.4byte	0
- 339 0021 00000000 		.4byte	.Ldebug_line0
- 340 0025 02       		.uleb128 0x2
- 341 0026 08       		.byte	0x8
- 342 0027 07       		.byte	0x7
- 343 0028 59020000 		.4byte	.LASF0
- 344 002c 02       		.uleb128 0x2
- 345 002d 04       		.byte	0x4
- 346 002e 07       		.byte	0x7
- 347 002f 3E020000 		.4byte	.LASF1
- 348 0033 03       		.uleb128 0x3
- 349 0034 04       		.byte	0x4
- 350 0035 05       		.byte	0x5
- 351 0036 696E7400 		.ascii	"int\000"
- 352 003a 02       		.uleb128 0x2
- 353 003b 01       		.byte	0x1
- 354 003c 06       		.byte	0x6
- 355 003d A0000000 		.4byte	.LASF2
- 356 0041 02       		.uleb128 0x2
- 357 0042 01       		.byte	0x1
- 358 0043 08       		.byte	0x8
- 359 0044 AC000000 		.4byte	.LASF3
- 360 0048 02       		.uleb128 0x2
- 361 0049 02       		.byte	0x2
- 362 004a 05       		.byte	0x5
- 363 004b BC020000 		.4byte	.LASF4
- 364 004f 02       		.uleb128 0x2
- 365 0050 02       		.byte	0x2
- 366 0051 07       		.byte	0x7
- 367 0052 55010000 		.4byte	.LASF5
- 368 0056 04       		.uleb128 0x4
- 369 0057 22000000 		.4byte	.LASF9
- 370 005b 02       		.byte	0x2
- 371 005c 3F       		.byte	0x3f
- 372 005d 61000000 		.4byte	0x61
- 373 0061 02       		.uleb128 0x2
- 374 0062 04       		.byte	0x4
- 375 0063 05       		.byte	0x5
- 376 0064 C6020000 		.4byte	.LASF6
- 377 0068 02       		.uleb128 0x2
- 378 0069 04       		.byte	0x4
- 379 006a 07       		.byte	0x7
- 380 006b FB010000 		.4byte	.LASF7
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 10
+ 318 0166 7FF464AF 		bne	.L2
+ 319 016a 60E7     		b	.L30
+ 320              	.L33:
+ 321              		.align	2
+ 322              	.L32:
+ 323 016c D3FC645A 		.word	1516567763
+ 324              		.cfi_endproc
+ 325              	.LFE64:
+ 326              		.size	main, .-main
+ 327              		.global	always_enable_leds
+ 328              		.global	min_vdac_power
+ 329              		.global	max_vdac_power
+ 330              		.global	max_speed_delay
+ 331              		.global	min_speed_delay
+ 332              		.global	start_delay
+ 333              		.global	total_steps
+ 334              		.section	.rodata
+ 335              		.align	2
+ 336              		.type	always_enable_leds, %object
+ 337              		.size	always_enable_leds, 4
+ 338              	always_enable_leds:
+ 339 0000 01000000 		.word	1
+ 340              		.type	min_vdac_power, %object
+ 341              		.size	min_vdac_power, 4
+ 342              	min_vdac_power:
+ 343 0004 00000000 		.space	4
+ 344              		.type	max_vdac_power, %object
+ 345              		.size	max_vdac_power, 4
+ 346              	max_vdac_power:
+ 347 0008 F5000000 		.word	245
+ 348              		.type	max_speed_delay, %object
+ 349              		.size	max_speed_delay, 4
+ 350              	max_speed_delay:
+ 351 000c FA000000 		.word	250
+ 352              		.type	min_speed_delay, %object
+ 353              		.size	min_speed_delay, 4
+ 354              	min_speed_delay:
+ 355 0010 BC020000 		.word	700
+ 356              		.type	start_delay, %object
+ 357              		.size	start_delay, 4
+ 358              	start_delay:
+ 359 0014 EE020000 		.word	750
+ 360              		.type	total_steps, %object
+ 361              		.size	total_steps, 4
+ 362              	total_steps:
+ 363 0018 AA050000 		.word	1450
+ 364              		.text
+ 365              	.Letext0:
+ 366              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 367              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 368              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 369              		.file 5 "Generated_Source\\PSoC5/VDAC8_1.h"
+ 370              		.file 6 "Generated_Source\\PSoC5/Opamp_1.h"
+ 371              		.file 7 "Generated_Source\\PSoC5/operation_input.h"
+ 372              		.file 8 "Generated_Source\\PSoC5/direction_out.h"
+ 373              		.file 9 "Generated_Source\\PSoC5/pulse_out.h"
+ 374              		.file 10 "Generated_Source\\PSoC5/leds_enable.h"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 11
 
 
- 381 006f 02       		.uleb128 0x2
- 382 0070 08       		.byte	0x8
- 383 0071 05       		.byte	0x5
- 384 0072 92020000 		.4byte	.LASF8
- 385 0076 04       		.uleb128 0x4
- 386 0077 81020000 		.4byte	.LASF10
- 387 007b 03       		.byte	0x3
- 388 007c 2C       		.byte	0x2c
- 389 007d 56000000 		.4byte	0x56
- 390 0081 02       		.uleb128 0x2
- 391 0082 04       		.byte	0x4
- 392 0083 04       		.byte	0x4
- 393 0084 9A000000 		.4byte	.LASF11
- 394 0088 02       		.uleb128 0x2
- 395 0089 08       		.byte	0x8
- 396 008a 04       		.byte	0x4
- 397 008b 6F000000 		.4byte	.LASF12
- 398 008f 02       		.uleb128 0x2
- 399 0090 01       		.byte	0x1
- 400 0091 08       		.byte	0x8
- 401 0092 A7020000 		.4byte	.LASF13
- 402 0096 02       		.uleb128 0x2
- 403 0097 08       		.byte	0x8
- 404 0098 04       		.byte	0x4
- 405 0099 CF020000 		.4byte	.LASF14
- 406 009d 02       		.uleb128 0x2
- 407 009e 04       		.byte	0x4
- 408 009f 07       		.byte	0x7
- 409 00a0 89020000 		.4byte	.LASF15
- 410 00a4 05       		.uleb128 0x5
- 411 00a5 0D020000 		.4byte	.LASF38
- 412 00a9 01       		.byte	0x1
- 413 00aa 10       		.byte	0x10
- 414 00ab 33000000 		.4byte	0x33
- 415 00af 00000000 		.4byte	.LFB64
- 416 00b3 8C010000 		.4byte	.LFE64-.LFB64
- 417 00b7 01       		.uleb128 0x1
- 418 00b8 9C       		.byte	0x9c
- 419 00b9 80030000 		.4byte	0x380
- 420 00bd 06       		.uleb128 0x6
- 421 00be DB020000 		.4byte	.LASF16
- 422 00c2 01       		.byte	0x1
- 423 00c3 16       		.byte	0x16
- 424 00c4 33000000 		.4byte	0x33
- 425 00c8 AA05     		.2byte	0x5aa
- 426 00ca 07       		.uleb128 0x7
- 427 00cb 4B020000 		.4byte	.LASF17
- 428 00cf 01       		.byte	0x1
- 429 00d0 19       		.byte	0x19
- 430 00d1 33000000 		.4byte	0x33
- 431 00d5 00000000 		.4byte	.LLST0
- 432 00d9 06       		.uleb128 0x6
- 433 00da 8A000000 		.4byte	.LASF18
- 434 00de 01       		.byte	0x1
- 435 00df 1A       		.byte	0x1a
- 436 00e0 33000000 		.4byte	0x33
- 437 00e4 BC02     		.2byte	0x2bc
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 11
+ 375              		.file 11 "Generated_Source\\PSoC5/CyLib.h"
+ 376              		.file 12 "Generated_Source\\PSoC5/sensor_right.h"
+ 377              		.file 13 "Generated_Source\\PSoC5/sensor_left.h"
+ 378              		.section	.debug_info,"",%progbits
+ 379              	.Ldebug_info0:
+ 380 0000 F3030000 		.4byte	0x3f3
+ 381 0004 0400     		.2byte	0x4
+ 382 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 383 000a 04       		.byte	0x4
+ 384 000b 01       		.uleb128 0x1
+ 385 000c 2C010000 		.4byte	.LASF51
+ 386 0010 0C       		.byte	0xc
+ 387 0011 63030000 		.4byte	.LASF52
+ 388 0015 FC010000 		.4byte	.LASF53
+ 389 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 390 001d 00000000 		.4byte	0
+ 391 0021 00000000 		.4byte	.Ldebug_line0
+ 392 0025 02       		.uleb128 0x2
+ 393 0026 08       		.byte	0x8
+ 394 0027 07       		.byte	0x7
+ 395 0028 FC020000 		.4byte	.LASF0
+ 396 002c 02       		.uleb128 0x2
+ 397 002d 04       		.byte	0x4
+ 398 002e 07       		.byte	0x7
+ 399 002f E1020000 		.4byte	.LASF1
+ 400 0033 03       		.uleb128 0x3
+ 401 0034 04       		.byte	0x4
+ 402 0035 05       		.byte	0x5
+ 403 0036 696E7400 		.ascii	"int\000"
+ 404 003a 02       		.uleb128 0x2
+ 405 003b 01       		.byte	0x1
+ 406 003c 06       		.byte	0x6
+ 407 003d 00010000 		.4byte	.LASF2
+ 408 0041 02       		.uleb128 0x2
+ 409 0042 01       		.byte	0x1
+ 410 0043 08       		.byte	0x8
+ 411 0044 1E010000 		.4byte	.LASF3
+ 412 0048 02       		.uleb128 0x2
+ 413 0049 02       		.byte	0x2
+ 414 004a 05       		.byte	0x5
+ 415 004b 7F030000 		.4byte	.LASF4
+ 416 004f 02       		.uleb128 0x2
+ 417 0050 02       		.byte	0x2
+ 418 0051 07       		.byte	0x7
+ 419 0052 D6010000 		.4byte	.LASF5
+ 420 0056 04       		.uleb128 0x4
+ 421 0057 50000000 		.4byte	.LASF9
+ 422 005b 02       		.byte	0x2
+ 423 005c 3F       		.byte	0x3f
+ 424 005d 61000000 		.4byte	0x61
+ 425 0061 02       		.uleb128 0x2
+ 426 0062 04       		.byte	0x4
+ 427 0063 05       		.byte	0x5
+ 428 0064 89030000 		.4byte	.LASF6
+ 429 0068 02       		.uleb128 0x2
+ 430 0069 04       		.byte	0x4
+ 431 006a 07       		.byte	0x7
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 12
 
 
- 438 00e6 08       		.uleb128 0x8
- 439 00e7 AC020000 		.4byte	.LASF19
- 440 00eb 01       		.byte	0x1
- 441 00ec 1B       		.byte	0x1b
- 442 00ed 33000000 		.4byte	0x33
- 443 00f1 FA       		.byte	0xfa
- 444 00f2 06       		.uleb128 0x6
- 445 00f3 F1010000 		.4byte	.LASF20
- 446 00f7 01       		.byte	0x1
- 447 00f8 1D       		.byte	0x1d
- 448 00f9 33000000 		.4byte	0x33
- 449 00fd EE02     		.2byte	0x2ee
- 450 00ff 08       		.uleb128 0x8
- 451 0100 4F000000 		.4byte	.LASF21
- 452 0104 01       		.byte	0x1
- 453 0105 1E       		.byte	0x1e
- 454 0106 33000000 		.4byte	0x33
- 455 010a F5       		.byte	0xf5
- 456 010b 08       		.uleb128 0x8
- 457 010c 00000000 		.4byte	.LASF22
- 458 0110 01       		.byte	0x1
- 459 0111 1F       		.byte	0x1f
- 460 0112 33000000 		.4byte	0x33
- 461 0116 01       		.byte	0x1
- 462 0117 09       		.uleb128 0x9
- 463 0118 32000000 		.4byte	.LBB2
- 464 011c 70000000 		.4byte	.LBE2-.LBB2
- 465 0120 B0010000 		.4byte	0x1b0
- 466 0124 0A       		.uleb128 0xa
- 467 0125 6900     		.ascii	"i\000"
- 468 0127 01       		.byte	0x1
- 469 0128 34       		.byte	0x34
- 470 0129 33000000 		.4byte	0x33
- 471 012d 1E000000 		.4byte	.LLST1
- 472 0131 0B       		.uleb128 0xb
- 473 0132 4E000000 		.4byte	.LVL9
- 474 0136 91030000 		.4byte	0x391
- 475 013a 65010000 		.4byte	0x165
- 476 013e 0C       		.uleb128 0xc
- 477 013f 01       		.uleb128 0x1
- 478 0140 50       		.byte	0x50
- 479 0141 22       		.uleb128 0x22
- 480 0142 74       		.byte	0x74
- 481 0143 00       		.sleb128 0
- 482 0144 08       		.byte	0x8
- 483 0145 F5       		.byte	0xf5
- 484 0146 1E       		.byte	0x1e
- 485 0147 F7       		.byte	0xf7
- 486 0148 33       		.uleb128 0x33
- 487 0149 F7       		.byte	0xf7
- 488 014a 25       		.uleb128 0x25
- 489 014b 0C       		.byte	0xc
- 490 014c D3FC645A 		.4byte	0x5a64fcd3
- 491 0150 F7       		.byte	0xf7
- 492 0151 25       		.uleb128 0x25
- 493 0152 1E       		.byte	0x1e
- 494 0153 08       		.byte	0x8
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 12
+ 432 006b 79020000 		.4byte	.LASF7
+ 433 006f 02       		.uleb128 0x2
+ 434 0070 08       		.byte	0x8
+ 435 0071 05       		.byte	0x5
+ 436 0072 55030000 		.4byte	.LASF8
+ 437 0076 04       		.uleb128 0x4
+ 438 0077 44030000 		.4byte	.LASF10
+ 439 007b 03       		.byte	0x3
+ 440 007c 2C       		.byte	0x2c
+ 441 007d 56000000 		.4byte	0x56
+ 442 0081 02       		.uleb128 0x2
+ 443 0082 04       		.byte	0x4
+ 444 0083 04       		.byte	0x4
+ 445 0084 FA000000 		.4byte	.LASF11
+ 446 0088 02       		.uleb128 0x2
+ 447 0089 08       		.byte	0x8
+ 448 008a 04       		.byte	0x4
+ 449 008b A9000000 		.4byte	.LASF12
+ 450 008f 02       		.uleb128 0x2
+ 451 0090 01       		.byte	0x1
+ 452 0091 08       		.byte	0x8
+ 453 0092 6A030000 		.4byte	.LASF13
+ 454 0096 02       		.uleb128 0x2
+ 455 0097 08       		.byte	0x8
+ 456 0098 04       		.byte	0x4
+ 457 0099 92030000 		.4byte	.LASF14
+ 458 009d 02       		.uleb128 0x2
+ 459 009e 04       		.byte	0x4
+ 460 009f 07       		.byte	0x7
+ 461 00a0 4C030000 		.4byte	.LASF15
+ 462 00a4 05       		.uleb128 0x5
+ 463 00a5 A1000000 		.4byte	.LASF21
+ 464 00a9 01       		.byte	0x1
+ 465 00aa 41000000 		.4byte	0x41
+ 466 00ae 01       		.byte	0x1
+ 467 00af 10       		.byte	0x10
+ 468 00b0 D3000000 		.4byte	0xd3
+ 469 00b4 06       		.uleb128 0x6
+ 470 00b5 68000000 		.4byte	.LASF16
+ 471 00b9 00       		.byte	0
+ 472 00ba 06       		.uleb128 0x6
+ 473 00bb 35030000 		.4byte	.LASF17
+ 474 00bf 01       		.byte	0x1
+ 475 00c0 06       		.uleb128 0x6
+ 476 00c1 13030000 		.4byte	.LASF18
+ 477 00c5 02       		.byte	0x2
+ 478 00c6 06       		.uleb128 0x6
+ 479 00c7 3F000000 		.4byte	.LASF19
+ 480 00cb 03       		.byte	0x3
+ 481 00cc 06       		.uleb128 0x6
+ 482 00cd BA000000 		.4byte	.LASF20
+ 483 00d1 04       		.byte	0x4
+ 484 00d2 00       		.byte	0
+ 485 00d3 05       		.uleb128 0x5
+ 486 00d4 9C020000 		.4byte	.LASF22
+ 487 00d8 01       		.byte	0x1
+ 488 00d9 41000000 		.4byte	0x41
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 13
 
 
- 495 0154 20       		.byte	0x20
- 496 0155 F7       		.byte	0xf7
- 497 0156 25       		.uleb128 0x25
- 498 0157 25       		.byte	0x25
- 499 0158 F7       		.byte	0xf7
- 500 0159 2C       		.uleb128 0x2c
- 501 015a 39       		.byte	0x39
- 502 015b 26       		.byte	0x26
- 503 015c 74       		.byte	0x74
- 504 015d 00       		.sleb128 0
- 505 015e 08       		.byte	0x8
- 506 015f F5       		.byte	0xf5
- 507 0160 1E       		.byte	0x1e
- 508 0161 4F       		.byte	0x4f
- 509 0162 26       		.byte	0x26
- 510 0163 1C       		.byte	0x1c
- 511 0164 00       		.byte	0
- 512 0165 0B       		.uleb128 0xb
- 513 0166 58000000 		.4byte	.LVL10
- 514 016a 9C030000 		.4byte	0x39c
- 515 016e 78010000 		.4byte	0x178
- 516 0172 0C       		.uleb128 0xc
- 517 0173 01       		.uleb128 0x1
- 518 0174 50       		.byte	0x50
- 519 0175 01       		.uleb128 0x1
- 520 0176 31       		.byte	0x31
- 521 0177 00       		.byte	0
- 522 0178 0B       		.uleb128 0xb
- 523 0179 60000000 		.4byte	.LVL11
- 524 017d 9C030000 		.4byte	0x39c
- 525 0181 8B010000 		.4byte	0x18b
- 526 0185 0C       		.uleb128 0xc
- 527 0186 01       		.uleb128 0x1
- 528 0187 50       		.byte	0x50
- 529 0188 01       		.uleb128 0x1
- 530 0189 31       		.byte	0x31
- 531 018a 00       		.byte	0
- 532 018b 0D       		.uleb128 0xd
- 533 018c 64000000 		.4byte	.LVL12
- 534 0190 A7030000 		.4byte	0x3a7
- 535 0194 0D       		.uleb128 0xd
- 536 0195 6C000000 		.4byte	.LVL13
- 537 0199 B2030000 		.4byte	0x3b2
- 538 019d 0D       		.uleb128 0xd
- 539 019e 74000000 		.4byte	.LVL14
- 540 01a2 BD030000 		.4byte	0x3bd
- 541 01a6 0D       		.uleb128 0xd
- 542 01a7 96000000 		.4byte	.LVL19
- 543 01ab C8030000 		.4byte	0x3c8
- 544 01af 00       		.byte	0
- 545 01b0 09       		.uleb128 0x9
- 546 01b1 E4000000 		.4byte	.LBB3
- 547 01b5 78000000 		.4byte	.LBE3-.LBB3
- 548 01b9 4C020000 		.4byte	0x24c
- 549 01bd 0A       		.uleb128 0xa
- 550 01be 6900     		.ascii	"i\000"
- 551 01c0 01       		.byte	0x1
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 13
+ 489 00dd 01       		.byte	0x1
+ 490 00de 11       		.byte	0x11
+ 491 00df F0000000 		.4byte	0xf0
+ 492 00e3 06       		.uleb128 0x6
+ 493 00e4 35000000 		.4byte	.LASF23
+ 494 00e8 01       		.byte	0x1
+ 495 00e9 06       		.uleb128 0x6
+ 496 00ea EE000000 		.4byte	.LASF24
+ 497 00ee 00       		.byte	0
+ 498 00ef 00       		.byte	0
+ 499 00f0 07       		.uleb128 0x7
+ 500 00f1 8B020000 		.4byte	.LASF54
+ 501 00f5 01       		.byte	0x1
+ 502 00f6 20       		.byte	0x20
+ 503 00f7 33000000 		.4byte	0x33
+ 504 00fb 00000000 		.4byte	.LFB64
+ 505 00ff 70010000 		.4byte	.LFE64-.LFB64
+ 506 0103 01       		.uleb128 0x1
+ 507 0104 9C       		.byte	0x9c
+ 508 0105 DA020000 		.4byte	0x2da
+ 509 0109 08       		.uleb128 0x8
+ 510 010a EE020000 		.4byte	.LASF25
+ 511 010e 01       		.byte	0x1
+ 512 010f 26       		.byte	0x26
+ 513 0110 33000000 		.4byte	0x33
+ 514 0114 00000000 		.4byte	.LLST0
+ 515 0118 08       		.uleb128 0x8
+ 516 0119 C2020000 		.4byte	.LASF26
+ 517 011d 01       		.byte	0x1
+ 518 011e 27       		.byte	0x27
+ 519 011f 33000000 		.4byte	0x33
+ 520 0123 1E000000 		.4byte	.LLST1
+ 521 0127 08       		.uleb128 0x8
+ 522 0128 22030000 		.4byte	.LASF27
+ 523 012c 01       		.byte	0x1
+ 524 012d 2B       		.byte	0x2b
+ 525 012e 33000000 		.4byte	0x33
+ 526 0132 53000000 		.4byte	.LLST2
+ 527 0136 08       		.uleb128 0x8
+ 528 0137 B0000000 		.4byte	.LASF28
+ 529 013b 01       		.byte	0x1
+ 530 013c 2C       		.byte	0x2c
+ 531 013d D3000000 		.4byte	0xd3
+ 532 0141 87000000 		.4byte	.LLST3
+ 533 0145 08       		.uleb128 0x8
+ 534 0146 65020000 		.4byte	.LASF29
+ 535 014a 01       		.byte	0x1
+ 536 014b 2D       		.byte	0x2d
+ 537 014c A4000000 		.4byte	0xa4
+ 538 0150 D2000000 		.4byte	.LLST4
+ 539 0154 09       		.uleb128 0x9
+ 540 0155 06000000 		.4byte	.LVL0
+ 541 0159 67030000 		.4byte	0x367
+ 542 015d 09       		.uleb128 0x9
+ 543 015e 0C000000 		.4byte	.LVL1
+ 544 0162 72030000 		.4byte	0x372
+ 545 0166 09       		.uleb128 0x9
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 14
 
 
- 552 01c1 60       		.byte	0x60
- 553 01c2 33000000 		.4byte	0x33
- 554 01c6 3D000000 		.4byte	.LLST2
- 555 01ca 0B       		.uleb128 0xb
- 556 01cb 04010000 		.4byte	.LVL33
- 557 01cf 91030000 		.4byte	0x391
- 558 01d3 01020000 		.4byte	0x201
- 559 01d7 0C       		.uleb128 0xc
- 560 01d8 01       		.uleb128 0x1
- 561 01d9 50       		.byte	0x50
- 562 01da 25       		.uleb128 0x25
- 563 01db 74       		.byte	0x74
- 564 01dc 00       		.sleb128 0
- 565 01dd 08       		.byte	0x8
- 566 01de F5       		.byte	0xf5
- 567 01df 1E       		.byte	0x1e
- 568 01e0 4F       		.byte	0x4f
- 569 01e1 26       		.byte	0x26
- 570 01e2 74       		.byte	0x74
- 571 01e3 00       		.sleb128 0
- 572 01e4 08       		.byte	0x8
- 573 01e5 F5       		.byte	0xf5
- 574 01e6 1E       		.byte	0x1e
- 575 01e7 F7       		.byte	0xf7
- 576 01e8 33       		.uleb128 0x33
- 577 01e9 F7       		.byte	0xf7
- 578 01ea 25       		.uleb128 0x25
- 579 01eb 0C       		.byte	0xc
- 580 01ec D3FC645A 		.4byte	0x5a64fcd3
- 581 01f0 F7       		.byte	0xf7
- 582 01f1 25       		.uleb128 0x25
- 583 01f2 1E       		.byte	0x1e
- 584 01f3 08       		.byte	0x8
- 585 01f4 20       		.byte	0x20
- 586 01f5 F7       		.byte	0xf7
- 587 01f6 25       		.uleb128 0x25
- 588 01f7 25       		.byte	0x25
- 589 01f8 F7       		.byte	0xf7
- 590 01f9 2C       		.uleb128 0x2c
- 591 01fa 39       		.byte	0x39
- 592 01fb 26       		.byte	0x26
- 593 01fc 1C       		.byte	0x1c
- 594 01fd 23       		.byte	0x23
- 595 01fe F501     		.uleb128 0xf5
- 596 0200 00       		.byte	0
- 597 0201 0B       		.uleb128 0xb
- 598 0202 10010000 		.4byte	.LVL34
- 599 0206 9C030000 		.4byte	0x39c
- 600 020a 14020000 		.4byte	0x214
- 601 020e 0C       		.uleb128 0xc
- 602 020f 01       		.uleb128 0x1
- 603 0210 50       		.byte	0x50
- 604 0211 01       		.uleb128 0x1
- 605 0212 31       		.byte	0x31
- 606 0213 00       		.byte	0
- 607 0214 0B       		.uleb128 0xb
- 608 0215 18010000 		.4byte	.LVL35
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 14
+ 546 0167 10000000 		.4byte	.LVL2
+ 547 016b 7D030000 		.4byte	0x37d
+ 548 016f 09       		.uleb128 0x9
+ 549 0170 36000000 		.4byte	.LVL18
+ 550 0174 88030000 		.4byte	0x388
+ 551 0178 0A       		.uleb128 0xa
+ 552 0179 54000000 		.4byte	.LVL23
+ 553 017d 93030000 		.4byte	0x393
+ 554 0181 8B010000 		.4byte	0x18b
+ 555 0185 0B       		.uleb128 0xb
+ 556 0186 01       		.uleb128 0x1
+ 557 0187 50       		.byte	0x50
+ 558 0188 01       		.uleb128 0x1
+ 559 0189 31       		.byte	0x31
+ 560 018a 00       		.byte	0
+ 561 018b 09       		.uleb128 0x9
+ 562 018c 58000000 		.4byte	.LVL24
+ 563 0190 9E030000 		.4byte	0x39e
+ 564 0194 09       		.uleb128 0x9
+ 565 0195 60000000 		.4byte	.LVL25
+ 566 0199 A9030000 		.4byte	0x3a9
+ 567 019d 0A       		.uleb128 0xa
+ 568 019e 88000000 		.4byte	.LVL26
+ 569 01a2 B4030000 		.4byte	0x3b4
+ 570 01a6 D4010000 		.4byte	0x1d4
+ 571 01aa 0B       		.uleb128 0xb
+ 572 01ab 01       		.uleb128 0x1
+ 573 01ac 50       		.byte	0x50
+ 574 01ad 25       		.uleb128 0x25
+ 575 01ae 75       		.byte	0x75
+ 576 01af 00       		.sleb128 0
+ 577 01b0 08       		.byte	0x8
+ 578 01b1 F5       		.byte	0xf5
+ 579 01b2 1E       		.byte	0x1e
+ 580 01b3 4F       		.byte	0x4f
+ 581 01b4 26       		.byte	0x26
+ 582 01b5 75       		.byte	0x75
+ 583 01b6 00       		.sleb128 0
+ 584 01b7 08       		.byte	0x8
+ 585 01b8 F5       		.byte	0xf5
+ 586 01b9 1E       		.byte	0x1e
+ 587 01ba F7       		.byte	0xf7
+ 588 01bb 33       		.uleb128 0x33
+ 589 01bc F7       		.byte	0xf7
+ 590 01bd 25       		.uleb128 0x25
+ 591 01be 0C       		.byte	0xc
+ 592 01bf D3FC645A 		.4byte	0x5a64fcd3
+ 593 01c3 F7       		.byte	0xf7
+ 594 01c4 25       		.uleb128 0x25
+ 595 01c5 1E       		.byte	0x1e
+ 596 01c6 08       		.byte	0x8
+ 597 01c7 20       		.byte	0x20
+ 598 01c8 F7       		.byte	0xf7
+ 599 01c9 25       		.uleb128 0x25
+ 600 01ca 25       		.byte	0x25
+ 601 01cb F7       		.byte	0xf7
+ 602 01cc 2C       		.uleb128 0x2c
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 15
 
 
- 609 0219 9C030000 		.4byte	0x39c
- 610 021d 27020000 		.4byte	0x227
- 611 0221 0C       		.uleb128 0xc
- 612 0222 01       		.uleb128 0x1
- 613 0223 50       		.byte	0x50
- 614 0224 01       		.uleb128 0x1
- 615 0225 31       		.byte	0x31
- 616 0226 00       		.byte	0
- 617 0227 0D       		.uleb128 0xd
- 618 0228 1C010000 		.4byte	.LVL36
- 619 022c D3030000 		.4byte	0x3d3
- 620 0230 0D       		.uleb128 0xd
- 621 0231 26010000 		.4byte	.LVL37
- 622 0235 B2030000 		.4byte	0x3b2
- 623 0239 0D       		.uleb128 0xd
- 624 023a 2E010000 		.4byte	.LVL38
- 625 023e BD030000 		.4byte	0x3bd
- 626 0242 0D       		.uleb128 0xd
- 627 0243 50010000 		.4byte	.LVL43
- 628 0247 C8030000 		.4byte	0x3c8
- 629 024b 00       		.byte	0
- 630 024c 0D       		.uleb128 0xd
- 631 024d 06000000 		.4byte	.LVL0
- 632 0251 DE030000 		.4byte	0x3de
- 633 0255 0D       		.uleb128 0xd
- 634 0256 0C000000 		.4byte	.LVL1
- 635 025a E9030000 		.4byte	0x3e9
- 636 025e 0D       		.uleb128 0xd
- 637 025f 10000000 		.4byte	.LVL2
- 638 0263 F4030000 		.4byte	0x3f4
- 639 0267 0D       		.uleb128 0xd
- 640 0268 14000000 		.4byte	.LVL3
- 641 026c FF030000 		.4byte	0x3ff
- 642 0270 0D       		.uleb128 0xd
- 643 0271 1C000000 		.4byte	.LVL4
- 644 0275 A7030000 		.4byte	0x3a7
- 645 0279 0D       		.uleb128 0xd
- 646 027a 24000000 		.4byte	.LVL5
- 647 027e D3030000 		.4byte	0x3d3
- 648 0282 0D       		.uleb128 0xd
- 649 0283 2C000000 		.4byte	.LVL6
- 650 0287 0A040000 		.4byte	0x40a
- 651 028b 0B       		.uleb128 0xb
- 652 028c 32000000 		.4byte	.LVL7
- 653 0290 91030000 		.4byte	0x391
- 654 0294 9E020000 		.4byte	0x29e
- 655 0298 0C       		.uleb128 0xc
- 656 0299 01       		.uleb128 0x1
- 657 029a 50       		.byte	0x50
- 658 029b 01       		.uleb128 0x1
- 659 029c 30       		.byte	0x30
- 660 029d 00       		.byte	0
- 661 029e 0D       		.uleb128 0xd
- 662 029f A6000000 		.4byte	.LVL22
- 663 02a3 FF030000 		.4byte	0x3ff
- 664 02a7 0D       		.uleb128 0xd
- 665 02a8 AA000000 		.4byte	.LVL23
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 15
+ 603 01cd 39       		.byte	0x39
+ 604 01ce 26       		.byte	0x26
+ 605 01cf 1C       		.byte	0x1c
+ 606 01d0 23       		.byte	0x23
+ 607 01d1 F501     		.uleb128 0xf5
+ 608 01d3 00       		.byte	0
+ 609 01d4 0A       		.uleb128 0xa
+ 610 01d5 94000000 		.4byte	.LVL27
+ 611 01d9 BF030000 		.4byte	0x3bf
+ 612 01dd E7010000 		.4byte	0x1e7
+ 613 01e1 0B       		.uleb128 0xb
+ 614 01e2 01       		.uleb128 0x1
+ 615 01e3 50       		.byte	0x50
+ 616 01e4 01       		.uleb128 0x1
+ 617 01e5 31       		.byte	0x31
+ 618 01e6 00       		.byte	0
+ 619 01e7 0A       		.uleb128 0xa
+ 620 01e8 9C000000 		.4byte	.LVL28
+ 621 01ec BF030000 		.4byte	0x3bf
+ 622 01f0 FA010000 		.4byte	0x1fa
+ 623 01f4 0B       		.uleb128 0xb
+ 624 01f5 01       		.uleb128 0x1
+ 625 01f6 50       		.byte	0x50
+ 626 01f7 01       		.uleb128 0x1
+ 627 01f8 31       		.byte	0x31
+ 628 01f9 00       		.byte	0
+ 629 01fa 09       		.uleb128 0x9
+ 630 01fb BE000000 		.4byte	.LVL33
+ 631 01ff CA030000 		.4byte	0x3ca
+ 632 0203 0A       		.uleb128 0xa
+ 633 0204 C8000000 		.4byte	.LVL34
+ 634 0208 CA030000 		.4byte	0x3ca
+ 635 020c 18020000 		.4byte	0x218
+ 636 0210 0B       		.uleb128 0xb
+ 637 0211 01       		.uleb128 0x1
+ 638 0212 50       		.byte	0x50
+ 639 0213 03       		.uleb128 0x3
+ 640 0214 0A       		.byte	0xa
+ 641 0215 BC02     		.2byte	0x2bc
+ 642 0217 00       		.byte	0
+ 643 0218 09       		.uleb128 0x9
+ 644 0219 CE000000 		.4byte	.LVL36
+ 645 021d D5030000 		.4byte	0x3d5
+ 646 0221 09       		.uleb128 0x9
+ 647 0222 D8000000 		.4byte	.LVL38
+ 648 0226 E0030000 		.4byte	0x3e0
+ 649 022a 0A       		.uleb128 0xa
+ 650 022b E4000000 		.4byte	.LVL41
+ 651 022f 93030000 		.4byte	0x393
+ 652 0233 3D020000 		.4byte	0x23d
+ 653 0237 0B       		.uleb128 0xb
+ 654 0238 01       		.uleb128 0x1
+ 655 0239 50       		.byte	0x50
+ 656 023a 01       		.uleb128 0x1
+ 657 023b 30       		.byte	0x30
+ 658 023c 00       		.byte	0
+ 659 023d 09       		.uleb128 0x9
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 16
 
 
- 666 02ac 0A040000 		.4byte	0x40a
- 667 02b0 0D       		.uleb128 0xd
- 668 02b1 AE000000 		.4byte	.LVL24
- 669 02b5 B2030000 		.4byte	0x3b2
- 670 02b9 0D       		.uleb128 0xd
- 671 02ba B6000000 		.4byte	.LVL25
- 672 02be BD030000 		.4byte	0x3bd
- 673 02c2 0B       		.uleb128 0xb
- 674 02c3 BE000000 		.4byte	.LVL26
- 675 02c7 C8030000 		.4byte	0x3c8
- 676 02cb D7020000 		.4byte	0x2d7
- 677 02cf 0C       		.uleb128 0xc
- 678 02d0 01       		.uleb128 0x1
- 679 02d1 50       		.byte	0x50
- 680 02d2 03       		.uleb128 0x3
- 681 02d3 0A       		.byte	0xa
- 682 02d4 EE02     		.2byte	0x2ee
- 683 02d6 00       		.byte	0
- 684 02d7 0B       		.uleb128 0xb
- 685 02d8 C6000000 		.4byte	.LVL27
- 686 02dc 91030000 		.4byte	0x391
- 687 02e0 EB020000 		.4byte	0x2eb
- 688 02e4 0C       		.uleb128 0xc
- 689 02e5 01       		.uleb128 0x1
- 690 02e6 50       		.byte	0x50
- 691 02e7 02       		.uleb128 0x2
- 692 02e8 09       		.byte	0x9
- 693 02e9 F5       		.byte	0xf5
- 694 02ea 00       		.byte	0
- 695 02eb 0D       		.uleb128 0xd
- 696 02ec CC000000 		.4byte	.LVL28
- 697 02f0 D3030000 		.4byte	0x3d3
- 698 02f4 0D       		.uleb128 0xd
- 699 02f5 D4000000 		.4byte	.LVL29
- 700 02f9 A7030000 		.4byte	0x3a7
- 701 02fd 0B       		.uleb128 0xb
- 702 02fe DE000000 		.4byte	.LVL30
- 703 0302 0A040000 		.4byte	0x40a
- 704 0306 10030000 		.4byte	0x310
- 705 030a 0C       		.uleb128 0xc
- 706 030b 01       		.uleb128 0x1
- 707 030c 50       		.byte	0x50
- 708 030d 01       		.uleb128 0x1
- 709 030e 31       		.byte	0x31
- 710 030f 00       		.byte	0
- 711 0310 0B       		.uleb128 0xb
- 712 0311 E4000000 		.4byte	.LVL31
- 713 0315 91030000 		.4byte	0x391
- 714 0319 24030000 		.4byte	0x324
- 715 031d 0C       		.uleb128 0xc
- 716 031e 01       		.uleb128 0x1
- 717 031f 50       		.byte	0x50
- 718 0320 02       		.uleb128 0x2
- 719 0321 09       		.byte	0x9
- 720 0322 F5       		.byte	0xf5
- 721 0323 00       		.byte	0
- 722 0324 0D       		.uleb128 0xd
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 16
+ 660 023e E8000000 		.4byte	.LVL42
+ 661 0242 9E030000 		.4byte	0x39e
+ 662 0246 09       		.uleb128 0x9
+ 663 0247 F0000000 		.4byte	.LVL43
+ 664 024b A9030000 		.4byte	0x3a9
+ 665 024f 0A       		.uleb128 0xa
+ 666 0250 14010000 		.4byte	.LVL44
+ 667 0254 B4030000 		.4byte	0x3b4
+ 668 0258 83020000 		.4byte	0x283
+ 669 025c 0B       		.uleb128 0xb
+ 670 025d 01       		.uleb128 0x1
+ 671 025e 50       		.byte	0x50
+ 672 025f 22       		.uleb128 0x22
+ 673 0260 75       		.byte	0x75
+ 674 0261 00       		.sleb128 0
+ 675 0262 08       		.byte	0x8
+ 676 0263 F5       		.byte	0xf5
+ 677 0264 1E       		.byte	0x1e
+ 678 0265 F7       		.byte	0xf7
+ 679 0266 33       		.uleb128 0x33
+ 680 0267 F7       		.byte	0xf7
+ 681 0268 25       		.uleb128 0x25
+ 682 0269 0C       		.byte	0xc
+ 683 026a D3FC645A 		.4byte	0x5a64fcd3
+ 684 026e F7       		.byte	0xf7
+ 685 026f 25       		.uleb128 0x25
+ 686 0270 1E       		.byte	0x1e
+ 687 0271 08       		.byte	0x8
+ 688 0272 20       		.byte	0x20
+ 689 0273 F7       		.byte	0xf7
+ 690 0274 25       		.uleb128 0x25
+ 691 0275 25       		.byte	0x25
+ 692 0276 F7       		.byte	0xf7
+ 693 0277 2C       		.uleb128 0x2c
+ 694 0278 39       		.byte	0x39
+ 695 0279 26       		.byte	0x26
+ 696 027a 75       		.byte	0x75
+ 697 027b 00       		.sleb128 0
+ 698 027c 08       		.byte	0x8
+ 699 027d F5       		.byte	0xf5
+ 700 027e 1E       		.byte	0x1e
+ 701 027f 4F       		.byte	0x4f
+ 702 0280 26       		.byte	0x26
+ 703 0281 1C       		.byte	0x1c
+ 704 0282 00       		.byte	0
+ 705 0283 0A       		.uleb128 0xa
+ 706 0284 1E010000 		.4byte	.LVL45
+ 707 0288 BF030000 		.4byte	0x3bf
+ 708 028c 96020000 		.4byte	0x296
+ 709 0290 0B       		.uleb128 0xb
+ 710 0291 01       		.uleb128 0x1
+ 711 0292 50       		.byte	0x50
+ 712 0293 01       		.uleb128 0x1
+ 713 0294 31       		.byte	0x31
+ 714 0295 00       		.byte	0
+ 715 0296 0A       		.uleb128 0xa
+ 716 0297 26010000 		.4byte	.LVL46
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 17
 
 
- 723 0325 60010000 		.4byte	.LVL46
- 724 0329 FF030000 		.4byte	0x3ff
- 725 032d 0D       		.uleb128 0xd
- 726 032e 64010000 		.4byte	.LVL47
- 727 0332 0A040000 		.4byte	0x40a
- 728 0336 0D       		.uleb128 0xd
- 729 0337 68010000 		.4byte	.LVL48
- 730 033b B2030000 		.4byte	0x3b2
- 731 033f 0D       		.uleb128 0xd
- 732 0340 70010000 		.4byte	.LVL49
- 733 0344 BD030000 		.4byte	0x3bd
- 734 0348 0B       		.uleb128 0xb
- 735 0349 78010000 		.4byte	.LVL50
- 736 034d C8030000 		.4byte	0x3c8
- 737 0351 5D030000 		.4byte	0x35d
- 738 0355 0C       		.uleb128 0xc
- 739 0356 01       		.uleb128 0x1
- 740 0357 50       		.byte	0x50
- 741 0358 03       		.uleb128 0x3
- 742 0359 0A       		.byte	0xa
- 743 035a EE02     		.2byte	0x2ee
- 744 035c 00       		.byte	0
- 745 035d 0B       		.uleb128 0xb
- 746 035e 80010000 		.4byte	.LVL51
- 747 0362 91030000 		.4byte	0x391
- 748 0366 70030000 		.4byte	0x370
- 749 036a 0C       		.uleb128 0xc
- 750 036b 01       		.uleb128 0x1
- 751 036c 50       		.byte	0x50
- 752 036d 01       		.uleb128 0x1
- 753 036e 30       		.byte	0x30
- 754 036f 00       		.byte	0
- 755 0370 0E       		.uleb128 0xe
- 756 0371 86010000 		.4byte	.LVL52
- 757 0375 9C030000 		.4byte	0x39c
- 758 0379 0C       		.uleb128 0xc
- 759 037a 01       		.uleb128 0x1
- 760 037b 50       		.byte	0x50
- 761 037c 01       		.uleb128 0x1
- 762 037d 31       		.byte	0x31
- 763 037e 00       		.byte	0
- 764 037f 00       		.byte	0
- 765 0380 0F       		.uleb128 0xf
- 766 0381 C4010000 		.4byte	.LASF39
- 767 0385 0D       		.byte	0xd
- 768 0386 1207     		.2byte	0x712
- 769 0388 8C030000 		.4byte	0x38c
- 770 038c 10       		.uleb128 0x10
- 771 038d 76000000 		.4byte	0x76
- 772 0391 11       		.uleb128 0x11
- 773 0392 70020000 		.4byte	.LASF23
- 774 0396 70020000 		.4byte	.LASF23
- 775 039a 04       		.byte	0x4
- 776 039b 37       		.byte	0x37
- 777 039c 11       		.uleb128 0x11
- 778 039d 2C020000 		.4byte	.LASF24
- 779 03a1 2C020000 		.4byte	.LASF24
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 17
+ 717 029b BF030000 		.4byte	0x3bf
+ 718 029f A9020000 		.4byte	0x2a9
+ 719 02a3 0B       		.uleb128 0xb
+ 720 02a4 01       		.uleb128 0x1
+ 721 02a5 50       		.byte	0x50
+ 722 02a6 01       		.uleb128 0x1
+ 723 02a7 31       		.byte	0x31
+ 724 02a8 00       		.byte	0
+ 725 02a9 09       		.uleb128 0x9
+ 726 02aa 48010000 		.4byte	.LVL51
+ 727 02ae CA030000 		.4byte	0x3ca
+ 728 02b2 0A       		.uleb128 0xa
+ 729 02b3 52010000 		.4byte	.LVL52
+ 730 02b7 CA030000 		.4byte	0x3ca
+ 731 02bb C7020000 		.4byte	0x2c7
+ 732 02bf 0B       		.uleb128 0xb
+ 733 02c0 01       		.uleb128 0x1
+ 734 02c1 50       		.byte	0x50
+ 735 02c2 03       		.uleb128 0x3
+ 736 02c3 0A       		.byte	0xa
+ 737 02c4 BC02     		.2byte	0x2bc
+ 738 02c6 00       		.byte	0
+ 739 02c7 09       		.uleb128 0x9
+ 740 02c8 58010000 		.4byte	.LVL54
+ 741 02cc EB030000 		.4byte	0x3eb
+ 742 02d0 09       		.uleb128 0x9
+ 743 02d1 64010000 		.4byte	.LVL56
+ 744 02d5 E0030000 		.4byte	0x3e0
+ 745 02d9 00       		.byte	0
+ 746 02da 0C       		.uleb128 0xc
+ 747 02db 58020000 		.4byte	.LASF30
+ 748 02df 04       		.byte	0x4
+ 749 02e0 1207     		.2byte	0x712
+ 750 02e2 E6020000 		.4byte	0x2e6
+ 751 02e6 0D       		.uleb128 0xd
+ 752 02e7 76000000 		.4byte	0x76
+ 753 02eb 0E       		.uleb128 0xe
+ 754 02ec 9E030000 		.4byte	.LASF31
+ 755 02f0 01       		.byte	0x1
+ 756 02f1 13       		.byte	0x13
+ 757 02f2 FC020000 		.4byte	0x2fc
+ 758 02f6 05       		.uleb128 0x5
+ 759 02f7 03       		.byte	0x3
+ 760 02f8 00000000 		.4byte	total_steps
+ 761 02fc 0F       		.uleb128 0xf
+ 762 02fd 33000000 		.4byte	0x33
+ 763 0301 0E       		.uleb128 0xe
+ 764 0302 90020000 		.4byte	.LASF32
+ 765 0306 01       		.byte	0x1
+ 766 0307 15       		.byte	0x15
+ 767 0308 FC020000 		.4byte	0x2fc
+ 768 030c 05       		.uleb128 0x5
+ 769 030d 03       		.byte	0x3
+ 770 030e 00000000 		.4byte	start_delay
+ 771 0312 0E       		.uleb128 0xe
+ 772 0313 DE000000 		.4byte	.LASF33
+ 773 0317 01       		.byte	0x1
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 18
 
 
- 780 03a5 05       		.byte	0x5
- 781 03a6 26       		.byte	0x26
- 782 03a7 11       		.uleb128 0x11
- 783 03a8 5E000000 		.4byte	.LASF25
- 784 03ac 5E000000 		.4byte	.LASF25
- 785 03b0 06       		.byte	0x6
- 786 03b1 29       		.byte	0x29
- 787 03b2 11       		.uleb128 0x11
- 788 03b3 13000000 		.4byte	.LASF26
- 789 03b7 13000000 		.4byte	.LASF26
- 790 03bb 07       		.byte	0x7
- 791 03bc 29       		.byte	0x29
- 792 03bd 11       		.uleb128 0x11
- 793 03be 1C020000 		.4byte	.LASF27
- 794 03c2 1C020000 		.4byte	.LASF27
- 795 03c6 07       		.byte	0x7
- 796 03c7 26       		.byte	0x26
- 797 03c8 11       		.uleb128 0x11
- 798 03c9 12020000 		.4byte	.LASF28
- 799 03cd 12020000 		.4byte	.LASF28
- 800 03d1 08       		.byte	0x8
- 801 03d2 77       		.byte	0x77
- 802 03d3 11       		.uleb128 0x11
- 803 03d4 D1010000 		.4byte	.LASF29
- 804 03d8 D1010000 		.4byte	.LASF29
- 805 03dc 09       		.byte	0x9
- 806 03dd 29       		.byte	0x29
- 807 03de 11       		.uleb128 0x11
- 808 03df E3010000 		.4byte	.LASF30
- 809 03e3 E3010000 		.4byte	.LASF30
- 810 03e7 04       		.byte	0x4
- 811 03e8 33       		.byte	0x33
- 812 03e9 11       		.uleb128 0x11
- 813 03ea 2C000000 		.4byte	.LASF31
- 814 03ee 2C000000 		.4byte	.LASF31
- 815 03f2 0A       		.byte	0xa
- 816 03f3 33       		.byte	0x33
- 817 03f4 11       		.uleb128 0x11
- 818 03f5 48010000 		.4byte	.LASF32
- 819 03f9 48010000 		.4byte	.LASF32
- 820 03fd 0A       		.byte	0xa
- 821 03fe 3A       		.byte	0x3a
- 822 03ff 11       		.uleb128 0x11
- 823 0400 3A000000 		.4byte	.LASF33
- 824 0404 3A000000 		.4byte	.LASF33
- 825 0408 0B       		.byte	0xb
- 826 0409 29       		.byte	0x29
- 827 040a 11       		.uleb128 0x11
- 828 040b 76000000 		.4byte	.LASF34
- 829 040f 76000000 		.4byte	.LASF34
- 830 0413 0C       		.byte	0xc
- 831 0414 26       		.byte	0x26
- 832 0415 00       		.byte	0
- 833              		.section	.debug_abbrev,"",%progbits
- 834              	.Ldebug_abbrev0:
- 835 0000 01       		.uleb128 0x1
- 836 0001 11       		.uleb128 0x11
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 18
+ 774 0318 16       		.byte	0x16
+ 775 0319 FC020000 		.4byte	0x2fc
+ 776 031d 05       		.uleb128 0x5
+ 777 031e 03       		.byte	0x3
+ 778 031f 00000000 		.4byte	min_speed_delay
+ 779 0323 0E       		.uleb128 0xe
+ 780 0324 6F030000 		.4byte	.LASF34
+ 781 0328 01       		.byte	0x1
+ 782 0329 17       		.byte	0x17
+ 783 032a FC020000 		.4byte	0x2fc
+ 784 032e 05       		.uleb128 0x5
+ 785 032f 03       		.byte	0x3
+ 786 0330 00000000 		.4byte	max_speed_delay
+ 787 0334 0E       		.uleb128 0xe
+ 788 0335 6E000000 		.4byte	.LASF35
+ 789 0339 01       		.byte	0x1
+ 790 033a 1A       		.byte	0x1a
+ 791 033b FC020000 		.4byte	0x2fc
+ 792 033f 05       		.uleb128 0x5
+ 793 0340 03       		.byte	0x3
+ 794 0341 00000000 		.4byte	max_vdac_power
+ 795 0345 0E       		.uleb128 0xe
+ 796 0346 BA010000 		.4byte	.LASF36
+ 797 034a 01       		.byte	0x1
+ 798 034b 1B       		.byte	0x1b
+ 799 034c FC020000 		.4byte	0x2fc
+ 800 0350 05       		.uleb128 0x5
+ 801 0351 03       		.byte	0x3
+ 802 0352 00000000 		.4byte	min_vdac_power
+ 803 0356 0E       		.uleb128 0xe
+ 804 0357 8E000000 		.4byte	.LASF37
+ 805 035b 01       		.byte	0x1
+ 806 035c 1D       		.byte	0x1d
+ 807 035d FC020000 		.4byte	0x2fc
+ 808 0361 05       		.uleb128 0x5
+ 809 0362 03       		.byte	0x3
+ 810 0363 00000000 		.4byte	always_enable_leds
+ 811 0367 10       		.uleb128 0x10
+ 812 0368 6B020000 		.4byte	.LASF38
+ 813 036c 6B020000 		.4byte	.LASF38
+ 814 0370 05       		.byte	0x5
+ 815 0371 33       		.byte	0x33
+ 816 0372 10       		.uleb128 0x10
+ 817 0373 5A000000 		.4byte	.LASF39
+ 818 0377 5A000000 		.4byte	.LASF39
+ 819 037b 06       		.byte	0x6
+ 820 037c 33       		.byte	0x33
+ 821 037d 10       		.uleb128 0x10
+ 822 037e C9010000 		.4byte	.LASF40
+ 823 0382 C9010000 		.4byte	.LASF40
+ 824 0386 06       		.byte	0x6
+ 825 0387 3A       		.byte	0x3a
+ 826 0388 10       		.uleb128 0x10
+ 827 0389 11000000 		.4byte	.LASF41
+ 828 038d 11000000 		.4byte	.LASF41
+ 829 0391 07       		.byte	0x7
+ 830 0392 29       		.byte	0x29
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 19
 
 
- 837 0002 01       		.byte	0x1
- 838 0003 25       		.uleb128 0x25
- 839 0004 0E       		.uleb128 0xe
- 840 0005 13       		.uleb128 0x13
- 841 0006 0B       		.uleb128 0xb
- 842 0007 03       		.uleb128 0x3
- 843 0008 0E       		.uleb128 0xe
- 844 0009 1B       		.uleb128 0x1b
- 845 000a 0E       		.uleb128 0xe
- 846 000b 55       		.uleb128 0x55
- 847 000c 17       		.uleb128 0x17
- 848 000d 11       		.uleb128 0x11
- 849 000e 01       		.uleb128 0x1
- 850 000f 10       		.uleb128 0x10
- 851 0010 17       		.uleb128 0x17
- 852 0011 00       		.byte	0
- 853 0012 00       		.byte	0
- 854 0013 02       		.uleb128 0x2
- 855 0014 24       		.uleb128 0x24
- 856 0015 00       		.byte	0
- 857 0016 0B       		.uleb128 0xb
- 858 0017 0B       		.uleb128 0xb
- 859 0018 3E       		.uleb128 0x3e
- 860 0019 0B       		.uleb128 0xb
- 861 001a 03       		.uleb128 0x3
- 862 001b 0E       		.uleb128 0xe
- 863 001c 00       		.byte	0
- 864 001d 00       		.byte	0
- 865 001e 03       		.uleb128 0x3
- 866 001f 24       		.uleb128 0x24
- 867 0020 00       		.byte	0
- 868 0021 0B       		.uleb128 0xb
- 869 0022 0B       		.uleb128 0xb
- 870 0023 3E       		.uleb128 0x3e
- 871 0024 0B       		.uleb128 0xb
- 872 0025 03       		.uleb128 0x3
- 873 0026 08       		.uleb128 0x8
- 874 0027 00       		.byte	0
- 875 0028 00       		.byte	0
- 876 0029 04       		.uleb128 0x4
- 877 002a 16       		.uleb128 0x16
- 878 002b 00       		.byte	0
- 879 002c 03       		.uleb128 0x3
- 880 002d 0E       		.uleb128 0xe
- 881 002e 3A       		.uleb128 0x3a
- 882 002f 0B       		.uleb128 0xb
- 883 0030 3B       		.uleb128 0x3b
- 884 0031 0B       		.uleb128 0xb
- 885 0032 49       		.uleb128 0x49
- 886 0033 13       		.uleb128 0x13
- 887 0034 00       		.byte	0
- 888 0035 00       		.byte	0
- 889 0036 05       		.uleb128 0x5
- 890 0037 2E       		.uleb128 0x2e
- 891 0038 01       		.byte	0x1
- 892 0039 3F       		.uleb128 0x3f
- 893 003a 19       		.uleb128 0x19
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 19
+ 831 0393 10       		.uleb128 0x10
+ 832 0394 CA000000 		.4byte	.LASF42
+ 833 0398 CA000000 		.4byte	.LASF42
+ 834 039c 08       		.byte	0x8
+ 835 039d 26       		.byte	0x26
+ 836 039e 10       		.uleb128 0x10
+ 837 039f 26000000 		.4byte	.LASF43
+ 838 03a3 26000000 		.4byte	.LASF43
+ 839 03a7 09       		.byte	0x9
+ 840 03a8 29       		.byte	0x29
+ 841 03a9 10       		.uleb128 0x10
+ 842 03aa B2020000 		.4byte	.LASF44
+ 843 03ae B2020000 		.4byte	.LASF44
+ 844 03b2 09       		.byte	0x9
+ 845 03b3 26       		.byte	0x26
+ 846 03b4 10       		.uleb128 0x10
+ 847 03b5 00000000 		.4byte	.LASF45
+ 848 03b9 00000000 		.4byte	.LASF45
+ 849 03bd 05       		.byte	0x5
+ 850 03be 37       		.byte	0x37
+ 851 03bf 10       		.uleb128 0x10
+ 852 03c0 CF020000 		.4byte	.LASF46
+ 853 03c4 CF020000 		.4byte	.LASF46
+ 854 03c8 0A       		.byte	0xa
+ 855 03c9 26       		.byte	0x26
+ 856 03ca 10       		.uleb128 0x10
+ 857 03cb A8020000 		.4byte	.LASF47
+ 858 03cf A8020000 		.4byte	.LASF47
+ 859 03d3 0B       		.byte	0xb
+ 860 03d4 77       		.byte	0x77
+ 861 03d5 10       		.uleb128 0x10
+ 862 03d6 0C010000 		.4byte	.LASF48
+ 863 03da 0C010000 		.4byte	.LASF48
+ 864 03de 0C       		.byte	0xc
+ 865 03df 29       		.byte	0x29
+ 866 03e0 10       		.uleb128 0x10
+ 867 03e1 E9010000 		.4byte	.LASF49
+ 868 03e5 E9010000 		.4byte	.LASF49
+ 869 03e9 08       		.byte	0x8
+ 870 03ea 29       		.byte	0x29
+ 871 03eb 10       		.uleb128 0x10
+ 872 03ec 7D000000 		.4byte	.LASF50
+ 873 03f0 7D000000 		.4byte	.LASF50
+ 874 03f4 0D       		.byte	0xd
+ 875 03f5 29       		.byte	0x29
+ 876 03f6 00       		.byte	0
+ 877              		.section	.debug_abbrev,"",%progbits
+ 878              	.Ldebug_abbrev0:
+ 879 0000 01       		.uleb128 0x1
+ 880 0001 11       		.uleb128 0x11
+ 881 0002 01       		.byte	0x1
+ 882 0003 25       		.uleb128 0x25
+ 883 0004 0E       		.uleb128 0xe
+ 884 0005 13       		.uleb128 0x13
+ 885 0006 0B       		.uleb128 0xb
+ 886 0007 03       		.uleb128 0x3
+ 887 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 20
 
 
- 894 003b 03       		.uleb128 0x3
- 895 003c 0E       		.uleb128 0xe
- 896 003d 3A       		.uleb128 0x3a
- 897 003e 0B       		.uleb128 0xb
- 898 003f 3B       		.uleb128 0x3b
- 899 0040 0B       		.uleb128 0xb
- 900 0041 27       		.uleb128 0x27
- 901 0042 19       		.uleb128 0x19
- 902 0043 49       		.uleb128 0x49
- 903 0044 13       		.uleb128 0x13
- 904 0045 8701     		.uleb128 0x87
- 905 0047 19       		.uleb128 0x19
- 906 0048 11       		.uleb128 0x11
- 907 0049 01       		.uleb128 0x1
- 908 004a 12       		.uleb128 0x12
- 909 004b 06       		.uleb128 0x6
- 910 004c 40       		.uleb128 0x40
- 911 004d 18       		.uleb128 0x18
- 912 004e 9742     		.uleb128 0x2117
- 913 0050 19       		.uleb128 0x19
- 914 0051 01       		.uleb128 0x1
- 915 0052 13       		.uleb128 0x13
- 916 0053 00       		.byte	0
- 917 0054 00       		.byte	0
- 918 0055 06       		.uleb128 0x6
- 919 0056 34       		.uleb128 0x34
- 920 0057 00       		.byte	0
- 921 0058 03       		.uleb128 0x3
- 922 0059 0E       		.uleb128 0xe
- 923 005a 3A       		.uleb128 0x3a
- 924 005b 0B       		.uleb128 0xb
- 925 005c 3B       		.uleb128 0x3b
- 926 005d 0B       		.uleb128 0xb
- 927 005e 49       		.uleb128 0x49
- 928 005f 13       		.uleb128 0x13
- 929 0060 1C       		.uleb128 0x1c
- 930 0061 05       		.uleb128 0x5
- 931 0062 00       		.byte	0
- 932 0063 00       		.byte	0
- 933 0064 07       		.uleb128 0x7
- 934 0065 34       		.uleb128 0x34
- 935 0066 00       		.byte	0
- 936 0067 03       		.uleb128 0x3
- 937 0068 0E       		.uleb128 0xe
- 938 0069 3A       		.uleb128 0x3a
- 939 006a 0B       		.uleb128 0xb
- 940 006b 3B       		.uleb128 0x3b
- 941 006c 0B       		.uleb128 0xb
- 942 006d 49       		.uleb128 0x49
- 943 006e 13       		.uleb128 0x13
- 944 006f 02       		.uleb128 0x2
- 945 0070 17       		.uleb128 0x17
- 946 0071 00       		.byte	0
- 947 0072 00       		.byte	0
- 948 0073 08       		.uleb128 0x8
- 949 0074 34       		.uleb128 0x34
- 950 0075 00       		.byte	0
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 20
+ 888 0009 1B       		.uleb128 0x1b
+ 889 000a 0E       		.uleb128 0xe
+ 890 000b 55       		.uleb128 0x55
+ 891 000c 17       		.uleb128 0x17
+ 892 000d 11       		.uleb128 0x11
+ 893 000e 01       		.uleb128 0x1
+ 894 000f 10       		.uleb128 0x10
+ 895 0010 17       		.uleb128 0x17
+ 896 0011 00       		.byte	0
+ 897 0012 00       		.byte	0
+ 898 0013 02       		.uleb128 0x2
+ 899 0014 24       		.uleb128 0x24
+ 900 0015 00       		.byte	0
+ 901 0016 0B       		.uleb128 0xb
+ 902 0017 0B       		.uleb128 0xb
+ 903 0018 3E       		.uleb128 0x3e
+ 904 0019 0B       		.uleb128 0xb
+ 905 001a 03       		.uleb128 0x3
+ 906 001b 0E       		.uleb128 0xe
+ 907 001c 00       		.byte	0
+ 908 001d 00       		.byte	0
+ 909 001e 03       		.uleb128 0x3
+ 910 001f 24       		.uleb128 0x24
+ 911 0020 00       		.byte	0
+ 912 0021 0B       		.uleb128 0xb
+ 913 0022 0B       		.uleb128 0xb
+ 914 0023 3E       		.uleb128 0x3e
+ 915 0024 0B       		.uleb128 0xb
+ 916 0025 03       		.uleb128 0x3
+ 917 0026 08       		.uleb128 0x8
+ 918 0027 00       		.byte	0
+ 919 0028 00       		.byte	0
+ 920 0029 04       		.uleb128 0x4
+ 921 002a 16       		.uleb128 0x16
+ 922 002b 00       		.byte	0
+ 923 002c 03       		.uleb128 0x3
+ 924 002d 0E       		.uleb128 0xe
+ 925 002e 3A       		.uleb128 0x3a
+ 926 002f 0B       		.uleb128 0xb
+ 927 0030 3B       		.uleb128 0x3b
+ 928 0031 0B       		.uleb128 0xb
+ 929 0032 49       		.uleb128 0x49
+ 930 0033 13       		.uleb128 0x13
+ 931 0034 00       		.byte	0
+ 932 0035 00       		.byte	0
+ 933 0036 05       		.uleb128 0x5
+ 934 0037 04       		.uleb128 0x4
+ 935 0038 01       		.byte	0x1
+ 936 0039 03       		.uleb128 0x3
+ 937 003a 0E       		.uleb128 0xe
+ 938 003b 0B       		.uleb128 0xb
+ 939 003c 0B       		.uleb128 0xb
+ 940 003d 49       		.uleb128 0x49
+ 941 003e 13       		.uleb128 0x13
+ 942 003f 3A       		.uleb128 0x3a
+ 943 0040 0B       		.uleb128 0xb
+ 944 0041 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 21
 
 
- 951 0076 03       		.uleb128 0x3
- 952 0077 0E       		.uleb128 0xe
- 953 0078 3A       		.uleb128 0x3a
- 954 0079 0B       		.uleb128 0xb
- 955 007a 3B       		.uleb128 0x3b
- 956 007b 0B       		.uleb128 0xb
- 957 007c 49       		.uleb128 0x49
- 958 007d 13       		.uleb128 0x13
- 959 007e 1C       		.uleb128 0x1c
- 960 007f 0B       		.uleb128 0xb
- 961 0080 00       		.byte	0
- 962 0081 00       		.byte	0
- 963 0082 09       		.uleb128 0x9
- 964 0083 0B       		.uleb128 0xb
- 965 0084 01       		.byte	0x1
- 966 0085 11       		.uleb128 0x11
- 967 0086 01       		.uleb128 0x1
- 968 0087 12       		.uleb128 0x12
- 969 0088 06       		.uleb128 0x6
- 970 0089 01       		.uleb128 0x1
- 971 008a 13       		.uleb128 0x13
- 972 008b 00       		.byte	0
- 973 008c 00       		.byte	0
- 974 008d 0A       		.uleb128 0xa
- 975 008e 34       		.uleb128 0x34
- 976 008f 00       		.byte	0
- 977 0090 03       		.uleb128 0x3
- 978 0091 08       		.uleb128 0x8
- 979 0092 3A       		.uleb128 0x3a
- 980 0093 0B       		.uleb128 0xb
- 981 0094 3B       		.uleb128 0x3b
- 982 0095 0B       		.uleb128 0xb
- 983 0096 49       		.uleb128 0x49
- 984 0097 13       		.uleb128 0x13
- 985 0098 02       		.uleb128 0x2
- 986 0099 17       		.uleb128 0x17
- 987 009a 00       		.byte	0
- 988 009b 00       		.byte	0
- 989 009c 0B       		.uleb128 0xb
- 990 009d 898201   		.uleb128 0x4109
- 991 00a0 01       		.byte	0x1
- 992 00a1 11       		.uleb128 0x11
- 993 00a2 01       		.uleb128 0x1
- 994 00a3 31       		.uleb128 0x31
- 995 00a4 13       		.uleb128 0x13
- 996 00a5 01       		.uleb128 0x1
- 997 00a6 13       		.uleb128 0x13
- 998 00a7 00       		.byte	0
- 999 00a8 00       		.byte	0
- 1000 00a9 0C       		.uleb128 0xc
- 1001 00aa 8A8201   		.uleb128 0x410a
- 1002 00ad 00       		.byte	0
- 1003 00ae 02       		.uleb128 0x2
- 1004 00af 18       		.uleb128 0x18
- 1005 00b0 9142     		.uleb128 0x2111
- 1006 00b2 18       		.uleb128 0x18
- 1007 00b3 00       		.byte	0
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 21
+ 945 0042 0B       		.uleb128 0xb
+ 946 0043 01       		.uleb128 0x1
+ 947 0044 13       		.uleb128 0x13
+ 948 0045 00       		.byte	0
+ 949 0046 00       		.byte	0
+ 950 0047 06       		.uleb128 0x6
+ 951 0048 28       		.uleb128 0x28
+ 952 0049 00       		.byte	0
+ 953 004a 03       		.uleb128 0x3
+ 954 004b 0E       		.uleb128 0xe
+ 955 004c 1C       		.uleb128 0x1c
+ 956 004d 0B       		.uleb128 0xb
+ 957 004e 00       		.byte	0
+ 958 004f 00       		.byte	0
+ 959 0050 07       		.uleb128 0x7
+ 960 0051 2E       		.uleb128 0x2e
+ 961 0052 01       		.byte	0x1
+ 962 0053 3F       		.uleb128 0x3f
+ 963 0054 19       		.uleb128 0x19
+ 964 0055 03       		.uleb128 0x3
+ 965 0056 0E       		.uleb128 0xe
+ 966 0057 3A       		.uleb128 0x3a
+ 967 0058 0B       		.uleb128 0xb
+ 968 0059 3B       		.uleb128 0x3b
+ 969 005a 0B       		.uleb128 0xb
+ 970 005b 27       		.uleb128 0x27
+ 971 005c 19       		.uleb128 0x19
+ 972 005d 49       		.uleb128 0x49
+ 973 005e 13       		.uleb128 0x13
+ 974 005f 8701     		.uleb128 0x87
+ 975 0061 19       		.uleb128 0x19
+ 976 0062 11       		.uleb128 0x11
+ 977 0063 01       		.uleb128 0x1
+ 978 0064 12       		.uleb128 0x12
+ 979 0065 06       		.uleb128 0x6
+ 980 0066 40       		.uleb128 0x40
+ 981 0067 18       		.uleb128 0x18
+ 982 0068 9742     		.uleb128 0x2117
+ 983 006a 19       		.uleb128 0x19
+ 984 006b 01       		.uleb128 0x1
+ 985 006c 13       		.uleb128 0x13
+ 986 006d 00       		.byte	0
+ 987 006e 00       		.byte	0
+ 988 006f 08       		.uleb128 0x8
+ 989 0070 34       		.uleb128 0x34
+ 990 0071 00       		.byte	0
+ 991 0072 03       		.uleb128 0x3
+ 992 0073 0E       		.uleb128 0xe
+ 993 0074 3A       		.uleb128 0x3a
+ 994 0075 0B       		.uleb128 0xb
+ 995 0076 3B       		.uleb128 0x3b
+ 996 0077 0B       		.uleb128 0xb
+ 997 0078 49       		.uleb128 0x49
+ 998 0079 13       		.uleb128 0x13
+ 999 007a 02       		.uleb128 0x2
+ 1000 007b 17       		.uleb128 0x17
+ 1001 007c 00       		.byte	0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 22
 
 
- 1008 00b4 00       		.byte	0
- 1009 00b5 0D       		.uleb128 0xd
- 1010 00b6 898201   		.uleb128 0x4109
- 1011 00b9 00       		.byte	0
- 1012 00ba 11       		.uleb128 0x11
- 1013 00bb 01       		.uleb128 0x1
- 1014 00bc 31       		.uleb128 0x31
- 1015 00bd 13       		.uleb128 0x13
- 1016 00be 00       		.byte	0
- 1017 00bf 00       		.byte	0
- 1018 00c0 0E       		.uleb128 0xe
- 1019 00c1 898201   		.uleb128 0x4109
- 1020 00c4 01       		.byte	0x1
- 1021 00c5 11       		.uleb128 0x11
- 1022 00c6 01       		.uleb128 0x1
- 1023 00c7 31       		.uleb128 0x31
- 1024 00c8 13       		.uleb128 0x13
- 1025 00c9 00       		.byte	0
- 1026 00ca 00       		.byte	0
- 1027 00cb 0F       		.uleb128 0xf
- 1028 00cc 34       		.uleb128 0x34
- 1029 00cd 00       		.byte	0
- 1030 00ce 03       		.uleb128 0x3
- 1031 00cf 0E       		.uleb128 0xe
- 1032 00d0 3A       		.uleb128 0x3a
- 1033 00d1 0B       		.uleb128 0xb
- 1034 00d2 3B       		.uleb128 0x3b
- 1035 00d3 05       		.uleb128 0x5
- 1036 00d4 49       		.uleb128 0x49
- 1037 00d5 13       		.uleb128 0x13
- 1038 00d6 3F       		.uleb128 0x3f
- 1039 00d7 19       		.uleb128 0x19
- 1040 00d8 3C       		.uleb128 0x3c
- 1041 00d9 19       		.uleb128 0x19
- 1042 00da 00       		.byte	0
- 1043 00db 00       		.byte	0
- 1044 00dc 10       		.uleb128 0x10
- 1045 00dd 35       		.uleb128 0x35
- 1046 00de 00       		.byte	0
- 1047 00df 49       		.uleb128 0x49
- 1048 00e0 13       		.uleb128 0x13
- 1049 00e1 00       		.byte	0
- 1050 00e2 00       		.byte	0
- 1051 00e3 11       		.uleb128 0x11
- 1052 00e4 2E       		.uleb128 0x2e
- 1053 00e5 00       		.byte	0
- 1054 00e6 3F       		.uleb128 0x3f
- 1055 00e7 19       		.uleb128 0x19
- 1056 00e8 3C       		.uleb128 0x3c
- 1057 00e9 19       		.uleb128 0x19
- 1058 00ea 6E       		.uleb128 0x6e
- 1059 00eb 0E       		.uleb128 0xe
- 1060 00ec 03       		.uleb128 0x3
- 1061 00ed 0E       		.uleb128 0xe
- 1062 00ee 3A       		.uleb128 0x3a
- 1063 00ef 0B       		.uleb128 0xb
- 1064 00f0 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 22
+ 1002 007d 00       		.byte	0
+ 1003 007e 09       		.uleb128 0x9
+ 1004 007f 898201   		.uleb128 0x4109
+ 1005 0082 00       		.byte	0
+ 1006 0083 11       		.uleb128 0x11
+ 1007 0084 01       		.uleb128 0x1
+ 1008 0085 31       		.uleb128 0x31
+ 1009 0086 13       		.uleb128 0x13
+ 1010 0087 00       		.byte	0
+ 1011 0088 00       		.byte	0
+ 1012 0089 0A       		.uleb128 0xa
+ 1013 008a 898201   		.uleb128 0x4109
+ 1014 008d 01       		.byte	0x1
+ 1015 008e 11       		.uleb128 0x11
+ 1016 008f 01       		.uleb128 0x1
+ 1017 0090 31       		.uleb128 0x31
+ 1018 0091 13       		.uleb128 0x13
+ 1019 0092 01       		.uleb128 0x1
+ 1020 0093 13       		.uleb128 0x13
+ 1021 0094 00       		.byte	0
+ 1022 0095 00       		.byte	0
+ 1023 0096 0B       		.uleb128 0xb
+ 1024 0097 8A8201   		.uleb128 0x410a
+ 1025 009a 00       		.byte	0
+ 1026 009b 02       		.uleb128 0x2
+ 1027 009c 18       		.uleb128 0x18
+ 1028 009d 9142     		.uleb128 0x2111
+ 1029 009f 18       		.uleb128 0x18
+ 1030 00a0 00       		.byte	0
+ 1031 00a1 00       		.byte	0
+ 1032 00a2 0C       		.uleb128 0xc
+ 1033 00a3 34       		.uleb128 0x34
+ 1034 00a4 00       		.byte	0
+ 1035 00a5 03       		.uleb128 0x3
+ 1036 00a6 0E       		.uleb128 0xe
+ 1037 00a7 3A       		.uleb128 0x3a
+ 1038 00a8 0B       		.uleb128 0xb
+ 1039 00a9 3B       		.uleb128 0x3b
+ 1040 00aa 05       		.uleb128 0x5
+ 1041 00ab 49       		.uleb128 0x49
+ 1042 00ac 13       		.uleb128 0x13
+ 1043 00ad 3F       		.uleb128 0x3f
+ 1044 00ae 19       		.uleb128 0x19
+ 1045 00af 3C       		.uleb128 0x3c
+ 1046 00b0 19       		.uleb128 0x19
+ 1047 00b1 00       		.byte	0
+ 1048 00b2 00       		.byte	0
+ 1049 00b3 0D       		.uleb128 0xd
+ 1050 00b4 35       		.uleb128 0x35
+ 1051 00b5 00       		.byte	0
+ 1052 00b6 49       		.uleb128 0x49
+ 1053 00b7 13       		.uleb128 0x13
+ 1054 00b8 00       		.byte	0
+ 1055 00b9 00       		.byte	0
+ 1056 00ba 0E       		.uleb128 0xe
+ 1057 00bb 34       		.uleb128 0x34
+ 1058 00bc 00       		.byte	0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 23
 
 
- 1065 00f1 0B       		.uleb128 0xb
- 1066 00f2 00       		.byte	0
- 1067 00f3 00       		.byte	0
- 1068 00f4 00       		.byte	0
- 1069              		.section	.debug_loc,"",%progbits
- 1070              	.Ldebug_loc0:
- 1071              	.LLST0:
- 1072 0000 80000000 		.4byte	.LVL15
- 1073 0004 92000000 		.4byte	.LVL18
- 1074 0008 0100     		.2byte	0x1
- 1075 000a 50       		.byte	0x50
- 1076 000b 3A010000 		.4byte	.LVL39
- 1077 000f 4C010000 		.4byte	.LVL42
- 1078 0013 0100     		.2byte	0x1
- 1079 0015 50       		.byte	0x50
- 1080 0016 00000000 		.4byte	0
- 1081 001a 00000000 		.4byte	0
- 1082              	.LLST1:
- 1083 001e 32000000 		.4byte	.LVL7
- 1084 0022 36000000 		.4byte	.LVL8
- 1085 0026 0200     		.2byte	0x2
- 1086 0028 30       		.byte	0x30
- 1087 0029 9F       		.byte	0x9f
- 1088 002a 36000000 		.4byte	.LVL8
- 1089 002e A2000000 		.4byte	.LVL21
- 1090 0032 0100     		.2byte	0x1
- 1091 0034 54       		.byte	0x54
- 1092 0035 00000000 		.4byte	0
- 1093 0039 00000000 		.4byte	0
- 1094              	.LLST2:
- 1095 003d E4000000 		.4byte	.LVL31
- 1096 0041 E8000000 		.4byte	.LVL32
- 1097 0045 0200     		.2byte	0x2
- 1098 0047 30       		.byte	0x30
- 1099 0048 9F       		.byte	0x9f
- 1100 0049 E8000000 		.4byte	.LVL32
- 1101 004d 5C010000 		.4byte	.LVL45
- 1102 0051 0100     		.2byte	0x1
- 1103 0053 54       		.byte	0x54
- 1104 0054 00000000 		.4byte	0
- 1105 0058 00000000 		.4byte	0
- 1106              		.section	.debug_aranges,"",%progbits
- 1107 0000 1C000000 		.4byte	0x1c
- 1108 0004 0200     		.2byte	0x2
- 1109 0006 00000000 		.4byte	.Ldebug_info0
- 1110 000a 04       		.byte	0x4
- 1111 000b 00       		.byte	0
- 1112 000c 0000     		.2byte	0
- 1113 000e 0000     		.2byte	0
- 1114 0010 00000000 		.4byte	.LFB64
- 1115 0014 8C010000 		.4byte	.LFE64-.LFB64
- 1116 0018 00000000 		.4byte	0
- 1117 001c 00000000 		.4byte	0
- 1118              		.section	.debug_ranges,"",%progbits
- 1119              	.Ldebug_ranges0:
- 1120 0000 00000000 		.4byte	.LFB64
- 1121 0004 8C010000 		.4byte	.LFE64
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 23
+ 1059 00bd 03       		.uleb128 0x3
+ 1060 00be 0E       		.uleb128 0xe
+ 1061 00bf 3A       		.uleb128 0x3a
+ 1062 00c0 0B       		.uleb128 0xb
+ 1063 00c1 3B       		.uleb128 0x3b
+ 1064 00c2 0B       		.uleb128 0xb
+ 1065 00c3 49       		.uleb128 0x49
+ 1066 00c4 13       		.uleb128 0x13
+ 1067 00c5 3F       		.uleb128 0x3f
+ 1068 00c6 19       		.uleb128 0x19
+ 1069 00c7 02       		.uleb128 0x2
+ 1070 00c8 18       		.uleb128 0x18
+ 1071 00c9 00       		.byte	0
+ 1072 00ca 00       		.byte	0
+ 1073 00cb 0F       		.uleb128 0xf
+ 1074 00cc 26       		.uleb128 0x26
+ 1075 00cd 00       		.byte	0
+ 1076 00ce 49       		.uleb128 0x49
+ 1077 00cf 13       		.uleb128 0x13
+ 1078 00d0 00       		.byte	0
+ 1079 00d1 00       		.byte	0
+ 1080 00d2 10       		.uleb128 0x10
+ 1081 00d3 2E       		.uleb128 0x2e
+ 1082 00d4 00       		.byte	0
+ 1083 00d5 3F       		.uleb128 0x3f
+ 1084 00d6 19       		.uleb128 0x19
+ 1085 00d7 3C       		.uleb128 0x3c
+ 1086 00d8 19       		.uleb128 0x19
+ 1087 00d9 6E       		.uleb128 0x6e
+ 1088 00da 0E       		.uleb128 0xe
+ 1089 00db 03       		.uleb128 0x3
+ 1090 00dc 0E       		.uleb128 0xe
+ 1091 00dd 3A       		.uleb128 0x3a
+ 1092 00de 0B       		.uleb128 0xb
+ 1093 00df 3B       		.uleb128 0x3b
+ 1094 00e0 0B       		.uleb128 0xb
+ 1095 00e1 00       		.byte	0
+ 1096 00e2 00       		.byte	0
+ 1097 00e3 00       		.byte	0
+ 1098              		.section	.debug_loc,"",%progbits
+ 1099              	.Ldebug_loc0:
+ 1100              	.LLST0:
+ 1101 0000 A8000000 		.4byte	.LVL29
+ 1102 0004 BA000000 		.4byte	.LVL32
+ 1103 0008 0100     		.2byte	0x1
+ 1104 000a 50       		.byte	0x50
+ 1105 000b 32010000 		.4byte	.LVL47
+ 1106 000f 44010000 		.4byte	.LVL50
+ 1107 0013 0100     		.2byte	0x1
+ 1108 0015 50       		.byte	0x50
+ 1109 0016 00000000 		.4byte	0
+ 1110 001a 00000000 		.4byte	0
+ 1111              	.LLST1:
+ 1112 001e 06000000 		.4byte	.LVL0
+ 1113 0022 16000000 		.4byte	.LVL3
+ 1114 0026 0200     		.2byte	0x2
+ 1115 0028 30       		.byte	0x30
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 24
 
 
- 1122 0008 00000000 		.4byte	0
- 1123 000c 00000000 		.4byte	0
- 1124              		.section	.debug_line,"",%progbits
- 1125              	.Ldebug_line0:
- 1126 0000 3E020000 		.section	.debug_str,"MS",%progbits,1
- 1126      0200CF01 
- 1126      00000201 
- 1126      FB0E0D00 
- 1126      01010101 
- 1127              	.LASF22:
- 1128 0000 616C7761 		.ascii	"always_enable_leds\000"
- 1128      79735F65 
- 1128      6E61626C 
- 1128      655F6C65 
- 1128      647300
- 1129              	.LASF26:
- 1130 0013 70756C73 		.ascii	"pulse_out_Read\000"
- 1130      655F6F75 
- 1130      745F5265 
- 1130      616400
- 1131              	.LASF9:
- 1132 0022 5F5F696E 		.ascii	"__int32_t\000"
- 1132      7433325F 
- 1132      7400
- 1133              	.LASF31:
- 1134 002c 4F70616D 		.ascii	"Opamp_1_Start\000"
- 1134      705F315F 
- 1134      53746172 
- 1134      7400
- 1135              	.LASF33:
- 1136 003a 6F706572 		.ascii	"operation_input_Read\000"
- 1136      6174696F 
- 1136      6E5F696E 
- 1136      7075745F 
- 1136      52656164 
- 1137              	.LASF21:
- 1138 004f 6D61785F 		.ascii	"max_vdac_power\000"
- 1138      76646163 
- 1138      5F706F77 
- 1138      657200
- 1139              	.LASF25:
- 1140 005e 73656E73 		.ascii	"sensor_left_Read\000"
- 1140      6F725F6C 
- 1140      6566745F 
- 1140      52656164 
- 1140      00
- 1141              	.LASF12:
- 1142 006f 646F7562 		.ascii	"double\000"
- 1142      6C6500
- 1143              	.LASF34:
- 1144 0076 64697265 		.ascii	"direction_out_Write\000"
- 1144      6374696F 
- 1144      6E5F6F75 
- 1144      745F5772 
- 1144      69746500 
- 1145              	.LASF18:
- 1146 008a 6D696E5F 		.ascii	"min_speed_delay\000"
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 24
+ 1116 0029 9F       		.byte	0x9f
+ 1117 002a 16000000 		.4byte	.LVL3
+ 1118 002e 20000000 		.4byte	.LVL8
+ 1119 0032 0100     		.2byte	0x1
+ 1120 0034 55       		.byte	0x55
+ 1121 0035 22000000 		.4byte	.LVL9
+ 1122 0039 2C000000 		.4byte	.LVL14
+ 1123 003d 0100     		.2byte	0x1
+ 1124 003f 55       		.byte	0x55
+ 1125 0040 2E000000 		.4byte	.LVL15
+ 1126 0044 70010000 		.4byte	.LFE64
+ 1127 0048 0100     		.2byte	0x1
+ 1128 004a 55       		.byte	0x55
+ 1129 004b 00000000 		.4byte	0
+ 1130 004f 00000000 		.4byte	0
+ 1131              	.LLST2:
+ 1132 0053 16000000 		.4byte	.LVL3
+ 1133 0057 1A000000 		.4byte	.LVL5
+ 1134 005b 0100     		.2byte	0x1
+ 1135 005d 56       		.byte	0x56
+ 1136 005e 1C000000 		.4byte	.LVL6
+ 1137 0062 26000000 		.4byte	.LVL11
+ 1138 0066 0100     		.2byte	0x1
+ 1139 0068 56       		.byte	0x56
+ 1140 0069 28000000 		.4byte	.LVL12
+ 1141 006d 4C000000 		.4byte	.LVL20
+ 1142 0071 0100     		.2byte	0x1
+ 1143 0073 56       		.byte	0x56
+ 1144 0074 4E000000 		.4byte	.LVL21
+ 1145 0078 70010000 		.4byte	.LFE64
+ 1146 007c 0100     		.2byte	0x1
+ 1147 007e 56       		.byte	0x56
+ 1148 007f 00000000 		.4byte	0
+ 1149 0083 00000000 		.4byte	0
+ 1150              	.LLST3:
+ 1151 0087 06000000 		.4byte	.LVL0
+ 1152 008b 16000000 		.4byte	.LVL3
+ 1153 008f 0200     		.2byte	0x2
+ 1154 0091 30       		.byte	0x30
+ 1155 0092 9F       		.byte	0x9f
+ 1156 0093 16000000 		.4byte	.LVL3
+ 1157 0097 1C000000 		.4byte	.LVL6
+ 1158 009b 0100     		.2byte	0x1
+ 1159 009d 50       		.byte	0x50
+ 1160 009e 36000000 		.4byte	.LVL18
+ 1161 00a2 50000000 		.4byte	.LVL22
+ 1162 00a6 0100     		.2byte	0x1
+ 1163 00a8 50       		.byte	0x50
+ 1164 00a9 D4000000 		.4byte	.LVL37
+ 1165 00ad D7000000 		.4byte	.LVL38-1
+ 1166 00b1 0100     		.2byte	0x1
+ 1167 00b3 50       		.byte	0x50
+ 1168 00b4 DE000000 		.4byte	.LVL39
+ 1169 00b8 E0000000 		.4byte	.LVL40
+ 1170 00bc 0100     		.2byte	0x1
+ 1171 00be 50       		.byte	0x50
+ 1172 00bf 60010000 		.4byte	.LVL55
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 25
 
 
- 1146      73706565 
- 1146      645F6465 
- 1146      6C617900 
- 1147              	.LASF11:
- 1148 009a 666C6F61 		.ascii	"float\000"
- 1148      7400
- 1149              	.LASF2:
- 1150 00a0 7369676E 		.ascii	"signed char\000"
- 1150      65642063 
- 1150      68617200 
- 1151              	.LASF3:
- 1152 00ac 756E7369 		.ascii	"unsigned char\000"
- 1152      676E6564 
- 1152      20636861 
- 1152      7200
- 1153              	.LASF35:
- 1154 00ba 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1154      43313120 
- 1154      352E342E 
- 1154      31203230 
- 1154      31363036 
- 1155 00ed 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1155      20726576 
- 1155      6973696F 
- 1155      6E203233 
- 1155      37373135 
- 1156 0120 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1156      66756E63 
- 1156      74696F6E 
- 1156      2D736563 
- 1156      74696F6E 
- 1157              	.LASF32:
- 1158 0148 4F70616D 		.ascii	"Opamp_1_Init\000"
- 1158      705F315F 
- 1158      496E6974 
- 1158      00
- 1159              	.LASF5:
- 1160 0155 73686F72 		.ascii	"short unsigned int\000"
- 1160      7420756E 
- 1160      7369676E 
- 1160      65642069 
- 1160      6E7400
- 1161              	.LASF37:
- 1162 0168 433A5C55 		.ascii	"C:\\Users\\eylonk\\university_project\\university_p"
- 1162      73657273 
- 1162      5C65796C 
- 1162      6F6E6B5C 
- 1162      756E6976 
- 1163 0197 726F6A65 		.ascii	"roject\\main\\Workspace01\\eylons_project.cydsn\000"
- 1163      63745C6D 
- 1163      61696E5C 
- 1163      576F726B 
- 1163      73706163 
- 1164              	.LASF39:
- 1165 01c4 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1165      52784275 
- 1165      66666572 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 25
+ 1173 00c3 63010000 		.4byte	.LVL56-1
+ 1174 00c7 0100     		.2byte	0x1
+ 1175 00c9 50       		.byte	0x50
+ 1176 00ca 00000000 		.4byte	0
+ 1177 00ce 00000000 		.4byte	0
+ 1178              	.LLST4:
+ 1179 00d2 06000000 		.4byte	.LVL0
+ 1180 00d6 16000000 		.4byte	.LVL3
+ 1181 00da 0200     		.2byte	0x2
+ 1182 00dc 30       		.byte	0x30
+ 1183 00dd 9F       		.byte	0x9f
+ 1184 00de 16000000 		.4byte	.LVL3
+ 1185 00e2 18000000 		.4byte	.LVL4
+ 1186 00e6 0100     		.2byte	0x1
+ 1187 00e8 54       		.byte	0x54
+ 1188 00e9 1C000000 		.4byte	.LVL6
+ 1189 00ed 1E000000 		.4byte	.LVL7
+ 1190 00f1 0100     		.2byte	0x1
+ 1191 00f3 54       		.byte	0x54
+ 1192 00f4 22000000 		.4byte	.LVL9
+ 1193 00f8 24000000 		.4byte	.LVL10
+ 1194 00fc 0100     		.2byte	0x1
+ 1195 00fe 54       		.byte	0x54
+ 1196 00ff 28000000 		.4byte	.LVL12
+ 1197 0103 2A000000 		.4byte	.LVL13
+ 1198 0107 0100     		.2byte	0x1
+ 1199 0109 54       		.byte	0x54
+ 1200 010a 2E000000 		.4byte	.LVL15
+ 1201 010e 30000000 		.4byte	.LVL16
+ 1202 0112 0100     		.2byte	0x1
+ 1203 0114 54       		.byte	0x54
+ 1204 0115 32000000 		.4byte	.LVL17
+ 1205 0119 4A000000 		.4byte	.LVL19
+ 1206 011d 0100     		.2byte	0x1
+ 1207 011f 54       		.byte	0x54
+ 1208 0120 4E000000 		.4byte	.LVL21
+ 1209 0124 70010000 		.4byte	.LFE64
+ 1210 0128 0100     		.2byte	0x1
+ 1211 012a 54       		.byte	0x54
+ 1212 012b 00000000 		.4byte	0
+ 1213 012f 00000000 		.4byte	0
+ 1214              		.section	.debug_aranges,"",%progbits
+ 1215 0000 1C000000 		.4byte	0x1c
+ 1216 0004 0200     		.2byte	0x2
+ 1217 0006 00000000 		.4byte	.Ldebug_info0
+ 1218 000a 04       		.byte	0x4
+ 1219 000b 00       		.byte	0
+ 1220 000c 0000     		.2byte	0
+ 1221 000e 0000     		.2byte	0
+ 1222 0010 00000000 		.4byte	.LFB64
+ 1223 0014 70010000 		.4byte	.LFE64-.LFB64
+ 1224 0018 00000000 		.4byte	0
+ 1225 001c 00000000 		.4byte	0
+ 1226              		.section	.debug_ranges,"",%progbits
+ 1227              	.Ldebug_ranges0:
+ 1228 0000 00000000 		.4byte	.LFB64
+ 1229 0004 70010000 		.4byte	.LFE64
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 26
 
 
- 1165      00
- 1166              	.LASF29:
- 1167 01d1 73656E73 		.ascii	"sensor_right_Read\000"
- 1167      6F725F72 
- 1167      69676874 
- 1167      5F526561 
- 1167      6400
- 1168              	.LASF30:
- 1169 01e3 56444143 		.ascii	"VDAC8_1_Start\000"
- 1169      385F315F 
- 1169      53746172 
- 1169      7400
- 1170              	.LASF20:
- 1171 01f1 6269675F 		.ascii	"big_delay\000"
- 1171      64656C61 
- 1171      7900
- 1172              	.LASF7:
- 1173 01fb 6C6F6E67 		.ascii	"long unsigned int\000"
- 1173      20756E73 
- 1173      69676E65 
- 1173      6420696E 
- 1173      7400
- 1174              	.LASF38:
- 1175 020d 6D61696E 		.ascii	"main\000"
- 1175      00
- 1176              	.LASF28:
- 1177 0212 43794465 		.ascii	"CyDelayUs\000"
- 1177      6C617955 
- 1177      7300
- 1178              	.LASF27:
- 1179 021c 70756C73 		.ascii	"pulse_out_Write\000"
- 1179      655F6F75 
- 1179      745F5772 
- 1179      69746500 
- 1180              	.LASF24:
- 1181 022c 6C656473 		.ascii	"leds_enable_Write\000"
- 1181      5F656E61 
- 1181      626C655F 
- 1181      57726974 
- 1181      6500
- 1182              	.LASF1:
- 1183 023e 756E7369 		.ascii	"unsigned int\000"
- 1183      676E6564 
- 1183      20696E74 
- 1183      00
- 1184              	.LASF17:
- 1185 024b 63757272 		.ascii	"current_delay\000"
- 1185      656E745F 
- 1185      64656C61 
- 1185      7900
- 1186              	.LASF0:
- 1187 0259 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1187      206C6F6E 
- 1187      6720756E 
- 1187      7369676E 
- 1187      65642069 
- 1188              	.LASF23:
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccMij3YL.s 			page 26
+ 1230 0008 00000000 		.4byte	0
+ 1231 000c 00000000 		.4byte	0
+ 1232              		.section	.debug_line,"",%progbits
+ 1233              	.Ldebug_line0:
+ 1234 0000 2E020000 		.section	.debug_str,"MS",%progbits,1
+ 1234      0200CF01 
+ 1234      00000201 
+ 1234      FB0E0D00 
+ 1234      01010101 
+ 1235              	.LASF45:
+ 1236 0000 56444143 		.ascii	"VDAC8_1_SetValue\000"
+ 1236      385F315F 
+ 1236      53657456 
+ 1236      616C7565 
+ 1236      00
+ 1237              	.LASF41:
+ 1238 0011 6F706572 		.ascii	"operation_input_Read\000"
+ 1238      6174696F 
+ 1238      6E5F696E 
+ 1238      7075745F 
+ 1238      52656164 
+ 1239              	.LASF43:
+ 1240 0026 70756C73 		.ascii	"pulse_out_Read\000"
+ 1240      655F6F75 
+ 1240      745F5265 
+ 1240      616400
+ 1241              	.LASF23:
+ 1242 0035 746F5F73 		.ascii	"to_sample\000"
+ 1242      616D706C 
+ 1242      6500
+ 1243              	.LASF19:
+ 1244 003f 6D6F7665 		.ascii	"move_from_sample\000"
+ 1244      5F66726F 
+ 1244      6D5F7361 
+ 1244      6D706C65 
+ 1244      00
+ 1245              	.LASF9:
+ 1246 0050 5F5F696E 		.ascii	"__int32_t\000"
+ 1246      7433325F 
+ 1246      7400
+ 1247              	.LASF39:
+ 1248 005a 4F70616D 		.ascii	"Opamp_1_Start\000"
+ 1248      705F315F 
+ 1248      53746172 
+ 1248      7400
+ 1249              	.LASF16:
+ 1250 0068 73746172 		.ascii	"start\000"
+ 1250      7400
+ 1251              	.LASF35:
+ 1252 006e 6D61785F 		.ascii	"max_vdac_power\000"
+ 1252      76646163 
+ 1252      5F706F77 
+ 1252      657200
+ 1253              	.LASF50:
+ 1254 007d 73656E73 		.ascii	"sensor_left_Read\000"
+ 1254      6F725F6C 
+ 1254      6566745F 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 27
 
 
- 1189 0270 56444143 		.ascii	"VDAC8_1_SetValue\000"
- 1189      385F315F 
- 1189      53657456 
- 1189      616C7565 
- 1189      00
- 1190              	.LASF10:
- 1191 0281 696E7433 		.ascii	"int32_t\000"
- 1191      325F7400 
- 1192              	.LASF15:
- 1193 0289 73697A65 		.ascii	"sizetype\000"
- 1193      74797065 
- 1193      00
- 1194              	.LASF8:
- 1195 0292 6C6F6E67 		.ascii	"long long int\000"
- 1195      206C6F6E 
- 1195      6720696E 
- 1195      7400
- 1196              	.LASF36:
- 1197 02a0 6D61696E 		.ascii	"main.c\000"
- 1197      2E6300
- 1198              	.LASF13:
- 1199 02a7 63686172 		.ascii	"char\000"
- 1199      00
- 1200              	.LASF19:
- 1201 02ac 6D61785F 		.ascii	"max_speed_delay\000"
- 1201      73706565 
- 1201      645F6465 
- 1201      6C617900 
- 1202              	.LASF4:
- 1203 02bc 73686F72 		.ascii	"short int\000"
- 1203      7420696E 
- 1203      7400
- 1204              	.LASF6:
- 1205 02c6 6C6F6E67 		.ascii	"long int\000"
- 1205      20696E74 
- 1205      00
- 1206              	.LASF14:
- 1207 02cf 6C6F6E67 		.ascii	"long double\000"
- 1207      20646F75 
- 1207      626C6500 
- 1208              	.LASF16:
- 1209 02db 746F7461 		.ascii	"total_steps\000"
- 1209      6C5F7374 
- 1209      65707300 
- 1210              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1254      52656164 
+ 1254      00
+ 1255              	.LASF37:
+ 1256 008e 616C7761 		.ascii	"always_enable_leds\000"
+ 1256      79735F65 
+ 1256      6E61626C 
+ 1256      655F6C65 
+ 1256      647300
+ 1257              	.LASF21:
+ 1258 00a1 73746174 		.ascii	"state_e\000"
+ 1258      655F6500 
+ 1259              	.LASF12:
+ 1260 00a9 646F7562 		.ascii	"double\000"
+ 1260      6C6500
+ 1261              	.LASF28:
+ 1262 00b0 64697265 		.ascii	"direction\000"
+ 1262      6374696F 
+ 1262      6E00
+ 1263              	.LASF20:
+ 1264 00ba 73746179 		.ascii	"stay_off_sample\000"
+ 1264      5F6F6666 
+ 1264      5F73616D 
+ 1264      706C6500 
+ 1265              	.LASF42:
+ 1266 00ca 64697265 		.ascii	"direction_out_Write\000"
+ 1266      6374696F 
+ 1266      6E5F6F75 
+ 1266      745F5772 
+ 1266      69746500 
+ 1267              	.LASF33:
+ 1268 00de 6D696E5F 		.ascii	"min_speed_delay\000"
+ 1268      73706565 
+ 1268      645F6465 
+ 1268      6C617900 
+ 1269              	.LASF24:
+ 1270 00ee 66726F6D 		.ascii	"from_sample\000"
+ 1270      5F73616D 
+ 1270      706C6500 
+ 1271              	.LASF11:
+ 1272 00fa 666C6F61 		.ascii	"float\000"
+ 1272      7400
+ 1273              	.LASF2:
+ 1274 0100 7369676E 		.ascii	"signed char\000"
+ 1274      65642063 
+ 1274      68617200 
+ 1275              	.LASF48:
+ 1276 010c 73656E73 		.ascii	"sensor_right_Read\000"
+ 1276      6F725F72 
+ 1276      69676874 
+ 1276      5F526561 
+ 1276      6400
+ 1277              	.LASF3:
+ 1278 011e 756E7369 		.ascii	"unsigned char\000"
+ 1278      676E6564 
+ 1278      20636861 
+ 1278      7200
+ 1279              	.LASF51:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 28
+
+
+ 1280 012c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1280      43313120 
+ 1280      352E342E 
+ 1280      31203230 
+ 1280      31363036 
+ 1281 015f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1281      20726576 
+ 1281      6973696F 
+ 1281      6E203233 
+ 1281      37373135 
+ 1282 0192 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1282      66756E63 
+ 1282      74696F6E 
+ 1282      2D736563 
+ 1282      74696F6E 
+ 1283              	.LASF36:
+ 1284 01ba 6D696E5F 		.ascii	"min_vdac_power\000"
+ 1284      76646163 
+ 1284      5F706F77 
+ 1284      657200
+ 1285              	.LASF40:
+ 1286 01c9 4F70616D 		.ascii	"Opamp_1_Init\000"
+ 1286      705F315F 
+ 1286      496E6974 
+ 1286      00
+ 1287              	.LASF5:
+ 1288 01d6 73686F72 		.ascii	"short unsigned int\000"
+ 1288      7420756E 
+ 1288      7369676E 
+ 1288      65642069 
+ 1288      6E7400
+ 1289              	.LASF49:
+ 1290 01e9 64697265 		.ascii	"direction_out_Read\000"
+ 1290      6374696F 
+ 1290      6E5F6F75 
+ 1290      745F5265 
+ 1290      616400
+ 1291              	.LASF53:
+ 1292 01fc 433A5C55 		.ascii	"C:\\Users\\eylonk\\university_project\\university_p"
+ 1292      73657273 
+ 1292      5C65796C 
+ 1292      6F6E6B5C 
+ 1292      756E6976 
+ 1293 022b 726F6A65 		.ascii	"roject\\main\\Workspace01\\eylons_project.cydsn\000"
+ 1293      63745C6D 
+ 1293      61696E5C 
+ 1293      576F726B 
+ 1293      73706163 
+ 1294              	.LASF30:
+ 1295 0258 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1295      52784275 
+ 1295      66666572 
+ 1295      00
+ 1296              	.LASF29:
+ 1297 0265 73746174 		.ascii	"state\000"
+ 1297      6500
+ 1298              	.LASF38:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 29
+
+
+ 1299 026b 56444143 		.ascii	"VDAC8_1_Start\000"
+ 1299      385F315F 
+ 1299      53746172 
+ 1299      7400
+ 1300              	.LASF7:
+ 1301 0279 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1301      20756E73 
+ 1301      69676E65 
+ 1301      6420696E 
+ 1301      7400
+ 1302              	.LASF54:
+ 1303 028b 6D61696E 		.ascii	"main\000"
+ 1303      00
+ 1304              	.LASF32:
+ 1305 0290 73746172 		.ascii	"start_delay\000"
+ 1305      745F6465 
+ 1305      6C617900 
+ 1306              	.LASF22:
+ 1307 029c 64697265 		.ascii	"direction_e\000"
+ 1307      6374696F 
+ 1307      6E5F6500 
+ 1308              	.LASF47:
+ 1309 02a8 43794465 		.ascii	"CyDelayUs\000"
+ 1309      6C617955 
+ 1309      7300
+ 1310              	.LASF44:
+ 1311 02b2 70756C73 		.ascii	"pulse_out_Write\000"
+ 1311      655F6F75 
+ 1311      745F5772 
+ 1311      69746500 
+ 1312              	.LASF26:
+ 1313 02c2 63757272 		.ascii	"current_step\000"
+ 1313      656E745F 
+ 1313      73746570 
+ 1313      00
+ 1314              	.LASF46:
+ 1315 02cf 6C656473 		.ascii	"leds_enable_Write\000"
+ 1315      5F656E61 
+ 1315      626C655F 
+ 1315      57726974 
+ 1315      6500
+ 1316              	.LASF1:
+ 1317 02e1 756E7369 		.ascii	"unsigned int\000"
+ 1317      676E6564 
+ 1317      20696E74 
+ 1317      00
+ 1318              	.LASF25:
+ 1319 02ee 63757272 		.ascii	"current_delay\000"
+ 1319      656E745F 
+ 1319      64656C61 
+ 1319      7900
+ 1320              	.LASF0:
+ 1321 02fc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1321      206C6F6E 
+ 1321      6720756E 
+ 1321      7369676E 
+ 1321      65642069 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKUvuCK.s 			page 30
+
+
+ 1322              	.LASF18:
+ 1323 0313 73746179 		.ascii	"stay_on_sample\000"
+ 1323      5F6F6E5F 
+ 1323      73616D70 
+ 1323      6C6500
+ 1324              	.LASF27:
+ 1325 0322 66697273 		.ascii	"first_moving_state\000"
+ 1325      745F6D6F 
+ 1325      76696E67 
+ 1325      5F737461 
+ 1325      746500
+ 1326              	.LASF17:
+ 1327 0335 6D6F7665 		.ascii	"move_to_sample\000"
+ 1327      5F746F5F 
+ 1327      73616D70 
+ 1327      6C6500
+ 1328              	.LASF10:
+ 1329 0344 696E7433 		.ascii	"int32_t\000"
+ 1329      325F7400 
+ 1330              	.LASF15:
+ 1331 034c 73697A65 		.ascii	"sizetype\000"
+ 1331      74797065 
+ 1331      00
+ 1332              	.LASF8:
+ 1333 0355 6C6F6E67 		.ascii	"long long int\000"
+ 1333      206C6F6E 
+ 1333      6720696E 
+ 1333      7400
+ 1334              	.LASF52:
+ 1335 0363 6D61696E 		.ascii	"main.c\000"
+ 1335      2E6300
+ 1336              	.LASF13:
+ 1337 036a 63686172 		.ascii	"char\000"
+ 1337      00
+ 1338              	.LASF34:
+ 1339 036f 6D61785F 		.ascii	"max_speed_delay\000"
+ 1339      73706565 
+ 1339      645F6465 
+ 1339      6C617900 
+ 1340              	.LASF4:
+ 1341 037f 73686F72 		.ascii	"short int\000"
+ 1341      7420696E 
+ 1341      7400
+ 1342              	.LASF6:
+ 1343 0389 6C6F6E67 		.ascii	"long int\000"
+ 1343      20696E74 
+ 1343      00
+ 1344              	.LASF14:
+ 1345 0392 6C6F6E67 		.ascii	"long double\000"
+ 1345      20646F75 
+ 1345      626C6500 
+ 1346              	.LASF31:
+ 1347 039e 746F7461 		.ascii	"total_steps\000"
+ 1347      6C5F7374 
+ 1347      65707300 
+ 1348              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
