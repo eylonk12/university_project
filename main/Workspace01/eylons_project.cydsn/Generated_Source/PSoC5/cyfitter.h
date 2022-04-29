@@ -19,6 +19,76 @@
 #include "cydevice.h"
 #include "cydevice_trm.h"
 
+/* PWM_1 */
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_A0_REG CYREG_B1_UDB04_05_A0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_A1_REG CYREG_B1_UDB04_05_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_D0_REG CYREG_B1_UDB04_05_D0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_D1_REG CYREG_B1_UDB04_05_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_DP_AUX_CTL_REG CYREG_B1_UDB04_05_ACTL
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_F0_REG CYREG_B1_UDB04_05_F0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__16BIT_F1_REG CYREG_B1_UDB04_05_F1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__A0_A1_REG CYREG_B1_UDB04_A0_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__A0_REG CYREG_B1_UDB04_A0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__A1_REG CYREG_B1_UDB04_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__D0_D1_REG CYREG_B1_UDB04_D0_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__D0_REG CYREG_B1_UDB04_D0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__D1_REG CYREG_B1_UDB04_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__DP_AUX_CTL_REG CYREG_B1_UDB04_ACTL
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__F0_F1_REG CYREG_B1_UDB04_F0_F1
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__F0_REG CYREG_B1_UDB04_F0
+#define PWM_1_PWMUDB_sP16_pwmdp_u0__F1_REG CYREG_B1_UDB04_F1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_A0_REG CYREG_B1_UDB05_06_A0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_A1_REG CYREG_B1_UDB05_06_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_D0_REG CYREG_B1_UDB05_06_D0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_D1_REG CYREG_B1_UDB05_06_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_DP_AUX_CTL_REG CYREG_B1_UDB05_06_ACTL
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_F0_REG CYREG_B1_UDB05_06_F0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__16BIT_F1_REG CYREG_B1_UDB05_06_F1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__A0_A1_REG CYREG_B1_UDB05_A0_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__A0_REG CYREG_B1_UDB05_A0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__A1_REG CYREG_B1_UDB05_A1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__D0_D1_REG CYREG_B1_UDB05_D0_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__D0_REG CYREG_B1_UDB05_D0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__D1_REG CYREG_B1_UDB05_D1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__DP_AUX_CTL_REG CYREG_B1_UDB05_ACTL
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__F0_F1_REG CYREG_B1_UDB05_F0_F1
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__F0_REG CYREG_B1_UDB05_F0
+#define PWM_1_PWMUDB_sP16_pwmdp_u1__F1_REG CYREG_B1_UDB05_F1
+
+/* mp_led */
+#define mp_led__0__INTTYPE CYREG_PICU2_INTTYPE1
+#define mp_led__0__MASK 0x02u
+#define mp_led__0__PC CYREG_PRT2_PC1
+#define mp_led__0__PORT 2u
+#define mp_led__0__SHIFT 1u
+#define mp_led__AG CYREG_PRT2_AG
+#define mp_led__AMUX CYREG_PRT2_AMUX
+#define mp_led__BIE CYREG_PRT2_BIE
+#define mp_led__BIT_MASK CYREG_PRT2_BIT_MASK
+#define mp_led__BYP CYREG_PRT2_BYP
+#define mp_led__CTL CYREG_PRT2_CTL
+#define mp_led__DM0 CYREG_PRT2_DM0
+#define mp_led__DM1 CYREG_PRT2_DM1
+#define mp_led__DM2 CYREG_PRT2_DM2
+#define mp_led__DR CYREG_PRT2_DR
+#define mp_led__INP_DIS CYREG_PRT2_INP_DIS
+#define mp_led__INTTYPE_BASE CYDEV_PICU_INTTYPE_PICU2_BASE
+#define mp_led__LCD_COM_SEG CYREG_PRT2_LCD_COM_SEG
+#define mp_led__LCD_EN CYREG_PRT2_LCD_EN
+#define mp_led__MASK 0x02u
+#define mp_led__PORT 2u
+#define mp_led__PRT CYREG_PRT2_PRT
+#define mp_led__PRTDSI__CAPS_SEL CYREG_PRT2_CAPS_SEL
+#define mp_led__PRTDSI__DBL_SYNC_IN CYREG_PRT2_DBL_SYNC_IN
+#define mp_led__PRTDSI__OE_SEL0 CYREG_PRT2_OE_SEL0
+#define mp_led__PRTDSI__OE_SEL1 CYREG_PRT2_OE_SEL1
+#define mp_led__PRTDSI__OUT_SEL0 CYREG_PRT2_OUT_SEL0
+#define mp_led__PRTDSI__OUT_SEL1 CYREG_PRT2_OUT_SEL1
+#define mp_led__PRTDSI__SYNC_OUT CYREG_PRT2_SYNC_OUT
+#define mp_led__PS CYREG_PRT2_PS
+#define mp_led__SHIFT 1u
+#define mp_led__SLW CYREG_PRT2_SLW
+
 /* Clock_1 */
 #define Clock_1__CFG0 CYREG_CLKDIST_DCFG0_CFG0
 #define Clock_1__CFG1 CYREG_CLKDIST_DCFG0_CFG1
@@ -29,6 +99,17 @@
 #define Clock_1__PM_ACT_MSK 0x01u
 #define Clock_1__PM_STBY_CFG CYREG_PM_STBY_CFG2
 #define Clock_1__PM_STBY_MSK 0x01u
+
+/* Clock_2 */
+#define Clock_2__CFG0 CYREG_CLKDIST_DCFG1_CFG0
+#define Clock_2__CFG1 CYREG_CLKDIST_DCFG1_CFG1
+#define Clock_2__CFG2 CYREG_CLKDIST_DCFG1_CFG2
+#define Clock_2__CFG2_SRC_SEL_MASK 0x07u
+#define Clock_2__INDEX 0x01u
+#define Clock_2__PM_ACT_CFG CYREG_PM_ACT_CFG2
+#define Clock_2__PM_ACT_MSK 0x02u
+#define Clock_2__PM_STBY_CFG CYREG_PM_STBY_CFG2
+#define Clock_2__PM_STBY_MSK 0x02u
 
 /* Opamp_1 */
 #define Opamp_1_ABuf__CR CYREG_OPAMP3_CR

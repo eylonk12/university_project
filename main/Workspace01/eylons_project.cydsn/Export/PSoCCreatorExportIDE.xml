@@ -93,6 +93,8 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Clock_2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\pulse_out_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\pulse_out.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\pulse_out.h</File>
@@ -120,6 +122,12 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\leds_control_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\leds_control.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\leds_control.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\mp_led_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\mp_led.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\mp_led.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\Export\ARM_GCC_Generic">

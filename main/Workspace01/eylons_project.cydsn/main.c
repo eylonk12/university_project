@@ -28,6 +28,14 @@ const int min_vdac_power = 0;
 
 const int always_enable_leds = 1; 
 
+int  current_delay;
+int  current_step = 0;
+// Indicates if the current state is the first time the magnet moves, 
+// if so, we can't predict the starting location and therefore moving at 
+// minimal speed.
+int  first_moving_state; 
+enum direction_e direction = from_sample;
+enum state_e     state     = start;
 
 int main(void)
 {
@@ -35,17 +43,9 @@ int main(void)
     // As the magnet is closer to the sample more leds will turn up. 
     VDAC8_1_Start();
     
-    int  current_delay;
-    int  current_step = 0;
-    // Indicates if the current state is the first time the magnet moves, 
-    // if so, we can't predict the starting location and therefore moving at 
-    // minimal speed.
-    int  first_moving_state; 
-    enum direction_e direction = from_sample;
-    enum state_e     state     = start;
-    
     CyGlobalIntEnable; /* Enable global interrupts. */
-
+    
+    PWM_1_Start();
     Opamp_1_Start();
     Opamp_1_Init();
     
@@ -86,20 +86,20 @@ int main(void)
                         if (current_delay < max_speed_delay){
                             current_delay = max_speed_delay;
                         }
-                        CyDelayUs(current_delay);
                     } else{ // Passed the total steps, we assume that if we reach here we are close to the sample.
-                        CyDelayUs(min_speed_delay);
+                        current_delay = min_speed_delay;
                     }
                     current_step++;
-                    if (sensor_right_Read() == 0){
+                }
+                CyDelayUs(current_delay);
+                if (sensor_right_Read() == 0){
                         current_step = 0;
                         state = stay_on_sample;
                     }
-                }
               break;
             
             case stay_on_sample:
-                if (direction_out_Read() == from_sample){
+                if (direction == from_sample){
                     first_moving_state = 0;
                     state = move_from_sample;
                 }
@@ -126,22 +126,22 @@ int main(void)
                         if (current_delay < max_speed_delay){
                             current_delay = max_speed_delay;
                         }
-                        CyDelayUs(current_delay);
                     } else{ // Passed the total steps, we assume that if we reach here we are close to the sample.
-                        CyDelayUs(min_speed_delay);
+                        current_delay = min_speed_delay;
                     }
                     current_step++;
-                    if (sensor_left_Read() == 0){
+                }
+                CyDelayUs(current_delay);
+                if (sensor_left_Read() == 0){
                         current_step = 0;
                         state = stay_off_sample;
                     }
-                }
               break;
             
             case stay_off_sample:
-              if (direction_out_Read() == to_sample){
+              if (direction == to_sample){
                     first_moving_state = 0;
-                    state = move_from_sample;
+                    state = move_to_sample;
                 }
               break;
         }

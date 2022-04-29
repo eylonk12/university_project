@@ -269,6 +269,7 @@
       <Data key="cc3bcd7e-5dc0-48ea-9bf6-6aa082be1ada" value="leds_control" />
       <Data key="d49d9d27-eb67-496e-bdf9-b6fce5644f4b" value="sensor_left" />
       <Data key="dc399437-5fff-4cf3-8aac-163197a70a16" value="gnd" />
+      <Data key="e1a3acf1-2c1d-4ca1-bf8d-e85f7680ed18" value="mp_led" />
       <Data key="e89ee002-b6b1-411c-8d65-9fc0dddd15bc" value="in24" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="pulse_out" />
       <Data key="f58ecc6f-a293-4646-92ba-ffa940d90992" value="SW" />
@@ -3441,6 +3442,11 @@
     <Group key="dc399437-5fff-4cf3-8aac-163197a70a16">
       <Group key="0">
         <Data key="Port Format" value="2,0" />
+      </Group>
+    </Group>
+    <Group key="e1a3acf1-2c1d-4ca1-bf8d-e85f7680ed18">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
       </Group>
     </Group>
     <Group key="e89ee002-b6b1-411c-8d65-9fc0dddd15bc">

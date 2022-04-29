@@ -47,6 +47,14 @@
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\leds_control_aliases.h" value="HEADER;;;;;leds_control" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\leds_control.c" value="SOURCE_C;CortexM3;;;;leds_control" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\leds_control.h" value="HEADER;;;;;leds_control" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\mp_led_aliases.h" value="HEADER;;;;;mp_led" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\mp_led.c" value="SOURCE_C;CortexM3;;;;mp_led" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\mp_led.h" value="HEADER;;;;;mp_led" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\PWM_1.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\PWM_1.h" value="HEADER;;;;;PWM_1" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\PWM_1_PM.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Clock_2.c" value="SOURCE_C;CortexM3;;;;Clock_2" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Clock_2.h" value="HEADER;;;;;Clock_2" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Cm3RealView.scat" value="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;;cy_boot" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Cm3Start.c" value="SOURCE_C;CortexM3;;;;cy_boot" />
