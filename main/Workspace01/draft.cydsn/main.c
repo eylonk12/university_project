@@ -1,6 +1,6 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
+ * Copyright Ben Gurion University Israel, 2022
  * All Rights Reserved
  * UNPUBLISHED, LICENSED SOFTWARE.
  *
@@ -9,6 +9,8 @@
  *
  * ========================================
 */
+
+
 #include "project.h"
 #include <stdio.h>
 #include <stdlib.h>

@@ -62,7 +62,7 @@ int main(void)
                 } else{
                     state = move_to_sample;
                 }
-                first_moving_state = 1;
+                first_moving_state = 1;  // first move =1  ;  not first move =0
                 break;
 
             case move_to_sample:
@@ -70,7 +70,7 @@ int main(void)
                 pulse_out_Write(~ pulse_out_Read());
                 if (first_moving_state == 1){
                     current_delay = start_delay;
-                } else{ // The magnet is on the left sensor and needs to move to the right one.
+                } else{ // The magnet is on the "from_sample" sensor and needs to move to the "sample".
                     if (current_step < total_steps){
                         VDAC8_1_SetValue(max_vdac_power - (int)(current_step*max_vdac_power/total_steps));
                         if (current_step > total_steps - 50){
@@ -90,9 +90,13 @@ int main(void)
                         current_delay = min_speed_delay;
                     }
                     current_step++;
+<<<<<<< HEAD
                 }
                 CyDelayUs(current_delay);
                 if (sensor_right_Read() == 0){
+=======
+                    if (sensor_right_Read() == 0){   // TODO change the name of the pin.
+>>>>>>> efc10c89f270160323448a163c3a4f162bb424a5
                         current_step = 0;
                         state = stay_on_sample;
                     }
