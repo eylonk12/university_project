@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\eylons_project\TopDesign">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\eylons_project</v>
@@ -34,6 +34,23 @@
 <v>Workspace01\eylons_project\Source Files\main.c</v>
 <v>Workspace01\eylons_project\Generated_Source</v>
 <v>Workspace01\eylons_project\Generated_Source\PSoC5</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Pins</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Analog</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Clocks</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Interrupts</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\DMA</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\System</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Directives</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\Flash Security</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.cydwr\EEPROM</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Header Files</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Header Files\cyapicallbacks.h</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Source Files</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Source Files\main.c</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Generated_Source</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Workspace01</v>
@@ -66,19 +83,27 @@
 <v>Workspace01\eylons_project\Generated_Source\PSoC5\Opamp_1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01\eylons_project">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\eylons_project</v>
+<v>Workspace01\eylons_project\TopDesign</v>
 <v>Workspace01\eylons_project\TopDesign\TopDesign.cysch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\eylons_project</v>
 <v>Workspace01\eylons_project\TopDesign</v>
+<v>Workspace01\eylons_project\TopDesign\TopDesign.cysch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign\TopDesign.cysch</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\eylons_project</v>
@@ -112,6 +137,9 @@
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_left.lst</v>
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_right.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_from_sample_mode.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_mode_select.lst</v>
+<v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_to_sample_mode.lst</v>
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
 <v>Workspace01\eylons_project\CortexM3\ARM_GCC_541\Debug\eylons_project.elf</v>
@@ -144,6 +172,81 @@
 <v>Workspace01\eylons_project\eylons_project.gpdsc</v>
 <v>Workspace01\eylons_project\eylons_project.rpt</v>
 <v>Workspace01\eylons_project\eylons_project_timing.html</v>
+<v>Workspace01\eylons_project_old_interrupts_switch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_2.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_3.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_4.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\direction_out.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\leds_control.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\leds_enable.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\mp_led.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\operation_input.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\pulse_out.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_swt_mode_select.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_swt_mode_select_PM.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_left.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\sensor_right.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_from_sample_mode.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_from_sample_mode_isr.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_mode_select.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_timeout_counter.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_timeout_counter_isr.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_timeout_counter_PM.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_to_sample_mode.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\swt_to_sample_mode_isr.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\eylons_project_old_interrupts_switch.elf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\eylons_project_old_interrupts_switch.hex</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Debug\eylons_project_old_interrupts_switch.map</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\Clock_1.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\Clock_2.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\Cm3Start.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\CyDmac.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\cymetadata.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\cyPm.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\CySpc.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\cyutils.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\direction_out.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\main.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\operation_input.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\pulse_out.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_left.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\Listing Files\sensor_right.lst</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\eylons_project_old_interrupts_switch.elf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\eylons_project_old_interrupts_switch.hex</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CortexM3\ARM_GCC_541\Release\eylons_project_old_interrupts_switch.map</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.gpdsc</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.rpt</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch_timing.html</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Workspace01</v>
@@ -155,14 +258,14 @@
 <v>Datasheet</v>
 </TreeKeysV2>
 <TreeStatesV2>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01">
 <ExpandedNodeIds>
 <v>Workspace01</v>
 <v>Workspace01\eylons_project</v>
 <v>Workspace01\eylons_project\PSoC 5LP Architecture TRM</v>
 <v>Workspace01\eylons_project\CY8C58LP Family Datasheet</v>
 <v>Workspace01\eylons_project\System Reference Guides</v>
-<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_0</v>
+<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_10</v>
 <v>Workspace01\eylons_project\cy_clock_v2_20</v>
 <v>Workspace01\eylons_project\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Workspace01\eylons_project\cy_constant_v1_0</v>
@@ -172,6 +275,24 @@
 <v>Workspace01\eylons_project\OpAmp_v1_90.pdf</v>
 <v>Workspace01\eylons_project\PWM_v3_30.pdf</v>
 <v>Workspace01\eylons_project\VDAC8_v1_90.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CY8C58LP Family Datasheet</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides\cy_boot_v6_10</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Counter_v3_0.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_pins_v2_20</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\OpAmp_v1_90.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\PWM_v3_30</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\VDAC8_v1_90.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Workspace01</v>
@@ -179,7 +300,7 @@
 <v>Workspace01\eylons_project\PSoC 5LP Architecture TRM</v>
 <v>Workspace01\eylons_project\CY8C58LP Family Datasheet</v>
 <v>Workspace01\eylons_project\System Reference Guides</v>
-<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_0</v>
+<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_10</v>
 <v>Workspace01\eylons_project\cy_clock_v2_20</v>
 <v>Workspace01\eylons_project\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>Workspace01\eylons_project\cy_constant_v1_0</v>
@@ -189,6 +310,19 @@
 <v>Workspace01\eylons_project\OpAmp_v1_90.pdf</v>
 <v>Workspace01\eylons_project\PWM_v3_30.pdf</v>
 <v>Workspace01\eylons_project\VDAC8_v1_90.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\PSoC 5LP Architecture TRM</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\CY8C58LP Family Datasheet</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides\cy_boot_v6_10</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\Counter_v3_0.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>Workspace01\eylons_project_old_interrupts_switch\cy_pins_v2_20</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>

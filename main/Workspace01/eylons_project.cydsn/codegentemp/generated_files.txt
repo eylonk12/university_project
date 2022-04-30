@@ -55,6 +55,15 @@
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\PWM_1_PM.c" value="SOURCE_C;CortexM3;;;;PWM_1" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Clock_2.c" value="SOURCE_C;CortexM3;;;;Clock_2" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Clock_2.h" value="HEADER;;;;;Clock_2" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_from_sample_mode_aliases.h" value="HEADER;;;;;swt_from_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_from_sample_mode.c" value="SOURCE_C;CortexM3;;;;swt_from_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_from_sample_mode.h" value="HEADER;;;;;swt_from_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_to_sample_mode_aliases.h" value="HEADER;;;;;swt_to_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_to_sample_mode.c" value="SOURCE_C;CortexM3;;;;swt_to_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_to_sample_mode.h" value="HEADER;;;;;swt_to_sample_mode" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_mode_select_aliases.h" value="HEADER;;;;;swt_mode_select" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_mode_select.c" value="SOURCE_C;CortexM3;;;;swt_mode_select" />
+  <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\swt_mode_select.h" value="HEADER;;;;;swt_mode_select" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Cm3RealView.scat" value="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;;cy_boot" />
   <file name="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\codegentemp\Cm3Start.c" value="SOURCE_C;CortexM3;;;;cy_boot" />

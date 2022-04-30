@@ -1,6 +1,8 @@
-C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\eylons_project.cyprj|9a12978e-e211-49f8-b764-48065198ab0d
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a4eef07c-c0be-493e-ad5c-8e9df2d6f42d
 C:\Users\eylonk\OneDrive - Xsight Labs Ltd\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|3614c0b3-d010-4f0f-86ed-82049fb4a2ab
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|ad1b993b-c4b4-4467-9fa1-02f2f8a72ee7
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f02326dd-0746-4de3-b3e8-cd9125f70d69
 C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|44b6ef0a-4c5e-4e26-a716-d24decd884c0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|a581b86f-6afd-4116-9f8b-addf4ba4d95d
+C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\eylons_project.cyprj|b5e71732-471c-4401-b5b3-0b218bf8887a
+C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project_old_interrupts_switch.cydsn\eylons_project_old_interrupts_switch.cyprj|85ae1759-2ddc-497e-867a-2b91442b0b7d

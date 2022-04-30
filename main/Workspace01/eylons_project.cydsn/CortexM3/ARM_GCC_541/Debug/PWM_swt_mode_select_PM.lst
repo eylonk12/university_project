@@ -1,0 +1,998 @@
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"PWM_swt_mode_select_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.PWM_swt_mode_select_SaveConfig,"ax",%progbits
+  20              		.align	2
+  21              		.global	PWM_swt_mode_select_SaveConfig
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	PWM_swt_mode_select_SaveConfig, %function
+  25              	PWM_swt_mode_select_SaveConfig:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\PWM_swt_mode_select_PM.c"
+   1:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * File Name: PWM_swt_mode_select_PM.c
+   3:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Version 3.30
+   4:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+   5:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Description:
+   6:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  This file provides the power management source code to API for the
+   7:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  PWM.
+   8:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+   9:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Note:
+  10:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  11:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  18:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** #include "PWM_swt_mode_select.h"
+  19:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  20:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** static PWM_swt_mode_select_backupStruct PWM_swt_mode_select_backup;
+  21:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  22:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  23:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** /*******************************************************************************
+  24:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Function Name: PWM_swt_mode_select_SaveConfig
+  25:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** ********************************************************************************
+  26:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  27:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Summary:
+  28:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  Saves the current user configuration of the component.
+  29:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  30:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Parameters:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 2
+
+
+  31:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+  32:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  33:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Return:
+  34:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+  35:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  36:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Global variables:
+  37:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  PWM_swt_mode_select_backup:  Variables of this global structure are modified to
+  38:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  store the values of non retention configuration registers when Sleep() API is
+  39:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  called.
+  40:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  41:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** void PWM_swt_mode_select_SaveConfig(void) 
+  43:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** {
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  44:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  45:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     #if(!PWM_swt_mode_select_UsingFixedFunction)
+  46:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if(!PWM_swt_mode_select_PWMModeIsCenterAligned)
+  47:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.PWMPeriod = PWM_swt_mode_select_ReadPeriod();
+  36              		.loc 1 47 0
+  37 0002 FFF7FEFF 		bl	PWM_swt_mode_select_ReadPeriod
+  38              	.LVL0:
+  39 0006 034C     		ldr	r4, .L3
+  40 0008 A080     		strh	r0, [r4, #4]	@ movhi
+  48:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif /* (!PWM_swt_mode_select_PWMModeIsCenterAligned) */
+  49:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         PWM_swt_mode_select_backup.PWMUdb = PWM_swt_mode_select_ReadCounter();
+  41              		.loc 1 49 0
+  42 000a FFF7FEFF 		bl	PWM_swt_mode_select_ReadCounter
+  43              	.LVL1:
+  44 000e 6080     		strh	r0, [r4, #2]	@ movhi
+  45 0010 10BD     		pop	{r4, pc}
+  46              	.L4:
+  47 0012 00BF     		.align	2
+  48              	.L3:
+  49 0014 00000000 		.word	.LANCHOR0
+  50              		.cfi_endproc
+  51              	.LFE0:
+  52              		.size	PWM_swt_mode_select_SaveConfig, .-PWM_swt_mode_select_SaveConfig
+  53              		.section	.text.PWM_swt_mode_select_RestoreConfig,"ax",%progbits
+  54              		.align	2
+  55              		.global	PWM_swt_mode_select_RestoreConfig
+  56              		.thumb
+  57              		.thumb_func
+  58              		.type	PWM_swt_mode_select_RestoreConfig, %function
+  59              	PWM_swt_mode_select_RestoreConfig:
+  60              	.LFB1:
+  50:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if (PWM_swt_mode_select_UseStatus)
+  51:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.InterruptMaskValue = PWM_swt_mode_select_STATUS_MASK;
+  52:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif /* (PWM_swt_mode_select_UseStatus) */
+  53:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  54:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if(PWM_swt_mode_select_DeadBandMode == PWM_swt_mode_select__B_PWM__DBM_256_CLOCKS || \
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 3
+
+
+  55:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_DeadBandMode == PWM_swt_mode_select__B_PWM__DBM_2_4_CLOCKS)
+  56:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.PWMdeadBandValue = PWM_swt_mode_select_ReadDeadTime();
+  57:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif /*  deadband count is either 2-4 clocks or 256 clocks */
+  58:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  59:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if(PWM_swt_mode_select_KillModeMinTime)
+  60:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****              PWM_swt_mode_select_backup.PWMKillCounterPeriod = PWM_swt_mode_select_ReadKillTime();
+  61:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif /* (PWM_swt_mode_select_KillModeMinTime) */
+  62:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  63:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if(PWM_swt_mode_select_UseControl)
+  64:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.PWMControlRegister = PWM_swt_mode_select_ReadControlRegister
+  65:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif /* (PWM_swt_mode_select_UseControl) */
+  66:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     #endif  /* (!PWM_swt_mode_select_UsingFixedFunction) */
+  67:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** }
+  68:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  69:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  70:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** /*******************************************************************************
+  71:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Function Name: PWM_swt_mode_select_RestoreConfig
+  72:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** ********************************************************************************
+  73:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  74:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Summary:
+  75:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  Restores the current user configuration of the component.
+  76:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  77:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Parameters:
+  78:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+  79:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  80:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Return:
+  81:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+  82:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  83:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Global variables:
+  84:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  PWM_swt_mode_select_backup:  Variables of this global structure are used to
+  85:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  86:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+  87:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *******************************************************************************/
+  88:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** void PWM_swt_mode_select_RestoreConfig(void) 
+  89:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** {
+  61              		.loc 1 89 0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65 0000 10B5     		push	{r4, lr}
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 4, -8
+  68              		.cfi_offset 14, -4
+  90:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #if(!PWM_swt_mode_select_UsingFixedFunction)
+  91:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #if(!PWM_swt_mode_select_PWMModeIsCenterAligned)
+  92:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_WritePeriod(PWM_swt_mode_select_backup.PWMPeriod);
+  69              		.loc 1 92 0
+  70 0002 044C     		ldr	r4, .L7
+  71 0004 A088     		ldrh	r0, [r4, #4]
+  72 0006 FFF7FEFF 		bl	PWM_swt_mode_select_WritePeriod
+  73              	.LVL2:
+  93:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #endif /* (!PWM_swt_mode_select_PWMModeIsCenterAligned) */
+  94:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  95:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_WriteCounter(PWM_swt_mode_select_backup.PWMUdb);
+  74              		.loc 1 95 0
+  75 000a 6088     		ldrh	r0, [r4, #2]
+  76 000c FFF7FEFF 		bl	PWM_swt_mode_select_WriteCounter
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 4
+
+
+  77              	.LVL3:
+  78 0010 10BD     		pop	{r4, pc}
+  79              	.L8:
+  80 0012 00BF     		.align	2
+  81              	.L7:
+  82 0014 00000000 		.word	.LANCHOR0
+  83              		.cfi_endproc
+  84              	.LFE1:
+  85              		.size	PWM_swt_mode_select_RestoreConfig, .-PWM_swt_mode_select_RestoreConfig
+  86              		.section	.text.PWM_swt_mode_select_Sleep,"ax",%progbits
+  87              		.align	2
+  88              		.global	PWM_swt_mode_select_Sleep
+  89              		.thumb
+  90              		.thumb_func
+  91              		.type	PWM_swt_mode_select_Sleep, %function
+  92              	PWM_swt_mode_select_Sleep:
+  93              	.LFB2:
+  96:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+  97:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #if (PWM_swt_mode_select_UseStatus)
+  98:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_STATUS_MASK = PWM_swt_mode_select_backup.InterruptMaskValue;
+  99:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #endif /* (PWM_swt_mode_select_UseStatus) */
+ 100:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 101:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #if(PWM_swt_mode_select_DeadBandMode == PWM_swt_mode_select__B_PWM__DBM_256_CLOCKS || \
+ 102:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_DeadBandMode == PWM_swt_mode_select__B_PWM__DBM_2_4_CLOCKS)
+ 103:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_WriteDeadTime(PWM_swt_mode_select_backup.PWMdeadBandValue);
+ 104:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #endif /* deadband count is either 2-4 clocks or 256 clocks */
+ 105:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 106:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #if(PWM_swt_mode_select_KillModeMinTime)
+ 107:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_WriteKillTime(PWM_swt_mode_select_backup.PWMKillCounterPeriod);
+ 108:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #endif /* (PWM_swt_mode_select_KillModeMinTime) */
+ 109:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 110:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #if(PWM_swt_mode_select_UseControl)
+ 111:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****                 PWM_swt_mode_select_WriteControlRegister(PWM_swt_mode_select_backup.PWMControlRegis
+ 112:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             #endif /* (PWM_swt_mode_select_UseControl) */
+ 113:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         #endif  /* (!PWM_swt_mode_select_UsingFixedFunction) */
+ 114:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     }
+ 115:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 116:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 117:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** /*******************************************************************************
+ 118:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Function Name: PWM_swt_mode_select_Sleep
+ 119:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** ********************************************************************************
+ 120:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 121:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Summary:
+ 122:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  Disables block's operation and saves the user configuration. Should be called
+ 123:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  just prior to entering sleep.
+ 124:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 125:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Parameters:
+ 126:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+ 127:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 128:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Return:
+ 129:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+ 130:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 131:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Global variables:
+ 132:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  PWM_swt_mode_select_backup.PWMEnableState:  Is modified depending on the enable
+ 133:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  state of the block before entering sleep mode.
+ 134:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 135:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 5
+
+
+ 136:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** void PWM_swt_mode_select_Sleep(void) 
+ 137:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** {
+  94              		.loc 1 137 0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98 0000 08B5     		push	{r3, lr}
+  99              		.cfi_def_cfa_offset 8
+ 100              		.cfi_offset 3, -8
+ 101              		.cfi_offset 14, -4
+ 138:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     #if(PWM_swt_mode_select_UseControl)
+ 139:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         if(PWM_swt_mode_select_CTRL_ENABLE == (PWM_swt_mode_select_CONTROL & PWM_swt_mode_select_CT
+ 140:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         {
+ 141:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             /*Component is enabled */
+ 142:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.PWMEnableState = 1u;
+ 143:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         }
+ 144:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         else
+ 145:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         {
+ 146:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             /* Component is disabled */
+ 147:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****             PWM_swt_mode_select_backup.PWMEnableState = 0u;
+ 148:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         }
+ 149:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     #endif /* (PWM_swt_mode_select_UseControl) */
+ 150:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 151:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     /* Stop component */
+ 152:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     PWM_swt_mode_select_Stop();
+ 102              		.loc 1 152 0
+ 103 0002 FFF7FEFF 		bl	PWM_swt_mode_select_Stop
+ 104              	.LVL4:
+ 153:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 154:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     /* Save registers configuration */
+ 155:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     PWM_swt_mode_select_SaveConfig();
+ 105              		.loc 1 155 0
+ 106 0006 FFF7FEFF 		bl	PWM_swt_mode_select_SaveConfig
+ 107              	.LVL5:
+ 108 000a 08BD     		pop	{r3, pc}
+ 109              		.cfi_endproc
+ 110              	.LFE2:
+ 111              		.size	PWM_swt_mode_select_Sleep, .-PWM_swt_mode_select_Sleep
+ 112              		.section	.text.PWM_swt_mode_select_Wakeup,"ax",%progbits
+ 113              		.align	2
+ 114              		.global	PWM_swt_mode_select_Wakeup
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.type	PWM_swt_mode_select_Wakeup, %function
+ 118              	PWM_swt_mode_select_Wakeup:
+ 119              	.LFB3:
+ 156:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** }
+ 157:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 158:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 159:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** /*******************************************************************************
+ 160:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Function Name: PWM_swt_mode_select_Wakeup
+ 161:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** ********************************************************************************
+ 162:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 163:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Summary:
+ 164:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  Restores and enables the user configuration. Should be called just after
+ 165:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  awaking from sleep.
+ 166:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 6
+
+
+ 167:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Parameters:
+ 168:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+ 169:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 170:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Return:
+ 171:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  None
+ 172:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 173:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** * Global variables:
+ 174:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  PWM_swt_mode_select_backup.pwmEnable:  Is used to restore the enable state of
+ 175:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *  block on wakeup from sleep mode.
+ 176:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *
+ 177:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** *******************************************************************************/
+ 178:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** void PWM_swt_mode_select_Wakeup(void) 
+ 179:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** {
+ 120              		.loc 1 179 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124 0000 08B5     		push	{r3, lr}
+ 125              		.cfi_def_cfa_offset 8
+ 126              		.cfi_offset 3, -8
+ 127              		.cfi_offset 14, -4
+ 180:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****      /* Restore registers values */
+ 181:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     PWM_swt_mode_select_RestoreConfig();
+ 128              		.loc 1 181 0
+ 129 0002 FFF7FEFF 		bl	PWM_swt_mode_select_RestoreConfig
+ 130              	.LVL6:
+ 182:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c **** 
+ 183:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     if(PWM_swt_mode_select_backup.PWMEnableState != 0u)
+ 131              		.loc 1 183 0
+ 132 0006 034B     		ldr	r3, .L14
+ 133 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 134 000a 0BB1     		cbz	r3, .L11
+ 184:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****     {
+ 185:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         /* Enable component's operation */
+ 186:Generated_Source\PSoC5/PWM_swt_mode_select_PM.c ****         PWM_swt_mode_select_Enable();
+ 135              		.loc 1 186 0
+ 136 000c FFF7FEFF 		bl	PWM_swt_mode_select_Enable
+ 137              	.LVL7:
+ 138              	.L11:
+ 139 0010 08BD     		pop	{r3, pc}
+ 140              	.L15:
+ 141 0012 00BF     		.align	2
+ 142              	.L14:
+ 143 0014 00000000 		.word	.LANCHOR0
+ 144              		.cfi_endproc
+ 145              	.LFE3:
+ 146              		.size	PWM_swt_mode_select_Wakeup, .-PWM_swt_mode_select_Wakeup
+ 147              		.bss
+ 148              		.align	2
+ 149              		.set	.LANCHOR0,. + 0
+ 150              		.type	PWM_swt_mode_select_backup, %object
+ 151              		.size	PWM_swt_mode_select_backup, 6
+ 152              	PWM_swt_mode_select_backup:
+ 153 0000 00000000 		.space	6
+ 153      0000
+ 154              		.text
+ 155              	.Letext0:
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 7
+
+
+ 156              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 157              		.file 3 "Generated_Source\\PSoC5\\PWM_swt_mode_select.h"
+ 158              		.section	.debug_info,"",%progbits
+ 159              	.Ldebug_info0:
+ 160 0000 CE010000 		.4byte	0x1ce
+ 161 0004 0400     		.2byte	0x4
+ 162 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 163 000a 04       		.byte	0x4
+ 164 000b 01       		.uleb128 0x1
+ 165 000c DD000000 		.4byte	.LASF30
+ 166 0010 0C       		.byte	0xc
+ 167 0011 9F000000 		.4byte	.LASF31
+ 168 0015 B4010000 		.4byte	.LASF32
+ 169 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 170 001d 00000000 		.4byte	0
+ 171 0021 00000000 		.4byte	.Ldebug_line0
+ 172 0025 02       		.uleb128 0x2
+ 173 0026 01       		.byte	0x1
+ 174 0027 06       		.byte	0x6
+ 175 0028 10030000 		.4byte	.LASF0
+ 176 002c 02       		.uleb128 0x2
+ 177 002d 01       		.byte	0x1
+ 178 002e 08       		.byte	0x8
+ 179 002f CF000000 		.4byte	.LASF1
+ 180 0033 02       		.uleb128 0x2
+ 181 0034 02       		.byte	0x2
+ 182 0035 05       		.byte	0x5
+ 183 0036 B8020000 		.4byte	.LASF2
+ 184 003a 02       		.uleb128 0x2
+ 185 003b 02       		.byte	0x2
+ 186 003c 07       		.byte	0x7
+ 187 003d 4C000000 		.4byte	.LASF3
+ 188 0041 02       		.uleb128 0x2
+ 189 0042 04       		.byte	0x4
+ 190 0043 05       		.byte	0x5
+ 191 0044 FB020000 		.4byte	.LASF4
+ 192 0048 02       		.uleb128 0x2
+ 193 0049 04       		.byte	0x4
+ 194 004a 07       		.byte	0x7
+ 195 004b 9C010000 		.4byte	.LASF5
+ 196 004f 02       		.uleb128 0x2
+ 197 0050 08       		.byte	0x8
+ 198 0051 05       		.byte	0x5
+ 199 0052 A5020000 		.4byte	.LASF6
+ 200 0056 02       		.uleb128 0x2
+ 201 0057 08       		.byte	0x8
+ 202 0058 07       		.byte	0x7
+ 203 0059 85020000 		.4byte	.LASF7
+ 204 005d 03       		.uleb128 0x3
+ 205 005e 04       		.byte	0x4
+ 206 005f 05       		.byte	0x5
+ 207 0060 696E7400 		.ascii	"int\000"
+ 208 0064 02       		.uleb128 0x2
+ 209 0065 04       		.byte	0x4
+ 210 0066 07       		.byte	0x7
+ 211 0067 78020000 		.4byte	.LASF8
+ 212 006b 04       		.uleb128 0x4
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 8
+
+
+ 213 006c AE010000 		.4byte	.LASF9
+ 214 0070 02       		.byte	0x2
+ 215 0071 E901     		.2byte	0x1e9
+ 216 0073 2C000000 		.4byte	0x2c
+ 217 0077 04       		.uleb128 0x4
+ 218 0078 57020000 		.4byte	.LASF10
+ 219 007c 02       		.byte	0x2
+ 220 007d EA01     		.2byte	0x1ea
+ 221 007f 3A000000 		.4byte	0x3a
+ 222 0083 02       		.uleb128 0x2
+ 223 0084 04       		.byte	0x4
+ 224 0085 04       		.byte	0x4
+ 225 0086 99000000 		.4byte	.LASF11
+ 226 008a 02       		.uleb128 0x2
+ 227 008b 08       		.byte	0x8
+ 228 008c 04       		.byte	0x4
+ 229 008d 31020000 		.4byte	.LASF12
+ 230 0091 02       		.uleb128 0x2
+ 231 0092 01       		.byte	0x1
+ 232 0093 08       		.byte	0x8
+ 233 0094 B3020000 		.4byte	.LASF13
+ 234 0098 02       		.uleb128 0x2
+ 235 0099 08       		.byte	0x8
+ 236 009a 04       		.byte	0x4
+ 237 009b 04030000 		.4byte	.LASF14
+ 238 009f 02       		.uleb128 0x2
+ 239 00a0 04       		.byte	0x4
+ 240 00a1 07       		.byte	0x7
+ 241 00a2 9C020000 		.4byte	.LASF15
+ 242 00a6 05       		.uleb128 0x5
+ 243 00a7 06       		.byte	0x6
+ 244 00a8 03       		.byte	0x3
+ 245 00a9 6B       		.byte	0x6b
+ 246 00aa D3000000 		.4byte	0xd3
+ 247 00ae 06       		.uleb128 0x6
+ 248 00af 6B010000 		.4byte	.LASF16
+ 249 00b3 03       		.byte	0x3
+ 250 00b4 6E       		.byte	0x6e
+ 251 00b5 6B000000 		.4byte	0x6b
+ 252 00b9 00       		.byte	0
+ 253 00ba 06       		.uleb128 0x6
+ 254 00bb 1B000000 		.4byte	.LASF17
+ 255 00bf 03       		.byte	0x3
+ 256 00c0 71       		.byte	0x71
+ 257 00c1 77000000 		.4byte	0x77
+ 258 00c5 02       		.byte	0x2
+ 259 00c6 06       		.uleb128 0x6
+ 260 00c7 22000000 		.4byte	.LASF18
+ 261 00cb 03       		.byte	0x3
+ 262 00cc 73       		.byte	0x73
+ 263 00cd 77000000 		.4byte	0x77
+ 264 00d1 04       		.byte	0x4
+ 265 00d2 00       		.byte	0
+ 266 00d3 07       		.uleb128 0x7
+ 267 00d4 37030000 		.4byte	.LASF19
+ 268 00d8 03       		.byte	0x3
+ 269 00d9 8B       		.byte	0x8b
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 9
+
+
+ 270 00da A6000000 		.4byte	0xa6
+ 271 00de 08       		.uleb128 0x8
+ 272 00df 5F000000 		.4byte	.LASF20
+ 273 00e3 01       		.byte	0x1
+ 274 00e4 2A       		.byte	0x2a
+ 275 00e5 00000000 		.4byte	.LFB0
+ 276 00e9 18000000 		.4byte	.LFE0-.LFB0
+ 277 00ed 01       		.uleb128 0x1
+ 278 00ee 9C       		.byte	0x9c
+ 279 00ef 06010000 		.4byte	0x106
+ 280 00f3 09       		.uleb128 0x9
+ 281 00f4 06000000 		.4byte	.LVL0
+ 282 00f8 8F010000 		.4byte	0x18f
+ 283 00fc 09       		.uleb128 0x9
+ 284 00fd 0E000000 		.4byte	.LVL1
+ 285 0101 9A010000 		.4byte	0x19a
+ 286 0105 00       		.byte	0
+ 287 0106 08       		.uleb128 0x8
+ 288 0107 7A010000 		.4byte	.LASF21
+ 289 010b 01       		.byte	0x1
+ 290 010c 58       		.byte	0x58
+ 291 010d 00000000 		.4byte	.LFB1
+ 292 0111 18000000 		.4byte	.LFE1-.LFB1
+ 293 0115 01       		.uleb128 0x1
+ 294 0116 9C       		.byte	0x9c
+ 295 0117 2E010000 		.4byte	0x12e
+ 296 011b 09       		.uleb128 0x9
+ 297 011c 0A000000 		.4byte	.LVL2
+ 298 0120 A5010000 		.4byte	0x1a5
+ 299 0124 09       		.uleb128 0x9
+ 300 0125 10000000 		.4byte	.LVL3
+ 301 0129 B0010000 		.4byte	0x1b0
+ 302 012d 00       		.byte	0
+ 303 012e 08       		.uleb128 0x8
+ 304 012f 5E020000 		.4byte	.LASF22
+ 305 0133 01       		.byte	0x1
+ 306 0134 88       		.byte	0x88
+ 307 0135 00000000 		.4byte	.LFB2
+ 308 0139 0C000000 		.4byte	.LFE2-.LFB2
+ 309 013d 01       		.uleb128 0x1
+ 310 013e 9C       		.byte	0x9c
+ 311 013f 56010000 		.4byte	0x156
+ 312 0143 09       		.uleb128 0x9
+ 313 0144 06000000 		.4byte	.LVL4
+ 314 0148 BB010000 		.4byte	0x1bb
+ 315 014c 09       		.uleb128 0x9
+ 316 014d 0A000000 		.4byte	.LVL5
+ 317 0151 DE000000 		.4byte	0xde
+ 318 0155 00       		.byte	0
+ 319 0156 08       		.uleb128 0x8
+ 320 0157 1C030000 		.4byte	.LASF23
+ 321 015b 01       		.byte	0x1
+ 322 015c B2       		.byte	0xb2
+ 323 015d 00000000 		.4byte	.LFB3
+ 324 0161 18000000 		.4byte	.LFE3-.LFB3
+ 325 0165 01       		.uleb128 0x1
+ 326 0166 9C       		.byte	0x9c
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 10
+
+
+ 327 0167 7E010000 		.4byte	0x17e
+ 328 016b 09       		.uleb128 0x9
+ 329 016c 06000000 		.4byte	.LVL6
+ 330 0170 06010000 		.4byte	0x106
+ 331 0174 09       		.uleb128 0x9
+ 332 0175 10000000 		.4byte	.LVL7
+ 333 0179 C6010000 		.4byte	0x1c6
+ 334 017d 00       		.byte	0
+ 335 017e 0A       		.uleb128 0xa
+ 336 017f 7E000000 		.4byte	.LASF33
+ 337 0183 01       		.byte	0x1
+ 338 0184 14       		.byte	0x14
+ 339 0185 D3000000 		.4byte	0xd3
+ 340 0189 05       		.uleb128 0x5
+ 341 018a 03       		.byte	0x3
+ 342 018b 00000000 		.4byte	PWM_swt_mode_select_backup
+ 343 018f 0B       		.uleb128 0xb
+ 344 0190 38020000 		.4byte	.LASF24
+ 345 0194 38020000 		.4byte	.LASF24
+ 346 0198 03       		.byte	0x3
+ 347 0199 C0       		.byte	0xc0
+ 348 019a 0B       		.uleb128 0xb
+ 349 019b C2020000 		.4byte	.LASF25
+ 350 019f C2020000 		.4byte	.LASF25
+ 351 01a3 03       		.byte	0x3
+ 352 01a4 B3       		.byte	0xb3
+ 353 01a5 0B       		.uleb128 0xb
+ 354 01a6 2C000000 		.4byte	.LASF26
+ 355 01aa 2C000000 		.4byte	.LASF26
+ 356 01ae 03       		.byte	0x3
+ 357 01af BE       		.byte	0xbe
+ 358 01b0 0B       		.uleb128 0xb
+ 359 01b1 10020000 		.4byte	.LASF27
+ 360 01b5 10020000 		.4byte	.LASF27
+ 361 01b9 03       		.byte	0x3
+ 362 01ba BA       		.byte	0xba
+ 363 01bb 0B       		.uleb128 0xb
+ 364 01bc E2020000 		.4byte	.LASF28
+ 365 01c0 E2020000 		.4byte	.LASF28
+ 366 01c4 03       		.byte	0x3
+ 367 01c5 93       		.byte	0x93
+ 368 01c6 0B       		.uleb128 0xb
+ 369 01c7 00000000 		.4byte	.LASF29
+ 370 01cb 00000000 		.4byte	.LASF29
+ 371 01cf 03       		.byte	0x3
+ 372 01d0 DB       		.byte	0xdb
+ 373 01d1 00       		.byte	0
+ 374              		.section	.debug_abbrev,"",%progbits
+ 375              	.Ldebug_abbrev0:
+ 376 0000 01       		.uleb128 0x1
+ 377 0001 11       		.uleb128 0x11
+ 378 0002 01       		.byte	0x1
+ 379 0003 25       		.uleb128 0x25
+ 380 0004 0E       		.uleb128 0xe
+ 381 0005 13       		.uleb128 0x13
+ 382 0006 0B       		.uleb128 0xb
+ 383 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 11
+
+
+ 384 0008 0E       		.uleb128 0xe
+ 385 0009 1B       		.uleb128 0x1b
+ 386 000a 0E       		.uleb128 0xe
+ 387 000b 55       		.uleb128 0x55
+ 388 000c 17       		.uleb128 0x17
+ 389 000d 11       		.uleb128 0x11
+ 390 000e 01       		.uleb128 0x1
+ 391 000f 10       		.uleb128 0x10
+ 392 0010 17       		.uleb128 0x17
+ 393 0011 00       		.byte	0
+ 394 0012 00       		.byte	0
+ 395 0013 02       		.uleb128 0x2
+ 396 0014 24       		.uleb128 0x24
+ 397 0015 00       		.byte	0
+ 398 0016 0B       		.uleb128 0xb
+ 399 0017 0B       		.uleb128 0xb
+ 400 0018 3E       		.uleb128 0x3e
+ 401 0019 0B       		.uleb128 0xb
+ 402 001a 03       		.uleb128 0x3
+ 403 001b 0E       		.uleb128 0xe
+ 404 001c 00       		.byte	0
+ 405 001d 00       		.byte	0
+ 406 001e 03       		.uleb128 0x3
+ 407 001f 24       		.uleb128 0x24
+ 408 0020 00       		.byte	0
+ 409 0021 0B       		.uleb128 0xb
+ 410 0022 0B       		.uleb128 0xb
+ 411 0023 3E       		.uleb128 0x3e
+ 412 0024 0B       		.uleb128 0xb
+ 413 0025 03       		.uleb128 0x3
+ 414 0026 08       		.uleb128 0x8
+ 415 0027 00       		.byte	0
+ 416 0028 00       		.byte	0
+ 417 0029 04       		.uleb128 0x4
+ 418 002a 16       		.uleb128 0x16
+ 419 002b 00       		.byte	0
+ 420 002c 03       		.uleb128 0x3
+ 421 002d 0E       		.uleb128 0xe
+ 422 002e 3A       		.uleb128 0x3a
+ 423 002f 0B       		.uleb128 0xb
+ 424 0030 3B       		.uleb128 0x3b
+ 425 0031 05       		.uleb128 0x5
+ 426 0032 49       		.uleb128 0x49
+ 427 0033 13       		.uleb128 0x13
+ 428 0034 00       		.byte	0
+ 429 0035 00       		.byte	0
+ 430 0036 05       		.uleb128 0x5
+ 431 0037 13       		.uleb128 0x13
+ 432 0038 01       		.byte	0x1
+ 433 0039 0B       		.uleb128 0xb
+ 434 003a 0B       		.uleb128 0xb
+ 435 003b 3A       		.uleb128 0x3a
+ 436 003c 0B       		.uleb128 0xb
+ 437 003d 3B       		.uleb128 0x3b
+ 438 003e 0B       		.uleb128 0xb
+ 439 003f 01       		.uleb128 0x1
+ 440 0040 13       		.uleb128 0x13
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 12
+
+
+ 441 0041 00       		.byte	0
+ 442 0042 00       		.byte	0
+ 443 0043 06       		.uleb128 0x6
+ 444 0044 0D       		.uleb128 0xd
+ 445 0045 00       		.byte	0
+ 446 0046 03       		.uleb128 0x3
+ 447 0047 0E       		.uleb128 0xe
+ 448 0048 3A       		.uleb128 0x3a
+ 449 0049 0B       		.uleb128 0xb
+ 450 004a 3B       		.uleb128 0x3b
+ 451 004b 0B       		.uleb128 0xb
+ 452 004c 49       		.uleb128 0x49
+ 453 004d 13       		.uleb128 0x13
+ 454 004e 38       		.uleb128 0x38
+ 455 004f 0B       		.uleb128 0xb
+ 456 0050 00       		.byte	0
+ 457 0051 00       		.byte	0
+ 458 0052 07       		.uleb128 0x7
+ 459 0053 16       		.uleb128 0x16
+ 460 0054 00       		.byte	0
+ 461 0055 03       		.uleb128 0x3
+ 462 0056 0E       		.uleb128 0xe
+ 463 0057 3A       		.uleb128 0x3a
+ 464 0058 0B       		.uleb128 0xb
+ 465 0059 3B       		.uleb128 0x3b
+ 466 005a 0B       		.uleb128 0xb
+ 467 005b 49       		.uleb128 0x49
+ 468 005c 13       		.uleb128 0x13
+ 469 005d 00       		.byte	0
+ 470 005e 00       		.byte	0
+ 471 005f 08       		.uleb128 0x8
+ 472 0060 2E       		.uleb128 0x2e
+ 473 0061 01       		.byte	0x1
+ 474 0062 3F       		.uleb128 0x3f
+ 475 0063 19       		.uleb128 0x19
+ 476 0064 03       		.uleb128 0x3
+ 477 0065 0E       		.uleb128 0xe
+ 478 0066 3A       		.uleb128 0x3a
+ 479 0067 0B       		.uleb128 0xb
+ 480 0068 3B       		.uleb128 0x3b
+ 481 0069 0B       		.uleb128 0xb
+ 482 006a 27       		.uleb128 0x27
+ 483 006b 19       		.uleb128 0x19
+ 484 006c 11       		.uleb128 0x11
+ 485 006d 01       		.uleb128 0x1
+ 486 006e 12       		.uleb128 0x12
+ 487 006f 06       		.uleb128 0x6
+ 488 0070 40       		.uleb128 0x40
+ 489 0071 18       		.uleb128 0x18
+ 490 0072 9742     		.uleb128 0x2117
+ 491 0074 19       		.uleb128 0x19
+ 492 0075 01       		.uleb128 0x1
+ 493 0076 13       		.uleb128 0x13
+ 494 0077 00       		.byte	0
+ 495 0078 00       		.byte	0
+ 496 0079 09       		.uleb128 0x9
+ 497 007a 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 13
+
+
+ 498 007d 00       		.byte	0
+ 499 007e 11       		.uleb128 0x11
+ 500 007f 01       		.uleb128 0x1
+ 501 0080 31       		.uleb128 0x31
+ 502 0081 13       		.uleb128 0x13
+ 503 0082 00       		.byte	0
+ 504 0083 00       		.byte	0
+ 505 0084 0A       		.uleb128 0xa
+ 506 0085 34       		.uleb128 0x34
+ 507 0086 00       		.byte	0
+ 508 0087 03       		.uleb128 0x3
+ 509 0088 0E       		.uleb128 0xe
+ 510 0089 3A       		.uleb128 0x3a
+ 511 008a 0B       		.uleb128 0xb
+ 512 008b 3B       		.uleb128 0x3b
+ 513 008c 0B       		.uleb128 0xb
+ 514 008d 49       		.uleb128 0x49
+ 515 008e 13       		.uleb128 0x13
+ 516 008f 02       		.uleb128 0x2
+ 517 0090 18       		.uleb128 0x18
+ 518 0091 00       		.byte	0
+ 519 0092 00       		.byte	0
+ 520 0093 0B       		.uleb128 0xb
+ 521 0094 2E       		.uleb128 0x2e
+ 522 0095 00       		.byte	0
+ 523 0096 3F       		.uleb128 0x3f
+ 524 0097 19       		.uleb128 0x19
+ 525 0098 3C       		.uleb128 0x3c
+ 526 0099 19       		.uleb128 0x19
+ 527 009a 6E       		.uleb128 0x6e
+ 528 009b 0E       		.uleb128 0xe
+ 529 009c 03       		.uleb128 0x3
+ 530 009d 0E       		.uleb128 0xe
+ 531 009e 3A       		.uleb128 0x3a
+ 532 009f 0B       		.uleb128 0xb
+ 533 00a0 3B       		.uleb128 0x3b
+ 534 00a1 0B       		.uleb128 0xb
+ 535 00a2 00       		.byte	0
+ 536 00a3 00       		.byte	0
+ 537 00a4 00       		.byte	0
+ 538              		.section	.debug_aranges,"",%progbits
+ 539 0000 34000000 		.4byte	0x34
+ 540 0004 0200     		.2byte	0x2
+ 541 0006 00000000 		.4byte	.Ldebug_info0
+ 542 000a 04       		.byte	0x4
+ 543 000b 00       		.byte	0
+ 544 000c 0000     		.2byte	0
+ 545 000e 0000     		.2byte	0
+ 546 0010 00000000 		.4byte	.LFB0
+ 547 0014 18000000 		.4byte	.LFE0-.LFB0
+ 548 0018 00000000 		.4byte	.LFB1
+ 549 001c 18000000 		.4byte	.LFE1-.LFB1
+ 550 0020 00000000 		.4byte	.LFB2
+ 551 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 552 0028 00000000 		.4byte	.LFB3
+ 553 002c 18000000 		.4byte	.LFE3-.LFB3
+ 554 0030 00000000 		.4byte	0
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 14
+
+
+ 555 0034 00000000 		.4byte	0
+ 556              		.section	.debug_ranges,"",%progbits
+ 557              	.Ldebug_ranges0:
+ 558 0000 00000000 		.4byte	.LFB0
+ 559 0004 18000000 		.4byte	.LFE0
+ 560 0008 00000000 		.4byte	.LFB1
+ 561 000c 18000000 		.4byte	.LFE1
+ 562 0010 00000000 		.4byte	.LFB2
+ 563 0014 0C000000 		.4byte	.LFE2
+ 564 0018 00000000 		.4byte	.LFB3
+ 565 001c 18000000 		.4byte	.LFE3
+ 566 0020 00000000 		.4byte	0
+ 567 0024 00000000 		.4byte	0
+ 568              		.section	.debug_line,"",%progbits
+ 569              	.Ldebug_line0:
+ 570 0000 BC000000 		.section	.debug_str,"MS",%progbits,1
+ 570      02006C00 
+ 570      00000201 
+ 570      FB0E0D00 
+ 570      01010101 
+ 571              	.LASF29:
+ 572 0000 50574D5F 		.ascii	"PWM_swt_mode_select_Enable\000"
+ 572      7377745F 
+ 572      6D6F6465 
+ 572      5F73656C 
+ 572      6563745F 
+ 573              	.LASF17:
+ 574 001b 50574D55 		.ascii	"PWMUdb\000"
+ 574      646200
+ 575              	.LASF18:
+ 576 0022 50574D50 		.ascii	"PWMPeriod\000"
+ 576      6572696F 
+ 576      6400
+ 577              	.LASF26:
+ 578 002c 50574D5F 		.ascii	"PWM_swt_mode_select_WritePeriod\000"
+ 578      7377745F 
+ 578      6D6F6465 
+ 578      5F73656C 
+ 578      6563745F 
+ 579              	.LASF3:
+ 580 004c 73686F72 		.ascii	"short unsigned int\000"
+ 580      7420756E 
+ 580      7369676E 
+ 580      65642069 
+ 580      6E7400
+ 581              	.LASF20:
+ 582 005f 50574D5F 		.ascii	"PWM_swt_mode_select_SaveConfig\000"
+ 582      7377745F 
+ 582      6D6F6465 
+ 582      5F73656C 
+ 582      6563745F 
+ 583              	.LASF33:
+ 584 007e 50574D5F 		.ascii	"PWM_swt_mode_select_backup\000"
+ 584      7377745F 
+ 584      6D6F6465 
+ 584      5F73656C 
+ 584      6563745F 
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 15
+
+
+ 585              	.LASF11:
+ 586 0099 666C6F61 		.ascii	"float\000"
+ 586      7400
+ 587              	.LASF31:
+ 588 009f 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_swt_mode_select_PM.c\000"
+ 588      72617465 
+ 588      645F536F 
+ 588      75726365 
+ 588      5C50536F 
+ 589              	.LASF1:
+ 590 00cf 756E7369 		.ascii	"unsigned char\000"
+ 590      676E6564 
+ 590      20636861 
+ 590      7200
+ 591              	.LASF30:
+ 592 00dd 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 592      43313120 
+ 592      352E342E 
+ 592      31203230 
+ 592      31363036 
+ 593 0110 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 593      20726576 
+ 593      6973696F 
+ 593      6E203233 
+ 593      37373135 
+ 594 0143 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 594      66756E63 
+ 594      74696F6E 
+ 594      2D736563 
+ 594      74696F6E 
+ 595              	.LASF16:
+ 596 016b 50574D45 		.ascii	"PWMEnableState\000"
+ 596      6E61626C 
+ 596      65537461 
+ 596      746500
+ 597              	.LASF21:
+ 598 017a 50574D5F 		.ascii	"PWM_swt_mode_select_RestoreConfig\000"
+ 598      7377745F 
+ 598      6D6F6465 
+ 598      5F73656C 
+ 598      6563745F 
+ 599              	.LASF5:
+ 600 019c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 600      20756E73 
+ 600      69676E65 
+ 600      6420696E 
+ 600      7400
+ 601              	.LASF9:
+ 602 01ae 75696E74 		.ascii	"uint8\000"
+ 602      3800
+ 603              	.LASF32:
+ 604 01b4 433A5C55 		.ascii	"C:\\Users\\eylonk\\university_project\\university_p"
+ 604      73657273 
+ 604      5C65796C 
+ 604      6F6E6B5C 
+ 604      756E6976 
+ 605 01e3 726F6A65 		.ascii	"roject\\main\\Workspace01\\eylons_project.cydsn\000"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 16
+
+
+ 605      63745C6D 
+ 605      61696E5C 
+ 605      576F726B 
+ 605      73706163 
+ 606              	.LASF27:
+ 607 0210 50574D5F 		.ascii	"PWM_swt_mode_select_WriteCounter\000"
+ 607      7377745F 
+ 607      6D6F6465 
+ 607      5F73656C 
+ 607      6563745F 
+ 608              	.LASF12:
+ 609 0231 646F7562 		.ascii	"double\000"
+ 609      6C6500
+ 610              	.LASF24:
+ 611 0238 50574D5F 		.ascii	"PWM_swt_mode_select_ReadPeriod\000"
+ 611      7377745F 
+ 611      6D6F6465 
+ 611      5F73656C 
+ 611      6563745F 
+ 612              	.LASF10:
+ 613 0257 75696E74 		.ascii	"uint16\000"
+ 613      313600
+ 614              	.LASF22:
+ 615 025e 50574D5F 		.ascii	"PWM_swt_mode_select_Sleep\000"
+ 615      7377745F 
+ 615      6D6F6465 
+ 615      5F73656C 
+ 615      6563745F 
+ 616              	.LASF8:
+ 617 0278 756E7369 		.ascii	"unsigned int\000"
+ 617      676E6564 
+ 617      20696E74 
+ 617      00
+ 618              	.LASF7:
+ 619 0285 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 619      206C6F6E 
+ 619      6720756E 
+ 619      7369676E 
+ 619      65642069 
+ 620              	.LASF15:
+ 621 029c 73697A65 		.ascii	"sizetype\000"
+ 621      74797065 
+ 621      00
+ 622              	.LASF6:
+ 623 02a5 6C6F6E67 		.ascii	"long long int\000"
+ 623      206C6F6E 
+ 623      6720696E 
+ 623      7400
+ 624              	.LASF13:
+ 625 02b3 63686172 		.ascii	"char\000"
+ 625      00
+ 626              	.LASF2:
+ 627 02b8 73686F72 		.ascii	"short int\000"
+ 627      7420696E 
+ 627      7400
+ 628              	.LASF25:
+ 629 02c2 50574D5F 		.ascii	"PWM_swt_mode_select_ReadCounter\000"
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\cc5olAmi.s 			page 17
+
+
+ 629      7377745F 
+ 629      6D6F6465 
+ 629      5F73656C 
+ 629      6563745F 
+ 630              	.LASF28:
+ 631 02e2 50574D5F 		.ascii	"PWM_swt_mode_select_Stop\000"
+ 631      7377745F 
+ 631      6D6F6465 
+ 631      5F73656C 
+ 631      6563745F 
+ 632              	.LASF4:
+ 633 02fb 6C6F6E67 		.ascii	"long int\000"
+ 633      20696E74 
+ 633      00
+ 634              	.LASF14:
+ 635 0304 6C6F6E67 		.ascii	"long double\000"
+ 635      20646F75 
+ 635      626C6500 
+ 636              	.LASF0:
+ 637 0310 7369676E 		.ascii	"signed char\000"
+ 637      65642063 
+ 637      68617200 
+ 638              	.LASF23:
+ 639 031c 50574D5F 		.ascii	"PWM_swt_mode_select_Wakeup\000"
+ 639      7377745F 
+ 639      6D6F6465 
+ 639      5F73656C 
+ 639      6563745F 
+ 640              	.LASF19:
+ 641 0337 50574D5F 		.ascii	"PWM_swt_mode_select_backupStruct\000"
+ 641      7377745F 
+ 641      6D6F6465 
+ 641      5F73656C 
+ 641      6563745F 
+ 642              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

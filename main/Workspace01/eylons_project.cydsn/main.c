@@ -13,8 +13,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum state_e     {start, move_to_sample, stay_on_sample, move_from_sample, stay_off_sample};
-enum direction_e {to_sample = 1, from_sample = 0};
+enum direction_mode_e {swt_from_sample, swt_to_sample, usb};
+enum direction_e      {to_sample = 1, from_sample = 0};
+enum state_e          {start, move_to_sample, stay_on_sample, move_from_sample, stay_off_sample};
+
 
 const int total_steps     = 1450;
 
@@ -34,16 +36,17 @@ int  current_step = 0;
 // if so, we can't predict the starting location and therefore moving at 
 // minimal speed.
 int  first_moving_state; 
-enum direction_e direction = from_sample;
-enum state_e     state     = start;
+enum direction_mode_e direction_mode = usb;
+enum direction_e      direction      = from_sample;
+enum state_e          state          = start;
 
 int main(void)
 {
+    CyGlobalIntEnable; /* Enable global interrupts. */
+   
     // Starting the DAC used for leds display of magnets location
     // As the magnet is closer to the sample more leds will turn up. 
     VDAC8_1_Start();
-    
-    CyGlobalIntEnable; /* Enable global interrupts. */
     
     PWM_1_Start();
     Opamp_1_Start();
@@ -51,7 +54,27 @@ int main(void)
     
     for(;;)
     {
-        direction = operation_input_Read();
+        if (swt_from_sample_mode_Read() == 1){
+            direction_mode = swt_from_sample;
+        } else if (swt_to_sample_mode_Read() == 1){
+            direction_mode = swt_to_sample;
+        } else {
+            direction_mode = usb;
+        }
+        
+        switch(direction_mode){
+            case swt_from_sample:
+                direction = from_sample;
+            break;
+            
+            case swt_to_sample:
+                direction = to_sample;
+            break;
+            
+            case usb:
+                direction = operation_input_Read();
+            break;
+        }
         
         switch(state){
             case start:
@@ -90,16 +113,12 @@ int main(void)
                         current_delay = min_speed_delay;
                     }
                     current_step++;
-<<<<<<< HEAD
                 }
                 CyDelayUs(current_delay);
-                if (sensor_right_Read() == 0){
-=======
-                    if (sensor_right_Read() == 0){   // TODO change the name of the pin.
->>>>>>> efc10c89f270160323448a163c3a4f162bb424a5
-                        current_step = 0;
-                        state = stay_on_sample;
-                    }
+                if (sensor_right_Read() == 0){   // TODO change the name of the pin.
+                    current_step = 0;
+                    state = stay_on_sample;
+                }
               break;
             
             case stay_on_sample:

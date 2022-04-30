@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
   28:Generated_Source\PSoC5/PWM_1.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
   29:Generated_Source\PSoC5/PWM_1.c ****          constant 1 for reset. This will prevent the component from operating.
   30:Generated_Source\PSoC5/PWM_1.c **** #endif /* PWM_1_PWMUDB_genblk1_ctrlreg__REMOVED */
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 2
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 2
 
 
   31:Generated_Source\PSoC5/PWM_1.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
   85:Generated_Source\PSoC5/PWM_1.c **** {
   86:Generated_Source\PSoC5/PWM_1.c ****     #if (PWM_1_UsingFixedFunction || PWM_1_UseControl)
   87:Generated_Source\PSoC5/PWM_1.c ****         uint8 ctrl;
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 3
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 3
 
 
   88:Generated_Source\PSoC5/PWM_1.c ****     #endif /* (PWM_1_UsingFixedFunction || PWM_1_UseControl) */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  142:Generated_Source\PSoC5/PWM_1.c ****             PWM_1_WriteCompare2(PWM_1_INIT_COMPARE_VALUE2);
  143:Generated_Source\PSoC5/PWM_1.c ****         #endif /* (PWM_1_UseOneCompareMode) */
  144:Generated_Source\PSoC5/PWM_1.c **** 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 4
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 4
 
 
  145:Generated_Source\PSoC5/PWM_1.c ****         #if (PWM_1_KillModeMinTime)
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  199:Generated_Source\PSoC5/PWM_1.c **** void PWM_1_Enable(void) 
  200:Generated_Source\PSoC5/PWM_1.c **** {
   28              		.loc 1 200 0
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 5
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 5
 
 
   29              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
   49              		@ link register save eliminated.
   50 0000 7047     		bx	lr
   51              		.cfi_endproc
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 6
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 6
 
 
   52              	.LFE3:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  279:Generated_Source\PSoC5/PWM_1.c ****             #elif (PWM_1_UseControl)
  280:Generated_Source\PSoC5/PWM_1.c **** 
  281:Generated_Source\PSoC5/PWM_1.c ****                 #if(0 != PWM_1_CTRL_CMPMODE1_SHIFT)
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 7
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 7
 
 
  282:Generated_Source\PSoC5/PWM_1.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_1_CTRL_CMPMODE1_S
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  336:Generated_Source\PSoC5/PWM_1.c ****                 PWM_1_CONTROL &= ((uint8)(~PWM_1_CTRL_CMPMODE1_MASK)); /*Clear existing mode */
  337:Generated_Source\PSoC5/PWM_1.c ****                 PWM_1_CONTROL |= comparemodemasked;
  338:Generated_Source\PSoC5/PWM_1.c ****             #endif /* (PWM_1_UseControl) */
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 8
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 8
 
 
  339:Generated_Source\PSoC5/PWM_1.c ****         }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  393:Generated_Source\PSoC5/PWM_1.c ****     * Parameters:
  394:Generated_Source\PSoC5/PWM_1.c ****     *  counter:  The period new period counter value.
  395:Generated_Source\PSoC5/PWM_1.c ****     *
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 9
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 9
 
 
  396:Generated_Source\PSoC5/PWM_1.c ****     * Return:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  425:Generated_Source\PSoC5/PWM_1.c ****     uint16 PWM_1_ReadCounter(void) 
  426:Generated_Source\PSoC5/PWM_1.c ****     {
   87              		.loc 1 426 0
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 10
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 10
 
 
   88              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  452:Generated_Source\PSoC5/PWM_1.c ****         *******************************************************************************/
  453:Generated_Source\PSoC5/PWM_1.c ****         void PWM_1_ClearFIFO(void) 
  454:Generated_Source\PSoC5/PWM_1.c ****         {
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 11
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 11
 
 
  455:Generated_Source\PSoC5/PWM_1.c ****             while(0u != (PWM_1_ReadStatusRegister() & PWM_1_STATUS_FIFONEMPTY))
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  138              		.thumb_func
  139              		.type	PWM_1_WriteCompare, %function
  140              	PWM_1_WriteCompare:
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 12
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 12
 
 
  141              	.LFB7:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  160              		.align	2
  161              		.global	PWM_1_Init
  162              		.thumb
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 13
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 13
 
 
  163              		.thumb_func
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  211              	PWM_1_Start:
  212              	.LFB0:
   56:Generated_Source\PSoC5/PWM_1.c ****     /* If not Initialized then initialize all required hardware and software */
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 14
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 14
 
 
  213              		.loc 1 56 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  538:Generated_Source\PSoC5/PWM_1.c ****     /*******************************************************************************
  539:Generated_Source\PSoC5/PWM_1.c ****     * Function Name: PWM_1_WriteCompare1
  540:Generated_Source\PSoC5/PWM_1.c ****     ********************************************************************************
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 15
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 15
 
 
  541:Generated_Source\PSoC5/PWM_1.c ****     *
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  595:Generated_Source\PSoC5/PWM_1.c **** #if (PWM_1_DeadBandUsed)
  596:Generated_Source\PSoC5/PWM_1.c **** 
  597:Generated_Source\PSoC5/PWM_1.c **** 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 16
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 16
 
 
  598:Generated_Source\PSoC5/PWM_1.c ****     /*******************************************************************************
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  652:Generated_Source\PSoC5/PWM_1.c ****             return (CY_GET_REG8(PWM_1_DEADBAND_COUNT_PTR));
  653:Generated_Source\PSoC5/PWM_1.c ****         #else
  654:Generated_Source\PSoC5/PWM_1.c **** 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 17
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 17
 
 
  655:Generated_Source\PSoC5/PWM_1.c ****             /* Otherwise the data has to be masked and offset */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  709:Generated_Source\PSoC5/PWM_1.c ****     *
  710:Generated_Source\PSoC5/PWM_1.c ****     *******************************************************************************/
  711:Generated_Source\PSoC5/PWM_1.c ****     uint8 PWM_1_ReadStatusRegister(void) 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 18
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 18
 
 
  712:Generated_Source\PSoC5/PWM_1.c ****     {
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  766:Generated_Source\PSoC5/PWM_1.c ****     {
  767:Generated_Source\PSoC5/PWM_1.c ****         CY_SET_REG8(PWM_1_CONTROL_PTR, control);
  768:Generated_Source\PSoC5/PWM_1.c ****     }
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 19
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 19
 
 
  769:Generated_Source\PSoC5/PWM_1.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  797:Generated_Source\PSoC5/PWM_1.c **** 
  798:Generated_Source\PSoC5/PWM_1.c **** #if (PWM_1_UseOneCompareMode)
  799:Generated_Source\PSoC5/PWM_1.c **** 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 20
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 20
 
 
  800:Generated_Source\PSoC5/PWM_1.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  828:Generated_Source\PSoC5/PWM_1.c ****     /*******************************************************************************
  829:Generated_Source\PSoC5/PWM_1.c ****     * Function Name: PWM_1_ReadCompare1
  830:Generated_Source\PSoC5/PWM_1.c ****     ********************************************************************************
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 21
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 21
 
 
  831:Generated_Source\PSoC5/PWM_1.c ****     *
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  885:Generated_Source\PSoC5/PWM_1.c **** {
  301              		.loc 1 885 0
  302              		.cfi_startproc
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 22
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 22
 
 
  303              		@ args = 0, pretend = 0, frame = 0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  351 0033 02       		.uleb128 0x2
  352 0034 02       		.byte	0x2
  353 0035 05       		.byte	0x5
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 23
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 23
 
 
  354 0036 9B010000 		.4byte	.LASF2
@@ -1353,12 +1353,12 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  383 006b 04       		.uleb128 0x4
  384 006c 12010000 		.4byte	.LASF9
  385 0070 02       		.byte	0x2
- 386 0071 E801     		.2byte	0x1e8
+ 386 0071 E901     		.2byte	0x1e9
  387 0073 2C000000 		.4byte	0x2c
  388 0077 04       		.uleb128 0x4
  389 0078 B7010000 		.4byte	.LASF10
  390 007c 02       		.byte	0x2
- 391 007d E901     		.2byte	0x1e9
+ 391 007d EA01     		.2byte	0x1ea
  392 007f 3A000000 		.4byte	0x3a
  393 0083 02       		.uleb128 0x2
  394 0084 04       		.byte	0x4
@@ -1375,17 +1375,17 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  405 0098 04       		.uleb128 0x4
  406 0099 EA000000 		.4byte	.LASF14
  407 009d 02       		.byte	0x2
- 408 009e 9202     		.2byte	0x292
+ 408 009e 9302     		.2byte	0x293
  409 00a0 A4000000 		.4byte	0xa4
  410 00a4 05       		.uleb128 0x5
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 24
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 24
 
 
  411 00a5 6B000000 		.4byte	0x6b
  412 00a9 04       		.uleb128 0x4
  413 00aa 00000000 		.4byte	.LASF15
  414 00ae 02       		.byte	0x2
- 415 00af 9302     		.2byte	0x293
+ 415 00af 9402     		.2byte	0x294
  416 00b1 B5000000 		.4byte	0xb5
  417 00b5 05       		.uleb128 0x5
  418 00b6 77000000 		.4byte	0x77
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  465 011b 00000000 		.4byte	.LFB5
  466 011f 14000000 		.4byte	.LFE5-.LFB5
  467 0123 01       		.uleb128 0x1
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 25
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 25
 
 
  468 0124 9C       		.byte	0x9c
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  522 0198 00       		.byte	0
  523 0199 0B       		.uleb128 0xb
  524 019a 26000000 		.4byte	.LVL4
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 26
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 26
 
 
  525 019e 25010000 		.4byte	0x125
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  579 0210 7403     		.2byte	0x374
  580 0212 77000000 		.4byte	0x77
  581 0216 00000000 		.4byte	.LFB10
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 27
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 27
 
 
  582 021a 0C000000 		.4byte	.LFE10-.LFB10
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  636 0028 00       		.byte	0
  637 0029 04       		.uleb128 0x4
  638 002a 16       		.uleb128 0x16
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 28
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 28
 
 
  639 002b 00       		.byte	0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  693 0062 11       		.uleb128 0x11
  694 0063 01       		.uleb128 0x1
  695 0064 12       		.uleb128 0x12
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 29
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 29
 
 
  696 0065 06       		.uleb128 0x6
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  750 009d 03       		.uleb128 0x3
  751 009e 0E       		.uleb128 0xe
  752 009f 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 30
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 30
 
 
  753 00a0 0B       		.uleb128 0xb
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  807 00e0 00       		.byte	0
  808 00e1 0F       		.uleb128 0xf
  809 00e2 34       		.uleb128 0x34
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 31
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 31
 
 
  810 00e3 00       		.byte	0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  864 0010 00000000 		.4byte	.LFB4
  865 0014 0C000000 		.4byte	.LFE4
  866 0018 00000000 		.4byte	.LFB5
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 32
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 32
 
 
  867 001c 14000000 		.4byte	.LFE5
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  902 004e 756E7369 		.ascii	"unsigned char\000"
  902      676E6564 
  902      20636861 
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 33
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 33
 
 
  902      7200
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  921      6C6500
  922              	.LASF35:
  923 018d 50574D5F 		.ascii	"PWM_1_initVar\000"
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 34
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 34
 
 
  923      315F696E 
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 1
  945      00
  946              	.LASF21:
  947 023b 50574D5F 		.ascii	"PWM_1_WritePeriod\000"
-ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccKD99yU.s 			page 35
+ARM GAS  C:\Users\eylonk\AppData\Local\Temp\ccqNxkzy.s 			page 35
 
 
  947      315F5772 
