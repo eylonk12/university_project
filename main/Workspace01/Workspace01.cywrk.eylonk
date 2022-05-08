@@ -52,36 +52,7 @@
 <v>Workspace01\eylons_project_old_interrupts_switch\Generated_Source</v>
 <v>Workspace01\eylons_project_old_interrupts_switch\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
-<VisibleNodeIds>
-<v>Workspace01</v>
-<v>Workspace01\eylons_project</v>
-<v>Workspace01\eylons_project\TopDesign</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Pins</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Analog</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Clocks</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Interrupts</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\DMA</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\System</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Directives</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\Flash Security</v>
-<v>Workspace01\eylons_project\eylons_project.cydwr\EEPROM</v>
-<v>Workspace01\eylons_project\Header Files</v>
-<v>Workspace01\eylons_project\Header Files\cyapicallbacks.h</v>
-<v>Workspace01\eylons_project\Source Files</v>
-<v>Workspace01\eylons_project\Source Files\main.c</v>
-<v>Workspace01\eylons_project\Generated_Source</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\Clock_1</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\Clock_2</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\cy_boot</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\direction_out</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\leds_control</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\leds_enable</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\mp_led</v>
-<v>Workspace01\eylons_project\Generated_Source\PSoC5\Opamp_1</v>
-</VisibleNodeIds>
+<VisibleNodeIds />
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
@@ -93,15 +64,7 @@
 <v>Workspace01\eylons_project_old_interrupts_switch\TopDesign</v>
 <v>Workspace01\eylons_project_old_interrupts_switch\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
-<VisibleNodeIds>
-<v>Workspace01</v>
-<v>Workspace01\eylons_project</v>
-<v>Workspace01\eylons_project\TopDesign</v>
-<v>Workspace01\eylons_project\TopDesign\TopDesign.cysch</v>
-<v>Workspace01\eylons_project_old_interrupts_switch</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\TopDesign\TopDesign.cysch</v>
-</VisibleNodeIds>
+<VisibleNodeIds />
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace01">
 <ExpandedNodeIds>
@@ -248,10 +211,7 @@
 <v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch.rpt</v>
 <v>Workspace01\eylons_project_old_interrupts_switch\eylons_project_old_interrupts_switch_timing.html</v>
 </ExpandedNodeIds>
-<VisibleNodeIds>
-<v>Workspace01</v>
-<v>Workspace01\eylons_project</v>
-</VisibleNodeIds>
+<VisibleNodeIds />
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
 <TreeKeysV2>
@@ -294,36 +254,7 @@
 <v>Workspace01\eylons_project_old_interrupts_switch\PWM_v3_30\PWM_v3_30.pdf</v>
 <v>Workspace01\eylons_project_old_interrupts_switch\VDAC8_v1_90.pdf</v>
 </ExpandedNodeIds>
-<VisibleNodeIds>
-<v>Workspace01</v>
-<v>Workspace01\eylons_project</v>
-<v>Workspace01\eylons_project\PSoC 5LP Architecture TRM</v>
-<v>Workspace01\eylons_project\CY8C58LP Family Datasheet</v>
-<v>Workspace01\eylons_project\System Reference Guides</v>
-<v>Workspace01\eylons_project\System Reference Guides\cy_boot_v6_10</v>
-<v>Workspace01\eylons_project\cy_clock_v2_20</v>
-<v>Workspace01\eylons_project\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>Workspace01\eylons_project\cy_constant_v1_0</v>
-<v>Workspace01\eylons_project\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
-<v>Workspace01\eylons_project\cy_pins_v2_20</v>
-<v>Workspace01\eylons_project\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>Workspace01\eylons_project\OpAmp_v1_90.pdf</v>
-<v>Workspace01\eylons_project\PWM_v3_30.pdf</v>
-<v>Workspace01\eylons_project\VDAC8_v1_90.pdf</v>
-<v>Workspace01\eylons_project_old_interrupts_switch</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\PSoC 5LP Architecture TRM</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\CY8C58LP Family Datasheet</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\System Reference Guides\cy_boot_v6_10</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\Counter_v3_0.pdf</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
-<v>Workspace01\eylons_project_old_interrupts_switch\cy_pins_v2_20</v>
-</VisibleNodeIds>
+<VisibleNodeIds />
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
 </CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
@@ -338,6 +269,8 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\eylons_project.cydsn\main.c" />
+<name v=".\eylons_project.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\eylons_project.cydsn\eylons_project.cydwr" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -345,7 +278,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="199, 123" SelectedTabbedMdiWindow="baa32299-38e5-4ed0-ab5c-e96549cef7bd"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="4c155799-0d67-4fc5-9172-b6a83fa8a676" /><DocumentWindow Key="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\main.c" Guid="baa32299-38e5-4ed0-ab5c-e96549cef7bd" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1368, 726" SelectedTabbedMdiWindow="1a694081-fb68-4938-bb43-575e9cbe7358"><DocumentWindow Key="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\main.c" Guid="1a694081-fb68-4938-bb43-575e9cbe7358" /><DocumentWindow Key="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\TopDesign\TopDesign.cysch" Guid="5ee009dd-6d75-47c1-99bf-e07a9347ddf2" /><DocumentWindow Key="C:\Users\eylonk\university_project\university_project\main\Workspace01\eylons_project.cydsn\eylons_project.cydwr" Guid="62a3f607-43c1-4e81-96e3-aca700e63ec7" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="Debug" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
